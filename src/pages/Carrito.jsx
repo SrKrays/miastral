@@ -1,32 +1,31 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import { CartContext } from '../context/CartContext'
 import './Carrito.css'
 
-// Datos de ejemplo para mostrar la UI
-const INITIAL_ITEMS = [
-  { id:1, titulo:'Horóscopo 2026: tu mapa energético del año', precio:45, qty:1, emoji:'📕' },
-  { id:2, titulo:'Guía práctica para manifestar con el ciclo lunar', precio:26, qty:1, emoji:'🌙' },
-]
-
 export default function Carrito() {
-  const [items, setItems] = useState(INITIAL_ITEMS)
+  const { items, updateQty: setQty, removeItem, clearCart, total, count } = useContext(CartContext)
   const [checkoutStep, setCheckoutStep] = useState(0) // 0=carrito, 1=envio, 2=confirmacion
 
   const updateQty = (id, delta) => {
-    setItems(prev =>
-      prev.map(i => i.id === id ? { ...i, qty: Math.max(1, i.qty + delta) } : i)
-    )
+    const item = items.find(i => i.id === id)
+    if (!item) return
+    setQty(id, item.qty + delta)
   }
-  const remove = (id) => setItems(prev => prev.filter(i => i.id !== id))
-  const total = items.reduce((acc, i) => acc + i.precio * i.qty, 0)
+  const remove = (id) => removeItem(id)
+
+  const finishOrder = () => {
+    setCheckoutStep(2)
+    clearCart()
+  }
 
   if (checkoutStep === 2) return <OrderConfirmed />
 
   return (
     <>
-      <Navbar cartCount={items.reduce((a,i) => a+i.qty, 0)} />
+      <Navbar cartCount={count} />
 
       <section className="carrito-section">
         <div className="container-astral">
@@ -97,7 +96,7 @@ export default function Carrito() {
               </div>
             </div>
           ) : (
-            <ShippingForm total={total} onConfirm={() => setCheckoutStep(2)} onBack={() => setCheckoutStep(0)} />
+            <ShippingForm total={total} onConfirm={finishOrder} onBack={() => setCheckoutStep(0)} />
           )}
         </div>
       </section>

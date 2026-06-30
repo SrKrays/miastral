@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
@@ -6,6 +6,8 @@ import ProductModal from '../components/ProductModal/ProductModal'
 import AnimatedIcon from '../components/AnimatedIcon/AnimatedIcon'
 import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollReveal/ScrollReveal'
 import './Home.css'
+
+const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
 
 const BEST_SELLERS = [
   { id:1, tipo:'Guía práctica', titulo:'Manifestá con el ciclo lunar', precio:'US$ 26', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'🌙', tag:'' },
@@ -84,11 +86,9 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-photo">
-          <div style={{ width:'100%',height:'100%',background:'linear-gradient(160deg,#d1dbe6 0%,#b3c3d5 100%)',display:'flex',alignItems:'flex-end',justifyContent:'center' }}>
-            <div style={{ width:'78%',height:'90%',background:'linear-gradient(180deg,#96acc5 0%,#7894b5 100%)',borderRadius:'12px 12px 0 0',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'5rem',opacity:0.3 }}>✦</div>
-          </div>
-        </div>
+        <Suspense fallback={null}>
+          <TorusFieldScene className="hero-torus" />
+        </Suspense>
         <div className="hero-content">
           <ScrollReveal direction="down" delay={0}>
             <div className="hero-eyebrow">Bienvenid@ ✦</div>

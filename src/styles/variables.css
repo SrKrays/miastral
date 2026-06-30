@@ -19,6 +19,7 @@
   --bg-card:        var(--c-800);   /* cards */
   --bg-light:       var(--c-50);    /* secciones claras */
   --bg-white:       #ffffff;
+  --bg-cream:       #f7f3ec;        /* faltaba, usada en Astrología/Bienestar/Membresía */
 
   --text-primary:   var(--c-50);    /* texto sobre fondo oscuro */
   --text-secondary: var(--c-200);   /* texto secundario */

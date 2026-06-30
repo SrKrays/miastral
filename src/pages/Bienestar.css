@@ -1,6 +1,6 @@
 /* ===== BANNER ===== */
 .wellness-banner {
-  background: var(--accent-coral);
+  background: rgba(9,13,16,0.7);
   padding: 80px 24px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -42,7 +42,7 @@
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 400;
-  color: var(--text-dark);
+  color: #fff;
   margin-bottom: 16px;
   letter-spacing: -1px;
 }
@@ -50,7 +50,7 @@
 .wellness-banner-subtitle {
   font-family: var(--font-body);
   font-size: 18px;
-  color: var(--text-dark);
+  color: var(--c-200);
   opacity: 0.8;
   max-width: 400px;
   margin: 0 auto;
@@ -69,11 +69,11 @@
 /* ===== SECCIONES ===== */
 .wellness-section {
   padding: 80px 24px;
-  background: var(--bg-white);
+  background: rgba(255,255,255,0.88);
 }
 
 .wellness-section-alt {
-  background: var(--bg-cream);
+  background: rgba(247,243,236,0.88);
 }
 
 .wellness-section-header {
@@ -108,7 +108,7 @@
 }
 
 .wellness-card {
-  background: var(--bg-white);
+  background: rgba(255,255,255,0.88);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -118,7 +118,7 @@
 }
 
 .wellness-section-alt .wellness-card {
-  background: var(--bg-cream);
+  background: rgba(247,243,236,0.88);
 }
 
 .wellness-card:hover {
