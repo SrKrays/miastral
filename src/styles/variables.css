@@ -1,0 +1,63 @@
+/* ===== ASTRAL — Paleta cliente (azules oscuros) ===== */
+:root {
+  /* Paleta principal: escala de azules oscuros */
+  --c-50:   #EFF2F6;
+  --c-100:  #D1DBE6;
+  --c-200:  #B3C3D5;
+  --c-300:  #96ACC5;
+  --c-400:  #7894B5;
+  --c-500:  #5B7DA4;
+  --c-600:  #4A6787;
+  --c-700:  #3A5069;
+  --c-800:  #2F4156;
+  --c-900:  #19232E;
+  --c-950:  #090D10;
+
+  /* Alias semánticos */
+  --bg-primary:     var(--c-950);   /* fondo principal oscuro */
+  --bg-secondary:   var(--c-900);   /* secciones alternadas */
+  --bg-card:        var(--c-800);   /* cards */
+  --bg-light:       var(--c-50);    /* secciones claras */
+  --bg-white:       #ffffff;
+
+  --text-primary:   var(--c-50);    /* texto sobre fondo oscuro */
+  --text-secondary: var(--c-200);   /* texto secundario */
+  --text-muted:     var(--c-400);   /* texto apagado */
+  --text-dark:      var(--c-950);   /* texto sobre fondo claro */
+  --text-mid:       var(--c-700);
+
+  /* Acento coral (CTA, botones de acción) — se mantiene */
+  --accent-coral:       #e8735a;
+  --accent-coral-hover: #d4614a;
+  --accent-coral-light: #f0957e;
+
+  /* Acento azul brillante */
+  --accent-blue:     var(--c-400);
+  --accent-blue-light: var(--c-300);
+
+  /* Bordes */
+  --border-dark:   rgba(255,255,255,0.08);
+  --border-mid:    rgba(255,255,255,0.14);
+  --border-light:  var(--c-100);
+  --border-card:   var(--c-700);
+
+  /* Tipografías */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body:    'Inter', sans-serif;
+  --font-label:   'Montserrat', sans-serif;
+
+  /* Radios */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 999px;
+
+  /* Sombras */
+  --shadow-card:  0 2px 20px rgba(0,0,0,0.25);
+  --shadow-hover: 0 8px 40px rgba(0,0,0,0.4);
+  --shadow-coral: 0 4px 24px rgba(232,115,90,0.35);
+  --shadow-blue:  0 4px 24px rgba(91,125,164,0.3);
+
+  /* Transición */
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}

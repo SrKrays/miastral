@@ -1,0 +1,170 @@
+/* ===== CONOCE A VALEN ===== */
+
+/* Hero foto grande */
+.conoce-hero {
+  position: relative;
+  height: 70vh;
+  min-height: 440px;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.conoce-hero-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.conoce-photo-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, var(--c-800) 0%, var(--c-600) 40%, var(--c-900) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conoce-photo-icon {
+  font-size: 8rem;
+  opacity: 0.12;
+  color: var(--c-200);
+}
+
+/* Overlay degradado inferior */
+.conoce-hero-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, var(--c-50), transparent);
+}
+
+/* Decoración esquina derecha (como imagen 4) */
+.conoce-hero-decor {
+  position: absolute;
+  right: -60px;
+  top: 10%;
+  width: 260px;
+  height: 260px;
+  background: var(--c-700);
+  border-radius: 50%;
+  opacity: 0.25;
+}
+
+/* Bio section */
+.conoce-bio {
+  background: var(--c-50);
+  padding: 72px 0 80px;
+}
+
+.conoce-bio-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.conoce-bio-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.conoce-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  color: var(--c-950);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.conoce-subtitle-label {
+  font-family: var(--font-label);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-500);
+}
+
+.conoce-bio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.conoce-bio-text p {
+  font-size: 14.5px;
+  color: var(--c-800);
+  line-height: 1.85;
+}
+
+.conoce-bio-text strong { color: var(--c-950); }
+.conoce-bio-text em { font-style: italic; }
+
+.conoce-disclaimer {
+  font-size: 13px !important;
+  color: var(--c-500) !important;
+  border-top: 1px solid var(--border-light);
+  padding-top: 20px;
+  margin-top: 8px;
+  line-height: 1.7 !important;
+}
+
+/* Stats */
+.conoce-stats {
+  background: var(--bg-secondary);
+  padding: 64px 0;
+  border-top: 1px solid var(--border-card);
+  border-bottom: 1px solid var(--border-card);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 600;
+  color: var(--c-300);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* CTA section */
+.conoce-cta {
+  background: var(--bg-primary);
+  padding: 80px 0;
+}
+
+.conoce-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .conoce-hero { height: 50vh; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .conoce-hero-decor { display: none; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}

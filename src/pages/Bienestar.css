@@ -1,0 +1,223 @@
+/* ===== BANNER ===== */
+.wellness-banner {
+  background: var(--accent-coral);
+  padding: 80px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wellness-banner-decoration {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wellness-banner-decoration svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.15));
+}
+
+.wellness-banner-left svg {
+  animation: float 6s ease-in-out infinite;
+}
+
+.wellness-banner-right svg {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.wellness-banner-content {
+  text-align: center;
+}
+
+.wellness-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.wellness-banner-subtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-dark);
+  opacity: 0.8;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .wellness-banner {
+    grid-template-columns: 1fr;
+    padding: 60px 24px;
+  }
+  .wellness-banner-decoration {
+    height: 200px;
+  }
+}
+
+/* ===== SECCIONES ===== */
+.wellness-section {
+  padding: 80px 24px;
+  background: var(--bg-white);
+}
+
+.wellness-section-alt {
+  background: var(--bg-cream);
+}
+
+.wellness-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.wellness-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.wellness-section-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===== CARDS ===== */
+.wellness-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wellness-card {
+  background: var(--bg-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.wellness-section-alt .wellness-card {
+  background: var(--bg-cream);
+}
+
+.wellness-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.wellness-card-img {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  opacity: 0.9;
+  position: relative;
+}
+
+.wellness-card-emoji {
+  display: block;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.wellness-card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wellness-card-tipo {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.wellness-card-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.wellness-card-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+.wellness-card-cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ===== ANIMACIONES ===== */
+.anim-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .wellness-section {
+    padding: 60px 20px;
+  }
+  
+  .wellness-section-header {
+    margin-bottom: 40px;
+  }
+  
+  .wellness-cards-grid {
+    gap: 20px;
+  }
+  
+  .wellness-card-img {
+    height: 160px;
+    font-size: 3rem;
+  }
+  
+  .wellness-card-body {
+    padding: 20px;
+  }
+}
