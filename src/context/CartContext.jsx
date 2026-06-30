@@ -11,7 +11,7 @@ export function CartProvider({ children }) {
       return []
     }
   })
-
+//sairo trolo
   // Persistir carrito en localStorage cada vez que cambia
   useEffect(() => {
     localStorage.setItem('astral_cart', JSON.stringify(items))
