@@ -5,6 +5,8 @@ import Footer from '../components/Footer/Footer'
 import ProductModal from '../components/ProductModal/ProductModal'
 import AnimatedIcon from '../components/AnimatedIcon/AnimatedIcon'
 import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollReveal/ScrollReveal'
+import MagneticButton from '../components/MagneticButton/MagneticButton'
+import TiltCard from '../components/TiltCard/TiltCard'
 import './Home.css'
 
 const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
@@ -30,7 +32,8 @@ const BENEFITS = [
 
 function ProductCard({ item, onView }) {
   return (
-    <div className="product-card" onClick={() => onView(item)} style={{ cursor:'pointer' }}>
+    <TiltCard maxTilt={8}>
+      <div className="product-card" onClick={() => onView(item)} style={{ cursor:'pointer' }}>
       <div className="product-card-img-placeholder" style={{ background:item.bg }}>
         <span style={{ fontSize:'3.5rem', opacity:0.6 }}>{item.emoji}</span>
       </div>
@@ -48,6 +51,7 @@ function ProductCard({ item, onView }) {
         </div>
       </div>
     </div>
+    </TiltCard>
   )
 }
 
@@ -104,8 +108,8 @@ export default function Home() {
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.4}>
             <div className="hero-cta" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
-              <Link to="/tienda" className="btn-coral">Quiero explorar</Link>
-              <Link to="/conoce" className="btn-outline-dark">Conocé más</Link>
+              <MagneticButton><Link to="/tienda" className="btn-coral">Quiero explorar</Link></MagneticButton>
+              <MagneticButton strength={0.25}><Link to="/conoce" className="btn-outline-dark">Conocé más</Link></MagneticButton>
             </div>
           </ScrollReveal>
         </div>

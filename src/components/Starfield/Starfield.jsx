@@ -1,111 +1,158 @@
 import { useEffect, useRef } from 'react'
 import './Starfield.css'
 
-/**
- * Fondo de estrellas fijo, vive detrás de toda la app.
- * Solo se ve donde las secciones tienen fondo oscuro/transparente
- * (las secciones claras lo tapan, que es el comportamiento esperado).
- */
 export default function Starfield() {
   const canvasRef = useRef(null)
-  const starsRef = useRef([])
-  const mouseRef = useRef({ x: 0, y: 0 })
-  const rafRef = useRef(null)
+  const nodesRef  = useRef([])
+  const rafRef    = useRef(null)
+  const startRef  = useRef(null)   // timestamp del primer frame → animación de entrada
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
+    const ctx    = canvas.getContext('2d')
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    let width = window.innerWidth
+    let width  = window.innerWidth
     let height = window.innerHeight
-    let dpr = Math.min(window.devicePixelRatio || 1, 2)
+    let dpr    = Math.min(window.devicePixelRatio || 1, 2)
 
-    const palette = ['#ffffff', '#d1dbe6', '#b3c3d5', '#e8735a']
+    const NODE_COLOR    = '#7894b5'
+    const PULSE_COLOR   = '#e8735a'
+    const CONNECT_DIST  = 160
+    const INTRO_MS      = prefersReducedMotion ? 0 : 1600  // duración animación de entrada
 
     function resize() {
-      width = window.innerWidth
+      width  = window.innerWidth
       height = window.innerHeight
-      canvas.width = width * dpr
-      canvas.height = height * dpr
-      canvas.style.width = width + 'px'
+      canvas.width        = width  * dpr
+      canvas.height       = height * dpr
+      canvas.style.width  = width  + 'px'
       canvas.style.height = height + 'px'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      generateStars()
+      generateNodes()
     }
 
-    function generateStars() {
-      const area = width * height
-      const count = Math.min(220, Math.max(80, Math.round(area / 9000)))
-      starsRef.current = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.3 + 0.3,
-        baseAlpha: Math.random() * 0.35 + 0.15,
-        phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.02 + 0.008,
-        color: palette[Math.random() < 0.92 ? Math.floor(Math.random() * 3) : 3],
-        parallax: Math.random() * 0.5 + 0.15,
-        flareEvery: Math.random() * 400 + 200, // cada cuánto "destella" fuerte
-        flareOffset: Math.random() * 600,
+    function generateNodes() {
+      const count = Math.min(70, Math.max(28, Math.round((width * height) / 18000)))
+      nodesRef.current = Array.from({ length: count }, () => ({
+        x:          Math.random() * width,
+        y:          Math.random() * height,
+        vx:         (Math.random() - 0.5) * 0.38,
+        vy:         (Math.random() - 0.5) * 0.38,
+        r:          Math.random() * 2.2 + 1.2,
+        pulse:      Math.random() * Math.PI * 2,
+        pulseSpeed: 0.012 + Math.random() * 0.018,
+        isActive:   Math.random() < 0.12,
       }))
     }
 
-    function handleMouseMove(e) {
-      mouseRef.current.x = (e.clientX / width) - 0.5
-      mouseRef.current.y = (e.clientY / height) - 0.5
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3)
     }
 
-    let t = 0
-    function draw() {
+    function draw(timestamp) {
+      // inicializar timestamp en el primer frame
+      if (!startRef.current) startRef.current = timestamp
+
+      // progreso de la animación de entrada (0 → 1 en INTRO_MS ms)
+      const elapsed  = timestamp - startRef.current
+      const progress = INTRO_MS > 0 ? Math.min(elapsed / INTRO_MS, 1) : 1
+      const eased    = easeOutCubic(progress)
+
       ctx.clearRect(0, 0, width, height)
-      t += 1
-      const mx = mouseRef.current.x
-      const my = mouseRef.current.y
+      const nodes = nodesRef.current
 
-      for (const star of starsRef.current) {
-        // titileo base, siempre activo (prende y apaga solo, sin depender del mouse)
-        const baseTwinkle = prefersReducedMotion
-          ? star.baseAlpha
-          : star.baseAlpha + Math.sin(t * star.speed + star.phase) * 0.3
+      if (!prefersReducedMotion) {
+        for (const n of nodes) {
+          n.x += n.vx
+          n.y += n.vy
+          n.pulse += n.pulseSpeed
+          if (n.x < 0 || n.x > width)  n.vx *= -1
+          if (n.y < 0 || n.y > height) n.vy *= -1
+        }
+      }
 
-        // destello ocasional: cada tanto la estrella brilla fuerte un instante
-        let flareBoost = 0
-        let flareSizeBoost = 0
-        if (!prefersReducedMotion) {
-          const cycle = (t + star.flareOffset) % star.flareEvery
-          if (cycle < 18) {
-            const flareT = cycle / 18 // 0 -> 1
-            const pulse = Math.sin(flareT * Math.PI) // sube y baja suave
-            flareBoost = pulse * 0.65
-            flareSizeBoost = pulse * 1.1
+      // ── LÍNEAS DE CONEXIÓN ────────────────────────────────────────────────
+      // Durante la entrada: cada línea aparece escalonada según su par (i+j)
+      // dando sensación de que la red "se forma" progresivamente.
+      const totalPairs = nodes.length * (nodes.length - 1) / 2
+      let pairIdx = 0
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          pairIdx++
+          const dx   = nodes[i].x - nodes[j].x
+          const dy   = nodes[i].y - nodes[j].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+
+          if (dist < CONNECT_DIST) {
+            // progreso escalonado: cada línea "empieza" en un momento distinto
+            const lineDelay    = (pairIdx / totalPairs) * 0.6   // 0..0.6
+            const lineProgress = Math.max(0, Math.min((eased - lineDelay) / (1 - lineDelay), 1))
+
+            const baseAlpha      = (1 - dist / CONNECT_DIST) * 0.35
+            const isActivePair   = nodes[i].isActive || nodes[j].isActive
+            const finalAlpha     = baseAlpha * lineProgress
+
+            if (finalAlpha <= 0) continue
+
+            // longitud de línea animada: empieza desde el nodo i y crece hacia j
+            const px = nodes[i].x + (nodes[j].x - nodes[i].x) * lineProgress
+            const py = nodes[i].y + (nodes[j].y - nodes[i].y) * lineProgress
+
+            ctx.beginPath()
+            ctx.strokeStyle = isActivePair
+              ? `rgba(232,115,90,${finalAlpha * 0.7})`
+              : `rgba(91,125,164,${finalAlpha})`
+            ctx.lineWidth = isActivePair ? 0.8 : 0.5
+            ctx.moveTo(nodes[i].x, nodes[i].y)
+            ctx.lineTo(px, py)
+            ctx.stroke()
           }
         }
-
-        const alpha = Math.max(0, Math.min(1, baseTwinkle + flareBoost))
-        const radius = star.r + flareSizeBoost
-
-        const offsetX = mx * 18 * star.parallax
-        const offsetY = my * 18 * star.parallax
-
-        ctx.beginPath()
-        ctx.fillStyle = flareBoost > 0.3 ? '#ffffff' : star.color
-        ctx.globalAlpha = alpha
-        ctx.arc(star.x + offsetX, star.y + offsetY, radius, 0, Math.PI * 2)
-        ctx.fill()
       }
-      ctx.globalAlpha = 1
+
+      // ── NODOS ─────────────────────────────────────────────────────────────
+      // Los nodos aparecen antes que las líneas (primeros 40% del easing)
+      const nodeAlphaBase = Math.min(eased / 0.4, 1)
+
+      for (const n of nodes) {
+        const pulseFactor = 1 + Math.sin(n.pulse) * 0.3
+        const radius      = n.r * pulseFactor
+
+        if (n.isActive) {
+          const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius * 5)
+          halo.addColorStop(0, `rgba(232,115,90,${0.22 * nodeAlphaBase})`)
+          halo.addColorStop(1, 'rgba(232,115,90,0)')
+          ctx.beginPath()
+          ctx.fillStyle = halo
+          ctx.arc(n.x, n.y, radius * 5, 0, Math.PI * 2)
+          ctx.fill()
+
+          ctx.beginPath()
+          ctx.fillStyle  = PULSE_COLOR
+          ctx.globalAlpha = (0.85 + Math.sin(n.pulse) * 0.15) * nodeAlphaBase
+          ctx.arc(n.x, n.y, radius, 0, Math.PI * 2)
+          ctx.fill()
+        } else {
+          ctx.beginPath()
+          ctx.fillStyle   = NODE_COLOR
+          ctx.globalAlpha = (0.45 + Math.sin(n.pulse) * 0.2) * nodeAlphaBase
+          ctx.arc(n.x, n.y, radius, 0, Math.PI * 2)
+          ctx.fill()
+        }
+        ctx.globalAlpha = 1
+      }
+
       rafRef.current = requestAnimationFrame(draw)
     }
 
     resize()
     window.addEventListener('resize', resize)
-    window.addEventListener('mousemove', handleMouseMove)
-    draw()
+    requestAnimationFrame(draw)
 
     return () => {
       window.removeEventListener('resize', resize)
-      window.removeEventListener('mousemove', handleMouseMove)
       cancelAnimationFrame(rafRef.current)
     }
   }, [])
