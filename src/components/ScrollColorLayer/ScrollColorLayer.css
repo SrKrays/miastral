@@ -4,5 +4,5 @@
   z-index: 0;           /* debajo del canvas de nodos (z-index: 0 también) */
   pointer-events: none;
   transition: background-color 0.12s linear;
-  background-color: rgb(9, 28, 49); /* valor inicial = --c-800 */
+  background-color: rgb(21, 29, 39); /* azul oscuro inicial, igual a COLOR_TOP en ScrollColorLayer.jsx */
 }

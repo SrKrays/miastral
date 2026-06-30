@@ -12,8 +12,8 @@ export default function ScrollColorLayer() {
   useEffect(() => {
     const layer = layerRef.current
 
-    // colores de la paleta del cliente (de --c-800 a --c-950)
-    const COLOR_TOP    = { r: 47,  g: 65,  b: 86  }  // --c-800
+    // colores de la paleta del cliente (de un azul oscuro a casi negro)
+    const COLOR_TOP    = { r: 21,  g: 29,  b: 39  }  // azul más oscuro que --c-800, para que las líneas resalten más
     const COLOR_BOTTOM = { r: 9,   g: 13,  b: 16  }  // --c-950
 
     function lerp(a, b, t) { return a + (b - a) * t }
