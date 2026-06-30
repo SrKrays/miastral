@@ -57,23 +57,23 @@ export default function Contacto() {
               
               <div className="contacto-item">
                 <h3 className="contacto-item-title">Email</h3>
-                <p className="contacto-item-text">info@miastral.com</p>
+                <p className="contacto-item-text">hola@disenohumano.com</p>
               </div>
 
               <div className="contacto-item">
                 <h3 className="contacto-item-title">Redes sociales</h3>
                 <div className="contacto-socials">
-                  <a href="#" className="contacto-social-link">Instagram</a>
-                  <a href="#" className="contacto-social-link">YouTube</a>
-                  <a href="#" className="contacto-social-link">Spotify</a>
-                  <a href="#" className="contacto-social-link">Telegram</a>
+                  <a href="https://www.instagram.com/byvalentinam__/" target="_blank" rel="noopener noreferrer" className="contacto-social-link">Instagram</a>
+                  <a href="https://www.tiktok.com/@byvalentinam__" target="_blank" rel="noopener noreferrer" className="contacto-social-link">TikTok</a>
+                  <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="contacto-social-link">Spotify</a>
+                  <a href="https://api.whatsapp.com/send?phone=5493512115420" target="_blank" rel="noopener noreferrer" className="contacto-social-link">WhatsApp</a>
                 </div>
               </div>
 
               <div className="contacto-item">
-                <h3 className="contacto-item-title">¿Eres astróloga o coach?</h3>
-                <p className="contacto-item-text">Si quieres colaborar o tener una mención especial, escribinos a</p>
-                <a href="mailto:colaboraciones@miastral.com" className="contacto-link">colaboraciones@miastral.com</a>
+                <h3 className="contacto-item-title">¿Trabajás en bienestar o Diseño Humano?</h3>
+                <p className="contacto-item-text">Si querés colaborar o tener una mención especial en el podcast, escribinos a</p>
+                <a href="mailto:colaboraciones@disenohumano.com" className="contacto-link">colaboraciones@disenohumano.com</a>
               </div>
             </div>
 

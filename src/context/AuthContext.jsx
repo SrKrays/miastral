@@ -5,7 +5,7 @@ export const AuthContext = createContext()
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     try {
-      const saved = localStorage.getItem('astral_user')
+      const saved = localStorage.getItem('dh_user')
       return saved ? JSON.parse(saved) : null
     } catch {
       return null
@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   })
 
   const [token, setToken] = useState(() => {
-    return localStorage.getItem('astral_token') || null
+    return localStorage.getItem('dh_token') || null
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -22,17 +22,17 @@ export function AuthProvider({ children }) {
   // Persistir token y user
   useEffect(() => {
     if (token) {
-      localStorage.setItem('astral_token', token)
+      localStorage.setItem('dh_token', token)
     } else {
-      localStorage.removeItem('astral_token')
+      localStorage.removeItem('dh_token')
     }
   }, [token])
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem('astral_user', JSON.stringify(user))
+      localStorage.setItem('dh_user', JSON.stringify(user))
     } else {
-      localStorage.removeItem('astral_user')
+      localStorage.removeItem('dh_user')
     }
   }, [user])
 

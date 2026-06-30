@@ -3,12 +3,12 @@ import Footer from '../components/Footer/Footer'
 import './Bienestar.css'
 
 const CONTENT_BIENESTAR = [
-  { id:1, section:'manifestacion', tipo:'Manifestación', titulo:'Manifestación 101: poniendo las bases para crear desde otro lugar', desc:'Descubrí los fundamentos para crear desde la intención y la claridad.', emoji:'🌙', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
-  { id:2, section:'manifestacion', tipo:'Manifestación', titulo:'Manifestación 102: 4 pasos importantes en el proceso de crear lo que deseas', desc:'Aprende los pasos prácticos para manifestar tus deseos en la realidad.', emoji:'⭐', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
-  { id:3, section:'yoga', tipo:'Yoga', titulo:'Clase de yoga: Preparación para la luna llena', desc:'Una práctica suave y poderosa para conectar con la energía lunar.', emoji:'🧘', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
-  { id:4, section:'yoga', tipo:'Yoga', titulo:'Yoga energético: Activa tu poder interno', desc:'Fortalece tu cuerpo y eleva tu vibración con esta práctica transformadora.', emoji:'🙏', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)' },
-  { id:5, section:'magnetismo', tipo:'Magnetismo', titulo:'Magnetismo venusino: usa tu Venus natal para proyectar lo que deseas', desc:'Conectá con tu magnetismo natural y atrae lo que realmente quieres en la vida.', emoji:'💎', bg:'linear-gradient(145deg,#3a2040,#1a0d28)' },
-  { id:6, section:'detox', tipo:'Detox Energético', titulo:'Dopamine detox: cómo limpiar tu energía de hábitos destructivos', desc:'Un proceso guiado para dejar ir lo que no te sirve y crear espacio para lo nuevo.', emoji:'🌿', bg:'linear-gradient(145deg,#0d1520,#19232e)' },
+  { id:1, section:'manifestacion', tipo:'Manifestación', titulo:'Conectá con tu poder creador', desc:'Una guía para adentrarte en el mundo de la manifestación: aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad.', emoji:'◈', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
+  { id:2, section:'manifestacion', tipo:'Manifestación', titulo:'Diseño Humano & Manifestación', desc:'Cuando te anclás en tu frecuencia propia y verdadera, la manifestación y los procesos de cocreación son más alineados y suaves.', emoji:'✺', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
+  { id:3, section:'conciencia-corporal', tipo:'Conciencia corporal', titulo:'Reconectá con tu verdad', desc:'Menos mente y más conciencia corporal: la espera como acto de alineación y cómo la mente interfiere en la toma de decisiones.', emoji:'◐', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
+  { id:4, section:'conciencia-corporal', tipo:'Conciencia corporal', titulo:'El poder de la palabra', desc:'Las palabras no son inocentes: cada una lleva una carga energética, una intención y una frecuencia que impacta en quien las recibe y en quien las emite.', emoji:'∿', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)' },
+  { id:5, section:'magnetismo', tipo:'Magnetismo', titulo:'Activá tu magnetismo único', desc:'Cuando entendemos cómo funcionamos energéticamente y honramos nuestra frecuencia, nos abrimos a vivir realidades más ligeras, creativas y expansivas.', emoji:'⚡', bg:'linear-gradient(145deg,#3a2040,#1a0d28)' },
+  { id:6, section:'centros', tipo:'Centros energéticos', titulo:'Centros energéticos de tu carta', desc:'Una guía para conocer los centros de energía de tu BodyGraph y cómo cada uno influye en tu manera de tomar decisiones.', emoji:'⚛', bg:'linear-gradient(145deg,#0d1520,#19232e)' },
 ]
 
 function WellnessCard({ item, delay = 0 }) {
@@ -29,9 +29,9 @@ function WellnessCard({ item, delay = 0 }) {
 
 export default function Bienestar() {
   const manifestacionItems = CONTENT_BIENESTAR.filter(i => i.section === 'manifestacion')
-  const yogaItems = CONTENT_BIENESTAR.filter(i => i.section === 'yoga')
+  const concienciaItems = CONTENT_BIENESTAR.filter(i => i.section === 'conciencia-corporal')
   const magnetismoItems = CONTENT_BIENESTAR.filter(i => i.section === 'magnetismo')
-  const detoxItems = CONTENT_BIENESTAR.filter(i => i.section === 'detox')
+  const centrosItems = CONTENT_BIENESTAR.filter(i => i.section === 'centros')
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function Bienestar() {
         </div>
         <div className="wellness-banner-content">
           <h1 className="wellness-banner-title">Bienestar</h1>
-          <p className="wellness-banner-subtitle">Cuida tu mente, tu cuerpo y tu espíritu</p>
+          <p className="wellness-banner-subtitle">Conciencia corporal, magnetismo y frecuencia: cuidá tu energía desde adentro</p>
         </div>
         <div className="wellness-banner-decoration wellness-banner-right">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@ export default function Bienestar() {
         <div className="container-astral">
           <div className="wellness-section-header">
             <h2 className="wellness-section-title">Manifestación</h2>
-            <p className="wellness-section-desc">Aprendé a crear la vida que deseas</p>
+            <p className="wellness-section-desc">Aprendé a crear desde tu coherencia energética</p>
           </div>
           <div className="wellness-cards-grid">
             {manifestacionItems.map((item, i) => <WellnessCard key={item.id} item={item} delay={i * 0.1} />)}
@@ -74,15 +74,15 @@ export default function Bienestar() {
         </div>
       </section>
 
-      {/* YOGA */}
-      <section id="yoga" className="wellness-section wellness-section-alt">
+      {/* CONCIENCIA CORPORAL */}
+      <section id="conciencia-corporal" className="wellness-section wellness-section-alt">
         <div className="container-astral">
           <div className="wellness-section-header">
-            <h2 className="wellness-section-title">Yoga y movimiento</h2>
-            <p className="wellness-section-desc">Conectá con tu cuerpo y tu energía</p>
+            <h2 className="wellness-section-title">Conciencia corporal</h2>
+            <p className="wellness-section-desc">Menos mente, más cuerpo: confiá en tu intuición</p>
           </div>
           <div className="wellness-cards-grid">
-            {yogaItems.map((item, i) => <WellnessCard key={item.id} item={item} delay={i * 0.1} />)}
+            {concienciaItems.map((item, i) => <WellnessCard key={item.id} item={item} delay={i * 0.1} />)}
           </div>
         </div>
       </section>
@@ -100,15 +100,15 @@ export default function Bienestar() {
         </div>
       </section>
 
-      {/* DETOX */}
-      <section id="detox" className="wellness-section wellness-section-alt">
+      {/* CENTROS ENERGÉTICOS */}
+      <section id="centros" className="wellness-section wellness-section-alt">
         <div className="container-astral">
           <div className="wellness-section-header">
-            <h2 className="wellness-section-title">Detox energético</h2>
-            <p className="wellness-section-desc">Limpia tu energía y transforma tu vida</p>
+            <h2 className="wellness-section-title">Centros energéticos</h2>
+            <p className="wellness-section-desc">Conocé el mapa de tu energía en profundidad</p>
           </div>
           <div className="wellness-cards-grid">
-            {detoxItems.map((item, i) => <WellnessCard key={item.id} item={item} delay={i * 0.1} />)}
+            {centrosItems.map((item, i) => <WellnessCard key={item.id} item={item} delay={i * 0.1} />)}
           </div>
         </div>
       </section>

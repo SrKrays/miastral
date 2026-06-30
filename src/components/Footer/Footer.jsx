@@ -9,17 +9,19 @@ export default function Footer() {
       <div className="container-astral">
         <div className="footer-grid">
           <div>
-            <div className="footer-brand-logo">ASTRAL</div>
-            <div className="footer-brand-sub">Astrología &amp; Bienestar</div>
-            <p className="footer-desc">Tu guía astrológica para navegar cada día con claridad, propósito y conexión con la energía del universo.</p>
+            <div className="footer-brand-logo">DISEÑO HUMANO</div>
+            <div className="footer-brand-sub">& Física Cuántica</div>
+            <p className="footer-desc">Una guía para recordar quién sos: Diseño Humano y Física Cuántica al servicio de tu autoconocimiento, tu energía y tu magnetismo.</p>
           </div>
           <div>
             <div className="footer-col-title">Explorar</div>
             <ul className="footer-links">
-              <li><Link to="/astrologia">Astrología</Link></li>
+              <li><Link to="/diseno-humano">Diseño Humano</Link></li>
               <li><Link to="/bienestar">Bienestar</Link></li>
               <li><Link to="/tienda">Tienda</Link></li>
-              <li><Link to="/conoce">Conoce a Valen</Link></li>
+              <li><Link to="/eventos">Eventos</Link></li>
+              <li><Link to="/membresia">Membresía</Link></li>
+              <li><Link to="/conoce">Conoce a Valentina</Link></li>
               <li><Link to="/contacto">Contacto</Link></li>
             </ul>
           </div>
@@ -35,7 +37,7 @@ export default function Footer() {
           </div>
           <div className="footer-newsletter">
             <div className="footer-col-title">Newsletter</div>
-            <p>Recibí energía disponible y acceso a promociones exclusivas.</p>
+            <p>Recibí contenido, guías gratuitas y novedades sobre nuevos espacios.</p>
             <div className="footer-input-row">
               <input type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} />
               <button type="button">Suscribir</button>
@@ -43,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Astral. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Diseño Humano & Física Cuántica. Todos los derechos reservados.</p>
           <nav className="footer-legal">
             <Link to="/contacto">Política de privacidad</Link>
             <Link to="/contacto">Términos de uso</Link>

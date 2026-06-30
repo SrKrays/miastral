@@ -31,7 +31,7 @@ export default function ProductModal({ product, onClose, onAddCart }) {
             <h2 className="product-modal-title">{product.titulo}</h2>
             
             <div className="product-modal-description">
-              <p>Accede a contenido exclusivo y transformador que te llevará a un nuevo nivel de comprensión astrológica.</p>
+              <p>Accedé a contenido exclusivo y transformador que te va a llevar a un nuevo nivel de comprensión de tu energía.</p>
               <ul className="product-modal-features">
                 <li>✓ Acceso de por vida al contenido</li>
                 <li>✓ Descargas en PDF y video</li>

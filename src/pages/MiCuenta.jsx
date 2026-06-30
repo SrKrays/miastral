@@ -10,16 +10,16 @@ const MOCK_USUARIO = {
   avatar: '👤',
   miembro: true,
   membresia: {
-    plan: 'Anual',
+    plan: 'Tribu Anual',
     vigencia: '21 de julio 2027',
     estado: 'Activa'
   }
 }
 
 const MOCK_ORDENES = [
-  { id: 1, producto: 'Horóscopo 2026', fecha: '15 de mayo 2026', monto: 'US$ 45', estado: 'Entregado' },
-  { id: 2, producto: 'Guía Manifestación Lunar', fecha: '3 de junio 2026', monto: 'US$ 26', estado: 'Entregado' },
-  { id: 3, producto: 'Astrología Práctica', fecha: '28 de junio 2026', monto: 'US$ 59', estado: 'Entregado' },
+  { id: 1, producto: 'Tribu & Diseño Humano', fecha: '15 de mayo 2026', monto: '$77.000', estado: 'Entregado' },
+  { id: 2, producto: 'Programa de transformación cuántica', fecha: '3 de junio 2026', monto: '$111.000', estado: 'Entregado' },
+  { id: 3, producto: 'Conectá con tu poder creador', fecha: '28 de junio 2026', monto: '$25.000', estado: 'Entregado' },
 ]
 
 export default function MiCuenta() {

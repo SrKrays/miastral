@@ -29,9 +29,9 @@ export default function Registro() {
       <Navbar />
       <section className="auth-section">
         <div className="auth-card anim-scaleIn">
-          <div className="auth-logo">ASTRAL</div>
+          <div className="auth-logo">DISEÑO HUMANO</div>
           <h1 className="auth-title">Crear cuenta</h1>
-          <p className="auth-subtitle">Unite a nuestra comunidad de astrolovers.</p>
+          <p className="auth-subtitle">Unite a nuestra tribu de Diseño Humano.</p>
 
           {error && <div className="auth-error">{error}</div>}
 

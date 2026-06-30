@@ -12,22 +12,22 @@ import './Home.css'
 const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
 
 const BEST_SELLERS = [
-  { id:1, tipo:'Guía práctica', titulo:'Manifestá con el ciclo lunar', precio:'US$ 26', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'🌙', tag:'' },
-  { id:2, tipo:'Libro',         titulo:'La herida del valor — Quirón en Tauro', precio:'US$ 15', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'♄', tag:'' },
-  { id:3, tipo:'Guía práctica', titulo:'Guía para la temporada de eclipses 2026', precio:'US$ 15', bg:'linear-gradient(145deg,#4a6787,#3a5069)', emoji:'☀', tag:'' },
+  { id:1, tipo:'Programa', titulo:'Programa de transformación cuántica', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'' },
+  { id:2, tipo:'Taller grupal', titulo:'Tribu & Diseño Humano', precio:'$77.000', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'✺', tag:'' },
+  { id:3, tipo:'Guía', titulo:'Conectá con tu poder creador — guía de manifestación', precio:'$25.000', bg:'linear-gradient(145deg,#4a6787,#3a5069)', emoji:'◈', tag:'' },
 ]
 
 const TOOLS = [
-  { icon:'constellation', title:'Calculá tu carta astral', desc:'Conocé el mapa de los planetas al momento de tu nacimiento. Entendé tus talentos, personalidad y propósito de vida.', link:'/astrologia', cta:'Calcular gratis' },
-  { icon:'orbit', title:'Tránsitos diarios', desc:'Sabé cómo se mueven los planetas hoy y comprendé qué energía está influyendo en vos para tomar mejores decisiones.', link:'/astrologia', cta:'Ver tránsitos de hoy' },
+  { icon:'constellation', title:'Calculá tu carta de Diseño Humano', desc:'Con tu fecha, hora y lugar de nacimiento, descubrí tu BodyGraph: el mapa que revela cómo estás diseñadx para tomar decisiones, relacionarte y vivir con autenticidad.', link:'/diseno-humano', cta:'Calcular gratis' },
+  { icon:'orbit', title:'Conocé tu Tipo, Estrategia y Autoridad', desc:'Los 3 pilares de tu energía: tu naturaleza, tu manera única de moverte por la vida y tu brújula interna para decisiones alineadas.', link:'/diseno-humano', cta:'Descubrir más' },
 ]
 
 const BENEFITS = [
-  'Guía con clases semanales actualizadas',
-  'Horóscopos para los 12 signos cada domingo',
-  'Encuentros en vivo con la astróloga',
-  'Biblioteca con más de 15 años de contenido',
-  'Meditaciones y ejercicios prácticos',
+  'Clases y encuentros para integrar tu carta',
+  'Guías descargables para cada tipo energético',
+  'Sesiones en vivo y personalizadas',
+  'Comunidad para acompañarte en el proceso',
+  'Material práctico para encarnar tu energía',
 ]
 
 function ProductCard({ item, onView }) {
@@ -95,21 +95,21 @@ export default function Home() {
         </Suspense>
         <div className="hero-content">
           <ScrollReveal direction="down" delay={0}>
-            <div className="hero-eyebrow">Bienvenid@ ✦</div>
+            <div className="hero-eyebrow">Bienvenidx a esta tribu ✦</div>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.1}>
-            <h1 className="hero-title">¡Hola,<br />astrolover!</h1>
+            <h1 className="hero-title">Recordá<br />quién sos</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
-            <p className="hero-subtitle">¿Buscás una guía astrológica para navegar los 365 días del año?<br /><strong>Estás en el lugar correcto.</strong></p>
+            <p className="hero-subtitle">¿Buscás reconectar con tu energía y tu autenticidad?<br /><strong>Estás en el lugar correcto.</strong></p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.3}>
-            <p className="hero-tagline">Explorá todo lo que tenemos para vos.</p>
+            <p className="hero-tagline">Diseño Humano & Física Cuántica para tu autoconocimiento.</p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.4}>
             <div className="hero-cta" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
               <MagneticButton><Link to="/tienda" className="btn-coral">Quiero explorar</Link></MagneticButton>
-              <MagneticButton strength={0.25}><Link to="/conoce" className="btn-outline-dark">Conocé más</Link></MagneticButton>
+              <MagneticButton strength={0.25}><Link to="/diseno-humano" className="btn-outline-dark">Conocé más</Link></MagneticButton>
             </div>
           </ScrollReveal>
         </div>
@@ -142,8 +142,8 @@ export default function Home() {
         <div className="container-astral">
           <ScrollReveal direction="up">
             <p className="section-eyebrow" style={{ textAlign:'center' }}>Herramientas gratuitas</p>
-            <h2 className="section-title-display" style={{ textAlign:'center',marginBottom:12 }}>Estudiá tu carta astral</h2>
-            <p className="section-subtitle" style={{ textAlign:'center',marginBottom:48 }}>El primer paso es calculá tu carta. Aprendé a interpretarla con recursos gratuitos.</p>
+            <h2 className="section-title-display" style={{ textAlign:'center',marginBottom:12 }}>Estudiá tu carta de Diseño Humano</h2>
+            <p className="section-subtitle" style={{ textAlign:'center',marginBottom:48 }}>El primer paso es calcular tu carta. Aprendé a interpretarla con recursos gratuitos.</p>
           </ScrollReveal>
           <StaggerGroup className="tools-grid" staggerDelay={0.18}>
             {TOOLS.map((t) => (
@@ -168,9 +168,9 @@ export default function Home() {
           <div className="membresia-inner">
             <ScrollReveal direction="left">
               <div>
-                <div className="membresia-tag">Astrología &amp; Bienestar</div>
+                <div className="membresia-tag">Diseño Humano &amp; Física Cuántica</div>
                 <h2 className="membresia-title">Transformá la duda<br /><em>en decisión</em></h2>
-                <p className="membresia-desc">La astrología es una herramienta para conocerte mejor y tomar decisiones con certeza.</p>
+                <p className="membresia-desc">El Diseño Humano es una herramienta para conocerte mejor y tomar decisiones alineadas a tu propia verdad, dejando de lado el plano de la mente.</p>
                 <ul className="membresia-benefits">
                   {BENEFITS.map((b, i) => (
                     <ScrollReveal key={b} as="li" direction="left" delay={i * 0.08} duration={0.5}>
@@ -178,14 +178,14 @@ export default function Home() {
                     </ScrollReveal>
                   ))}
                 </ul>
-                <Link to="/conoce" className="btn-coral">Conocé más</Link>
+                <Link to="/membresia" className="btn-coral">Conocé más</Link>
               </div>
             </ScrollReveal>
             <ScrollReveal direction="right" delay={0.15}>
               <div className="membresia-video-wrap">
                 <div className="membresia-video-placeholder">
                   <div className="play-icon">▶</div>
-                  <p style={{ fontSize:12, fontFamily:'var(--font-label)', letterSpacing:'0.1em', textTransform:'uppercase' }}>¡Bienvenid@, Astrolover!</p>
+                  <p style={{ fontSize:12, fontFamily:'var(--font-label)', letterSpacing:'0.1em', textTransform:'uppercase' }}>¡Bienvenidx a esta tribu!</p>
                 </div>
               </div>
             </ScrollReveal>

@@ -28,7 +28,7 @@ export default function Login() {
       <Navbar />
       <section className="auth-section">
         <div className="auth-card anim-scaleIn">
-          <div className="auth-logo">ASTRAL</div>
+          <div className="auth-logo">DISEÑO HUMANO</div>
           <h1 className="auth-title">Iniciá sesión</h1>
           <p className="auth-subtitle">Accedé a tu cuenta para continuar.</p>
 

@@ -5,7 +5,7 @@ export const CartContext = createContext()
 export function CartProvider({ children }) {
   const [items, setItems] = useState(() => {
     try {
-      const saved = localStorage.getItem('astral_cart')
+      const saved = localStorage.getItem('dh_cart')
       return saved ? JSON.parse(saved) : []
     } catch {
       return []
@@ -13,7 +13,7 @@ export function CartProvider({ children }) {
   })
   // Persistir carrito en localStorage cada vez que cambia
   useEffect(() => {
-    localStorage.setItem('astral_cart', JSON.stringify(items))
+    localStorage.setItem('dh_cart', JSON.stringify(items))
   }, [items])
 
   const addItem = (product) => {

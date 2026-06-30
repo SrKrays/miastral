@@ -24,34 +24,36 @@ export default function ConoceA() {
           <div className="conoce-bio-inner">
             <div className="conoce-bio-header">
               <p className="section-eyebrow">Conoce quién es</p>
-              <h2 className="conoce-name">Valentina Astral</h2>
-              <p className="conoce-subtitle-label">CONOCE EL ADN CÓSMICO DETRÁS DE SU CREADORA</p>
+              <h2 className="conoce-name">Valentina Melchior</h2>
+              <p className="conoce-subtitle-label">DISEÑO HUMANO & FÍSICA CUÁNTICA AL SERVICIO DE TU AUTOCONOCIMIENTO</p>
             </div>
 
             <div className="conoce-bio-text">
               <p>
-                Valentina, mejor conocida como <strong>Valen Astral</strong>, es astróloga, escritora y conferencista.
-                Cuenta con la Certificación de Competencia Astrológica que otorga la Sociedad Internacional de
-                Investigación Astrológica (ISAR), es instructora de yoga certificada y tiene una formación integral
-                en bienestar holístico, lo cual le ha brindado herramientas multidisciplinarias en su destacada
-                experiencia en el bienestar integral.
+                Hola corazón, me presento como corresponde para una persona apasionada del Diseño Humano.
+                Soy <strong>Generadora Manifestante</strong> con Autoridad esplénico-generada y perfil 2/4.
+                Como mi tipo lo revela, llevo muchas identidades en una sola alma, y hoy mi mayor alegría es
+                ofrecer comprensión, aceptación y honra a quienes elijan abrirse a este viaje de autoconocimiento
+                tan profundo.
               </p>
               <p>
-                Autora de 4 libros, entre los que se incluyen <em>ADN Cósmico</em> (2022) y <em>El libro de las relaciones</em> (2020),
-                además de e-books importantes como <em>Rompiendo patrones</em> y la <em>Agenda Astral</em> de forma consecutiva
-                desde el 2018. Ha protagonizado eventos públicos a sala llena en Argentina, México y España,
-                y ha participado en alianzas claves con otras marcas y/o empresas.
+                Acompaño a personas a <strong>recordar</strong> su valor, a <strong>reconectar</strong> con su
+                energía única y a <strong>encarnar</strong> la autenticidad que vinieron a expresar en este mundo
+                desde la conciencia corporal.
               </p>
               <p>
-                Se destaca por mantenerse en constante reinvención, y por su visión práctica e integral sobre el
-                crecimiento personal, lo cual la ha convertido en referente y una resonante voz femenina para el
-                mundo hispanohablante.
+                Diseño Humano llegó a mi vida en una gran crisis de identidad laboral. Como Arquitecta no me
+                encontraba con mi profesión ni con la manera en la que se la ejercía. Tenía muchas dudas e
+                inquietudes sobre mi identidad y mi manera de moverme que para el mundo "estaban falladas".
+                Yo me creía fallada, creía que había algo malo en mí por el simple hecho de no poder encajar
+                con lo que se suponía que "debía ser". Y ahí me encontró el Diseño Humano, trayendo claridad,
+                entendimiento, honra, suavidad y aceptación a mi vida.
               </p>
               <p>
-                Su misión, durante su larga trayectoria, ha sido comunicar y brindar lecciones para guiar a quienes
-                desean revelar su potencial a través de la astrología y otras disciplinas complementarias.
-                Día a día comparte, desde su plataforma y sus redes sociales, herramientas para elevar consciencia
-                y apoyarnos en el proceso de crecimiento personal.
+                Creo profundamente que <em>somos pura energía</em>, y que cuando entendemos cómo funcionamos
+                energéticamente y honramos nuestra frecuencia, nos abrimos a vivir realidades más ligeras,
+                creativas, coherentes, expansivas y magnéticas. Mi propósito actual es acompañarte a que te
+                veas sin juicio, honres quien viniste a ser y te alinees a tu realidad deseada.
               </p>
               <p className="conoce-disclaimer">
                 <strong>El contenido que se comparte en este sitio</strong> es desarrollado con la intención de crear
@@ -63,15 +65,15 @@ export default function ConoceA() {
         </div>
       </section>
 
-      {/* STATS */}
+      {/* HIGHLIGHTS */}
       <section className="conoce-stats">
         <div className="container-astral">
           <div className="stats-grid">
             {[
-              { num:'3M+',  label:'Seguidores en redes sociales' },
-              { num:'4',    label:'Libros publicados' },
-              { num:'15+',  label:'Años de trayectoria' },
-              { num:'10+',  label:'Países con presencia' },
+              { num:'✦',  label:'Generadora Manifestante — Autoridad esplénico-generada, perfil 2/4' },
+              { num:'⚛',  label:'De Arquitecta a guía de Diseño Humano y Física Cuántica' },
+              { num:'◈',  label:'Creadora del Programa de Transformación Cuántica' },
+              { num:'✺',  label:'Comunidad "Tribu & Diseño Humano" + podcast y colaboraciones' },
             ].map(s => (
               <div key={s.label} className="stat-item">
                 <span className="stat-num">{s.num}</span>
@@ -85,12 +87,12 @@ export default function ConoceA() {
       {/* CTA */}
       <section className="conoce-cta">
         <div className="container-astral" style={{ textAlign:'center' }}>
-          <h3 className="conoce-cta-title">¿Querés conocer más sobre astrología?</h3>
+          <h3 className="conoce-cta-title">¿Querés conocer más sobre Diseño Humano?</h3>
           <p style={{ color:'var(--text-secondary)', marginBottom:32, fontSize:15 }}>
             Explorá todos los recursos y contenidos disponibles.
           </p>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <a href="/astrologia" className="btn-coral">Explorar astrología</a>
+            <a href="/diseno-humano" className="btn-coral">Explorar Diseño Humano</a>
             <a href="/tienda" className="btn-outline-white">Ver tienda</a>
           </div>
         </div>

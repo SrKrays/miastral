@@ -5,10 +5,12 @@ import ScrollColorLayer   from './components/ScrollColorLayer/ScrollColorLayer'
 import PageTransition     from './components/PageTransition/PageTransition'
 import Home          from './pages/Home'
 import Tienda        from './pages/Tienda'
-import Astrologia    from './pages/Astrologia'
+import DisenoHumano  from './pages/DisenoHumano'
 import Bienestar     from './pages/Bienestar'
 import ConoceA       from './pages/ConoceA'
 import Contacto      from './pages/Contacto'
+import Eventos       from './pages/Eventos'
+import Membresia     from './pages/Membresia'
 import Login         from './pages/Login'
 import Registro      from './pages/Registro'
 import MiCuenta      from './pages/MiCuenta'
@@ -23,16 +25,18 @@ function App() {
       <Starfield />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/"           element={<PageTransition><Home /></PageTransition>} />
-          <Route path="/tienda"     element={<PageTransition><Tienda /></PageTransition>} />
-          <Route path="/astrologia" element={<PageTransition><Astrologia /></PageTransition>} />
-          <Route path="/bienestar"  element={<PageTransition><Bienestar /></PageTransition>} />
-          <Route path="/conoce"     element={<PageTransition><ConoceA /></PageTransition>} />
-          <Route path="/contacto"   element={<PageTransition><Contacto /></PageTransition>} />
-          <Route path="/login"      element={<PageTransition><Login /></PageTransition>} />
-          <Route path="/registro"   element={<PageTransition><Registro /></PageTransition>} />
-          <Route path="/mi-cuenta"  element={<PageTransition><MiCuenta /></PageTransition>} />
-          <Route path="/carrito"    element={<PageTransition><Carrito /></PageTransition>} />
+          <Route path="/"             element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/tienda"       element={<PageTransition><Tienda /></PageTransition>} />
+          <Route path="/diseno-humano" element={<PageTransition><DisenoHumano /></PageTransition>} />
+          <Route path="/bienestar"    element={<PageTransition><Bienestar /></PageTransition>} />
+          <Route path="/conoce"       element={<PageTransition><ConoceA /></PageTransition>} />
+          <Route path="/contacto"     element={<PageTransition><Contacto /></PageTransition>} />
+          <Route path="/eventos"      element={<PageTransition><Eventos /></PageTransition>} />
+          <Route path="/membresia"    element={<PageTransition><Membresia /></PageTransition>} />
+          <Route path="/login"        element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/registro"     element={<PageTransition><Registro /></PageTransition>} />
+          <Route path="/mi-cuenta"    element={<PageTransition><MiCuenta /></PageTransition>} />
+          <Route path="/carrito"      element={<PageTransition><Carrito /></PageTransition>} />
         </Routes>
       </AnimatePresence>
     </>

@@ -12,7 +12,7 @@
 
 .navbar-logo-top {
   font-family: var(--font-display);
-  font-size: 22px; font-weight:600; letter-spacing:0.04em;
+  font-size: 19px; font-weight:600; letter-spacing:0.03em;
   color: var(--c-950); text-align:center; text-decoration:none; line-height:1.1;
 }
 .navbar-logo-top span {

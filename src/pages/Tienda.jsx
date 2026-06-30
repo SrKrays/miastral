@@ -7,16 +7,13 @@ import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollRev
 import './Tienda.css'
 
 /* ===== DATA ===== */
-const LIBROS = [
-  { id:1, tipo:'Producto', titulo:'Horóscopo 2026: tu mapa energético del año', precio:'US$ 45', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'📕', tag:'Nuevo' },
-  { id:2, tipo:'Producto', titulo:'Guía práctica para aprender a manifestar con el ciclo lunar', precio:'US$ 26', bg:'linear-gradient(145deg,#0d1f2d,#1a3040)', emoji:'🌙', tag:'' },
-  { id:3, tipo:'Producto', titulo:'La herida del valor. Una guía práctica para el tránsito de Quirón en Tauro', precio:'US$ 15', bg:'linear-gradient(145deg,#1a1a2e,#2d2d4a)', emoji:'♄', tag:'' },
+const GUIAS = [
+  { id:1, tipo:'Producto', titulo:'Conectá con tu poder creador — guía de manifestación', precio:'$25.000', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'◈', tag:'Nuevo' },
 ]
 
-const CURSOS = [
-  { id:4, tipo:'Producto', titulo:'Astrología práctica: interpretá tu carta natal desde cero', precio:'US$ 59', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⭐', tag:'Más vendido' },
-  { id:5, tipo:'Producto', titulo:'Tránsitos planetarios 2026: cómo aprovechar cada movimiento', precio:'US$ 39', bg:'linear-gradient(145deg,#19232e,#0d1520)', emoji:'🪐', tag:'' },
-  { id:6, tipo:'Producto', titulo:'Kabbalah y astrología: un viaje hacia tu propósito de vida', precio:'US$ 49', bg:'linear-gradient(145deg,#3a2828,#2a1a1a)', emoji:'🔮', tag:'' },
+const PROGRAMAS = [
+  { id:2, tipo:'Producto', titulo:'Tribu & Diseño Humano — taller grupal de 3 semanas', precio:'$77.000', bg:'linear-gradient(145deg,#0d1f2d,#1a3040)', emoji:'✺', tag:'Oferta' },
+  { id:3, tipo:'Producto', titulo:'Programa de transformación cuántica — pregrabado, 7 semanas', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'Más vendido' },
 ]
 
 function ProductCard({ item, onView }) {
@@ -76,16 +73,16 @@ export default function Tienda() {
         />
       )}
 
-      {/* ===== BANNER 1 — LIBROS ===== */}
+      {/* ===== BANNER 1 — GUÍAS ===== */}
       <section className="tienda-banner tienda-banner-dark">
         <div className="tienda-banner-inner">
           <ScrollReveal direction="left">
             <div className="tienda-banner-book">
               <div className="book-mockup">
-                <span style={{ fontSize:'4rem' }}>📕</span>
+                <span style={{ fontSize:'4rem' }}>◈</span>
                 <div className="book-label">
-                  <span>Guía para la</span>
-                  <strong>Temporada de<br />Eclipses 2026</strong>
+                  <span>Guía de</span>
+                  <strong>Manifestación<br />Cuántica</strong>
                 </div>
               </div>
             </div>
@@ -93,36 +90,36 @@ export default function Tienda() {
           <ScrollReveal direction="up" delay={0.1}>
             <div className="tienda-banner-content">
               <h2 className="tienda-banner-title">
-                Integra la energía<br />
-                <em>de la temporada de eclipses</em>
+                Activá tu poder<br />
+                <em>de manifestación</em>
               </h2>
               <p className="tienda-banner-desc">
-                Descubrí qué hacer antes, durante y después de los eclipses en Leo y Piscis
-                con esta guía descargable que incluye ejercicios prácticos.
+                Si estás adentrándote en el mundo de la manifestación, esta guía es para vos: un espacio de
+                aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad.
               </p>
-              <Link to="#libros" className="btn-blue">Adquirí tu guía aquí</Link>
+              <Link to="#guias" className="btn-blue">Adquirí tu guía aquí</Link>
             </div>
           </ScrollReveal>
           <div className="tienda-banner-decor" />
         </div>
       </section>
 
-      {/* ===== SECCIÓN LIBROS ===== */}
-      <section id="libros" className="tienda-section">
+      {/* ===== SECCIÓN GUÍAS ===== */}
+      <section id="guias" className="tienda-section">
         <div className="container-astral">
           <ScrollReveal direction="up">
             <div className="tienda-section-header">
               <div>
-                <p className="section-eyebrow">Lecturas recomendadas</p>
+                <p className="section-eyebrow">Recursos para tu proceso</p>
                 <h2 className="tienda-section-title">
-                  <em>Favoritos</em><br />del momento
+                  <em>Guías</em><br />descargables
                 </h2>
               </div>
-              <Link to="#libros" className="btn-outline-white">Ver todos</Link>
+              <Link to="#guias" className="btn-outline-white">Ver todas</Link>
             </div>
           </ScrollReveal>
           <StaggerGroup className="tienda-products-grid" staggerDelay={0.12}>
-            {LIBROS.map(item => (
+            {GUIAS.map(item => (
               <StaggerItem key={item.id} direction="up">
                 <ProductCard item={item} onView={setSelectedProduct} />
               </StaggerItem>
@@ -131,27 +128,27 @@ export default function Tienda() {
         </div>
       </section>
 
-      {/* ===== BANNER 2 — CURSOS ===== */}
+      {/* ===== BANNER 2 — PROGRAMAS ===== */}
       <section className="tienda-banner tienda-banner-blue">
         <div className="tienda-banner-inner tienda-banner-inner-rev">
           <ScrollReveal direction="right">
             <div className="tienda-banner-content">
               <p className="tienda-banner-eyebrow">✦ Formación completa</p>
               <h2 className="tienda-banner-title tienda-banner-title-light">
-                Aprendé astrología<br />
-                <em>desde adentro</em>
+                Habitá tu Diseño Humano<br />
+                <em>desde la conciencia cuántica</em>
               </h2>
               <p className="tienda-banner-desc tienda-banner-desc-light">
-                Cursos en profundidad para entender los tránsitos, la carta natal
-                y las energías disponibles cada año. Aprendé a tu ritmo.
+                Pasá de la confusión y el autosabotaje a habitar tu Diseño Humano, liberar bloqueos y transformar
+                tu energía en magnetismo, integrando principios cuánticos para crear desde tu esencia auténtica.
               </p>
-              <Link to="#cursos" className="btn-coral">Explorar cursos</Link>
+              <Link to="#programas" className="btn-coral">Explorar programas</Link>
             </div>
           </ScrollReveal>
           <ScrollReveal direction="left" delay={0.1}>
             <div className="tienda-banner-visual">
               <div className="course-mockup">
-                {['⭐','🪐','🔮'].map((e,i) => (
+                {['⚛','✺','◈'].map((e,i) => (
                   <div key={i} className="course-icon-card" style={{ animationDelay:`${i*0.3}s` }}>{e}</div>
                 ))}
               </div>
@@ -160,22 +157,22 @@ export default function Tienda() {
         </div>
       </section>
 
-      {/* ===== SECCIÓN CURSOS ===== */}
-      <section id="cursos" className="tienda-section tienda-section-alt">
+      {/* ===== SECCIÓN PROGRAMAS ===== */}
+      <section id="programas" className="tienda-section tienda-section-alt">
         <div className="container-astral">
           <ScrollReveal direction="up">
             <div className="tienda-section-header">
               <div>
-                <p className="section-eyebrow">Cursos y talleres</p>
+                <p className="section-eyebrow">Programas y talleres</p>
                 <h2 className="tienda-section-title">
-                  <em>Formación</em><br />astrológica
+                  <em>Formación</em><br />en Diseño Humano
                 </h2>
               </div>
-              <Link to="#cursos" className="btn-outline-white">Ver todos</Link>
+              <Link to="#programas" className="btn-outline-white">Ver todos</Link>
             </div>
           </ScrollReveal>
           <StaggerGroup className="tienda-products-grid" staggerDelay={0.12}>
-            {CURSOS.map(item => (
+            {PROGRAMAS.map(item => (
               <StaggerItem key={item.id} direction="up">
                 <ProductCard item={item} onView={setSelectedProduct} />
               </StaggerItem>

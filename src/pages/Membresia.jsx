@@ -5,29 +5,29 @@ import './Membresia.css'
 const PLANES = [
   {
     id: 1,
-    nombre: 'Mensual',
-    precio: 'US$ 9.99',
+    nombre: 'Tribu Mensual',
+    precio: '$12.000',
     periodo: '/mes',
     cta: 'Quiero ser parte',
     popular: false,
     beneficios: [
       'Clases semanales actualizadas',
-      'Horóscopos para todos los signos',
+      'Guías para cada tipo energético',
       'Acceso a biblioteca de contenido',
-      'Descuentos en productos',
+      'Descuentos en programas y guías',
     ]
   },
   {
     id: 2,
-    nombre: 'Anual',
-    precio: 'US$ 89',
+    nombre: 'Tribu Anual',
+    precio: '$99.000',
     periodo: 'una sola vez',
     cta: 'Activar ahora',
     popular: true,
     beneficios: [
-      'Todo de Mensual +',
+      'Todo de Tribu Mensual +',
       'Encuentros en vivo mensuales',
-      'Sesión 1-a-1 con la astróloga',
+      'Sesión 1-a-1 con Valentina',
       'Comunidad privada exclusiva',
       '3 meses gratis vs. pago mensual',
     ]
@@ -66,9 +66,9 @@ export default function Membresia() {
       {/* HERO */}
       <section className="membresia-hero">
         <div className="membresia-hero-content">
-          <span className="membresia-hero-eyebrow">Membresía Astral</span>
+          <span className="membresia-hero-eyebrow">Tribu Diseño Humano</span>
           <h1 className="membresia-hero-title">Transformá la duda <em>en decisión</em></h1>
-          <p className="membresia-hero-desc">Acceso ilimitado a contenido astrológico exclusivo, clases en vivo y una comunidad de astrolovers como vos.</p>
+          <p className="membresia-hero-desc">Acceso ilimitado a contenido exclusivo de Diseño Humano y Física Cuántica, clases en vivo y una comunidad que te acompaña a recordar quién sos.</p>
         </div>
         <div className="membresia-hero-decoration">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
