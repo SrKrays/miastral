@@ -3,32 +3,11 @@ import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
 const NAV_LINKS = [
-  { label: 'Astrología', path: '/astrologia', dropdown: [
-    { label: 'Carta astral gratis', path: '/astrologia#carta' },
-    { label: 'Tránsitos diarios', path: '/astrologia#transitos' },
-    { label: 'Horóscopos', path: '/astrologia#horoscopos' },
-    { label: 'Rituales y prácticas', path: '/astrologia#rituales' },
-  ]},
-  { label: 'Bienestar', path: '/bienestar', dropdown: [
-    { label: 'Clases de bienestar', path: '/bienestar' },
-    { label: 'Mente y cuerpo', path: '/bienestar#mente' },
-    { label: 'Amor y relaciones', path: '/bienestar#amor' },
-  ]},
-  { label: 'Tienda', path: '/tienda', dropdown: [
-    { label: 'Todos los productos', path: '/tienda' },
-    { label: 'Libros', path: '/tienda#libros' },
-    { label: 'Cursos y talleres', path: '/tienda#cursos' },
-  ]},
-  { label: 'Conoce a', path: '/conoce' },
-  { label: 'Contacto',  path: '/contacto' },
-]
-
-const SOCIAL = [
-  { icon: '𝕏', label: 'Twitter', href: '#' },
-  { icon: '▶', label: 'YouTube', href: '#' },
-  { icon: '◎', label: 'Instagram', href: '#' },
-  { icon: '♪', label: 'Spotify', href: '#' },
-  { icon: '✈', label: 'Telegram', href: '#' },
+  { label: 'Astrología', path: '/astrologia' },
+  { label: 'Bienestar',  path: '/bienestar' },
+  { label: 'Tienda',     path: '/tienda' },
+  { label: 'Conoce a',   path: '/conoce' },
+  { label: 'Contacto',   path: '/contacto' },
 ]
 
 export default function Navbar({ cartCount = 0 }) {
@@ -49,10 +28,6 @@ export default function Navbar({ cartCount = 0 }) {
       {/* Topbar */}
       <div className="navbar-topbar">
         <div className="navbar-topbar-inner">
-          <div className="navbar-social">
-            {SOCIAL.map(s => <a key={s.label} href={s.href} aria-label={s.label}>{s.icon}</a>)}
-          </div>
-
           <Link to="/" className="navbar-logo-top">
             ASTRAL
             <span>Astrología &amp; Bienestar</span>
@@ -81,21 +56,13 @@ export default function Navbar({ cartCount = 0 }) {
         <div className="navbar-main-inner">
           <div className="navbar-nav-links">
             {NAV_LINKS.map(item => (
-              <div key={item.label} className="nav-item">
-                <Link to={item.path} className={`nav-link-astral${location.pathname === item.path ? ' active' : ''}`}>
-                  {item.label}
-                  {item.dropdown && (
-                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" width="10" height="10">
-                      <path d="M1 1l4 4 4-4"/>
-                    </svg>
-                  )}
-                </Link>
-                {item.dropdown && (
-                  <div className="nav-dropdown">
-                    {item.dropdown.map(s => <Link key={s.label} to={s.path}>{s.label}</Link>)}
-                  </div>
-                )}
-              </div>
+              <Link
+                key={item.label}
+                to={item.path}
+                className={`nav-link-astral${location.pathname === item.path ? ' active' : ''}`}
+              >
+                {item.label}
+              </Link>
             ))}
           </div>
           <button className="navbar-hamburger" onClick={() => setMobileOpen(true)} aria-label="Menú">

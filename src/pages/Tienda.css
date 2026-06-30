@@ -20,6 +20,7 @@
   gap: 10px;
 }
 
+@keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 @keyframes fadeOut {
   to { opacity: 0; transform: translateY(10px); }
 }
@@ -72,7 +73,6 @@
   align-items: flex-start;
   gap: 16px;
   border-left: 6px solid rgba(255,255,255,0.15);
-  animation: scaleIn 0.6s ease both;
 }
 
 .book-label {
@@ -163,10 +163,9 @@
   border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
   font-size: 2.5rem;
-  animation: scaleIn 0.5s ease both;
-  transition: all var(--transition);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), background 0.3s ease;
 }
-.course-icon-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-4px); }
+.course-icon-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-6px) scale(1.08); }
 .course-icon-card:first-child { grid-column: 1 / -1; margin: 0 auto; width: 120px; height: 120px; font-size: 3rem; }
 
 /* ===== SECCIONES PRODUCTOS ===== */
@@ -202,13 +201,12 @@
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: all var(--transition);
   box-shadow: var(--shadow-card);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.3s ease;
 }
 .tienda-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--c-500);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px var(--c-500);
 }
 
 .tienda-card-img {
@@ -218,7 +216,14 @@
   align-items: center;
   justify-content: center;
 }
-.tienda-card-emoji { font-size: 3.5rem; opacity: 0.7; }
+.tienda-card-emoji {
+  font-size: 3.5rem; opacity: 0.7;
+  display: inline-block;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.tienda-card:hover .tienda-card-emoji {
+  transform: scale(1.18) rotate(-6deg);
+}
 
 .tienda-card-tag {
   position: absolute;

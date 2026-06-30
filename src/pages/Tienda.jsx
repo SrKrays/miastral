@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import ProductModal from '../components/ProductModal/ProductModal'
+import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollReveal/ScrollReveal'
 import './Tienda.css'
 
 /* ===== DATA ===== */
@@ -61,14 +62,12 @@ export default function Tienda() {
     <>
       <Navbar cartCount={cartItems.reduce((a,i) => a+i.qty, 0)} />
 
-      {/* Toast */}
       {toast && (
         <div className="toast-notification">
           <span>✓</span> Agregado al carrito
         </div>
       )}
 
-      {/* Product Modal */}
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}
@@ -80,26 +79,30 @@ export default function Tienda() {
       {/* ===== BANNER 1 — LIBROS ===== */}
       <section className="tienda-banner tienda-banner-dark">
         <div className="tienda-banner-inner">
-          <div className="tienda-banner-book">
-            <div className="book-mockup">
-              <span style={{ fontSize:'4rem' }}>📕</span>
-              <div className="book-label">
-                <span>Guía para la</span>
-                <strong>Temporada de<br />Eclipses 2026</strong>
+          <ScrollReveal direction="left">
+            <div className="tienda-banner-book">
+              <div className="book-mockup">
+                <span style={{ fontSize:'4rem' }}>📕</span>
+                <div className="book-label">
+                  <span>Guía para la</span>
+                  <strong>Temporada de<br />Eclipses 2026</strong>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="tienda-banner-content">
-            <h2 className="tienda-banner-title">
-              Integra la energía<br />
-              <em>de la temporada de eclipses</em>
-            </h2>
-            <p className="tienda-banner-desc">
-              Descubrí qué hacer antes, durante y después de los eclipses en Leo y Piscis
-              con esta guía descargable que incluye ejercicios prácticos.
-            </p>
-            <Link to="#libros" className="btn-blue">Adquirí tu guía aquí</Link>
-          </div>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.1}>
+            <div className="tienda-banner-content">
+              <h2 className="tienda-banner-title">
+                Integra la energía<br />
+                <em>de la temporada de eclipses</em>
+              </h2>
+              <p className="tienda-banner-desc">
+                Descubrí qué hacer antes, durante y después de los eclipses en Leo y Piscis
+                con esta guía descargable que incluye ejercicios prácticos.
+              </p>
+              <Link to="#libros" className="btn-blue">Adquirí tu guía aquí</Link>
+            </div>
+          </ScrollReveal>
           <div className="tienda-banner-decor" />
         </div>
       </section>
@@ -107,61 +110,77 @@ export default function Tienda() {
       {/* ===== SECCIÓN LIBROS ===== */}
       <section id="libros" className="tienda-section">
         <div className="container-astral">
-          <div className="tienda-section-header">
-            <div>
-              <p className="section-eyebrow">Lecturas recomendadas</p>
-              <h2 className="tienda-section-title">
-                <em>Favoritos</em><br />del momento
-              </h2>
+          <ScrollReveal direction="up">
+            <div className="tienda-section-header">
+              <div>
+                <p className="section-eyebrow">Lecturas recomendadas</p>
+                <h2 className="tienda-section-title">
+                  <em>Favoritos</em><br />del momento
+                </h2>
+              </div>
+              <Link to="#libros" className="btn-outline-white">Ver todos</Link>
             </div>
-            <Link to="#libros" className="btn-outline-white">Ver todos</Link>
-          </div>
-          <div className="tienda-products-grid">
-            {LIBROS.map(item => <ProductCard key={item.id} item={item} onView={setSelectedProduct} />)}
-          </div>
+          </ScrollReveal>
+          <StaggerGroup className="tienda-products-grid" staggerDelay={0.12}>
+            {LIBROS.map(item => (
+              <StaggerItem key={item.id} direction="up">
+                <ProductCard item={item} onView={setSelectedProduct} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       </section>
 
       {/* ===== BANNER 2 — CURSOS ===== */}
       <section className="tienda-banner tienda-banner-blue">
         <div className="tienda-banner-inner tienda-banner-inner-rev">
-          <div className="tienda-banner-content">
-            <p className="tienda-banner-eyebrow">✦ Formación completa</p>
-            <h2 className="tienda-banner-title tienda-banner-title-light">
-              Aprendé astrología<br />
-              <em>desde adentro</em>
-            </h2>
-            <p className="tienda-banner-desc tienda-banner-desc-light">
-              Cursos en profundidad para entender los tránsitos, la carta natal
-              y las energías disponibles cada año. Aprendé a tu ritmo.
-            </p>
-            <Link to="#cursos" className="btn-coral">Explorar cursos</Link>
-          </div>
-          <div className="tienda-banner-visual">
-            <div className="course-mockup">
-              {['⭐','🪐','🔮'].map((e,i) => (
-                <div key={i} className="course-icon-card" style={{ animationDelay:`${i*0.3}s` }}>{e}</div>
-              ))}
+          <ScrollReveal direction="right">
+            <div className="tienda-banner-content">
+              <p className="tienda-banner-eyebrow">✦ Formación completa</p>
+              <h2 className="tienda-banner-title tienda-banner-title-light">
+                Aprendé astrología<br />
+                <em>desde adentro</em>
+              </h2>
+              <p className="tienda-banner-desc tienda-banner-desc-light">
+                Cursos en profundidad para entender los tránsitos, la carta natal
+                y las energías disponibles cada año. Aprendé a tu ritmo.
+              </p>
+              <Link to="#cursos" className="btn-coral">Explorar cursos</Link>
             </div>
-          </div>
+          </ScrollReveal>
+          <ScrollReveal direction="left" delay={0.1}>
+            <div className="tienda-banner-visual">
+              <div className="course-mockup">
+                {['⭐','🪐','🔮'].map((e,i) => (
+                  <div key={i} className="course-icon-card" style={{ animationDelay:`${i*0.3}s` }}>{e}</div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* ===== SECCIÓN CURSOS ===== */}
       <section id="cursos" className="tienda-section tienda-section-alt">
         <div className="container-astral">
-          <div className="tienda-section-header">
-            <div>
-              <p className="section-eyebrow">Cursos y talleres</p>
-              <h2 className="tienda-section-title">
-                <em>Formación</em><br />astrológica
-              </h2>
+          <ScrollReveal direction="up">
+            <div className="tienda-section-header">
+              <div>
+                <p className="section-eyebrow">Cursos y talleres</p>
+                <h2 className="tienda-section-title">
+                  <em>Formación</em><br />astrológica
+                </h2>
+              </div>
+              <Link to="#cursos" className="btn-outline-white">Ver todos</Link>
             </div>
-            <Link to="#cursos" className="btn-outline-white">Ver todos</Link>
-          </div>
-          <div className="tienda-products-grid">
-            {CURSOS.map(item => <ProductCard key={item.id} item={item} onView={setSelectedProduct} />)}
-          </div>
+          </ScrollReveal>
+          <StaggerGroup className="tienda-products-grid" staggerDelay={0.12}>
+            {CURSOS.map(item => (
+              <StaggerItem key={item.id} direction="up">
+                <ProductCard item={item} onView={setSelectedProduct} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       </section>
 

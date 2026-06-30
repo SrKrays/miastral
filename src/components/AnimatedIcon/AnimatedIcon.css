@@ -1,0 +1,102 @@
+/* ===== ÍCONOS ANIMADOS ASTRALES ===== */
+
+.astral-icon { display: block; overflow: visible; }
+
+.icon-stroke {
+  stroke: var(--accent-coral);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: drawIcon 1.8s ease forwards, glowPulse 2.6s ease-in-out 1.8s infinite;
+}
+.icon-stroke-thin { stroke-width: 1.8; stroke: var(--c-400); }
+
+@keyframes drawIcon {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(232,115,90,0)); }
+  50%      { filter: drop-shadow(0 0 6px rgba(232,115,90,0.55)); }
+}
+
+/* Star sparks */
+.icon-spark {
+  fill: var(--c-300);
+  opacity: 0;
+  transform-origin: center;
+  animation: sparkPop 0.5s ease forwards, sparkTwinkle 1.8s ease-in-out infinite;
+}
+.spark-1 { animation-delay: 0.9s, 1.4s; }
+.spark-2 { animation-delay: 1.2s, 1.7s; }
+.spark-3 { animation-delay: 1.5s, 2s; }
+@keyframes sparkPop {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes sparkTwinkle {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* Constellation nodes */
+.icon-node {
+  fill: var(--accent-coral);
+  opacity: 0;
+  animation: nodeAppear 0.4s ease forwards, nodePulse 2.2s ease-in-out infinite;
+}
+.node-1 { animation-delay: 0.2s, 1.8s; }
+.node-2 { animation-delay: 0.7s, 2.1s; }
+.node-3 { animation-delay: 1.1s, 2.4s; }
+.node-4 { animation-delay: 1.5s, 2.7s; fill: var(--c-300); }
+@keyframes nodeAppear {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes nodePulse {
+  0%, 100% { r: 3.5; }
+  50%      { r: 4.5; }
+}
+
+/* Moon cycle */
+.icon-orbit-ring {
+  stroke: rgba(255,255,255,0.12);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  animation: rotateRing 14s linear infinite;
+  transform-origin: 50px 50px;
+}
+.icon-moon-shape {
+  fill: var(--c-300);
+  transform-origin: 50px 50px;
+  animation: moonGlow 3.2s ease-in-out infinite;
+}
+@keyframes rotateRing {
+  to { transform: rotate(360deg); }
+}
+@keyframes moonGlow {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(150,172,197,0)); }
+  50%      { filter: drop-shadow(0 0 8px rgba(150,172,197,0.6)); }
+}
+
+/* Orbit */
+.icon-orbit-dot {
+  fill: var(--accent-coral);
+}
+.icon-orbit-planet {
+  fill: var(--c-300);
+  offset-path: path('M50,50 m-40,0 a40,18 0 1,0 80,0 a40,18 0 1,0 -80,0');
+  animation: orbitMove 4s linear infinite;
+}
+@keyframes orbitMove {
+  0%   { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+
+/* Hover boost — cuando el ícono está dentro de un card con hover */
+.tool-card:hover .icon-stroke,
+.product-card:hover .icon-stroke,
+.tienda-card:hover .icon-stroke {
+  animation: drawIcon 0.6s ease forwards, glowPulse 1.4s ease-in-out 0.6s infinite;
+}

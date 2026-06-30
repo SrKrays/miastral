@@ -12,17 +12,11 @@ export default function Footer() {
             <div className="footer-brand-logo">ASTRAL</div>
             <div className="footer-brand-sub">Astrología &amp; Bienestar</div>
             <p className="footer-desc">Tu guía astrológica para navegar cada día con claridad, propósito y conexión con la energía del universo.</p>
-            <div className="footer-social">
-              {[{icon:'𝕏',label:'Twitter'},{icon:'▶',label:'YouTube'},{icon:'◎',label:'Instagram'},{icon:'♪',label:'Spotify'},{icon:'✈',label:'Telegram'}].map(s => (
-                <a key={s.label} href="#" aria-label={s.label}>{s.icon}</a>
-              ))}
-            </div>
           </div>
           <div>
             <div className="footer-col-title">Explorar</div>
             <ul className="footer-links">
               <li><Link to="/astrologia">Astrología</Link></li>
-              <li><Link to="/astrologia#carta">Carta astral gratis</Link></li>
               <li><Link to="/bienestar">Bienestar</Link></li>
               <li><Link to="/tienda">Tienda</Link></li>
               <li><Link to="/conoce">Conoce a Valen</Link></li>
