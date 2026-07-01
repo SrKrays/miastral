@@ -12,9 +12,13 @@ import './Home.css'
 const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
 
 const BEST_SELLERS = [
-  { id:1, tipo:'Programa', titulo:'Programa de transformación cuántica', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'' },
-  { id:2, tipo:'Taller grupal', titulo:'Tribu & Diseño Humano', precio:'$77.000', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'✺', tag:'' },
-  { id:3, tipo:'Guía', titulo:'Conectá con tu poder creador — guía de manifestación', precio:'$25.000', bg:'linear-gradient(145deg,#4a6787,#3a5069)', emoji:'◈', tag:'' },
+  { id:20, tipo:'Programa', titulo:'Programa de transformación cuántica', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'',
+    contacto:'link', link:'https://byvalentinam.tiendup.com/curso/programadetransformacioncuantica', linkLabel:'Ver programa completo',
+    desc:'7 semanas de contenido pregrabado para integrar tu Diseño Humano desde la conciencia cuántica: liberar bloqueos y transformar tu energía en magnetismo.' },
+  { id:11, tipo:'Sesiones', titulo:'Del macro al micro cosmos — pack x4 sesiones personalizadas', precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'∿', tag:'',
+    contacto:'whatsapp' },
+  { id:2, tipo:'Oráculo', titulo:'Oráculo Matriz Cuántica', precio:'Coming soon', bg:'linear-gradient(145deg,#4a6787,#3a5069)', emoji:'⬡', tag:'Coming soon',
+    contacto:'proximamente', desc:'Mi propio oráculo, en camino. Dejá tu mail y te aviso apenas esté disponible.' },
 ]
 
 const TOOLS = [
@@ -23,9 +27,9 @@ const TOOLS = [
 ]
 
 const BENEFITS = [
-  'Clases y encuentros para integrar tu carta',
+  'Talleres y encuentros para integrar tu carta',
   'Guías descargables para cada tipo energético',
-  'Sesiones en vivo y personalizadas',
+  'Sesiones grupales y personalizadas',
   'Comunidad para acompañarte en el proceso',
   'Material práctico para encarnar tu energía',
 ]
@@ -104,7 +108,7 @@ export default function Home() {
             <p className="hero-subtitle">La transformación ocurre cuando dejás de resistirte a tu propia naturaleza y abrazás todo eso que ya te habita.<br /><strong>Es hora de volver a tu frecuencia.</strong></p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.3}>
-            <p className="hero-tagline">Autoconocimiento · Física cuántica · Energía auténtica</p>
+            <p className="hero-tagline">Diseño Humano, Física cuántica y Autoconocimiento</p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.4}>
             <div className="hero-cta" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
@@ -142,7 +146,7 @@ export default function Home() {
         <div className="container-astral">
           <ScrollReveal direction="up">
             <p className="section-eyebrow" style={{ textAlign:'center' }}>Herramientas gratuitas</p>
-            <h2 className="section-title-display" style={{ textAlign:'center',marginBottom:12 }}>Estudiá tu carta de Diseño Humano</h2>
+            <h2 className="section-title-display" style={{ textAlign:'center',marginBottom:12 }}>Conocé tu carta de Diseño Humano</h2>
             <p className="section-subtitle" style={{ textAlign:'center',marginBottom:48 }}>El primer paso es calcular tu carta. Aprendé a interpretarla con recursos gratuitos.</p>
           </ScrollReveal>
           <StaggerGroup className="tools-grid" staggerDelay={0.18}>
@@ -169,8 +173,8 @@ export default function Home() {
             <ScrollReveal direction="left">
               <div>
                 <div className="membresia-tag">Diseño Humano &amp; Física Cuántica</div>
-                <h2 className="membresia-title">Transformá la duda<br /><em>en decisión</em></h2>
-                <p className="membresia-desc">El Diseño Humano es una herramienta para conocerte mejor y tomar decisiones alineadas a tu propia verdad, dejando de lado el plano de la mente.</p>
+                <h2 className="membresia-title">De la mente<br /><em>a la conciencia corporal</em></h2>
+                <p className="membresia-desc">El Diseño Humano es una herramienta para conocerte mejor, volver al cuerpo y tomar decisiones alineadas a tu propia verdad, dejando de lado el plano de la mente. En este espacio vas a encontrar:</p>
                 <ul className="membresia-benefits">
                   {BENEFITS.map((b, i) => (
                     <ScrollReveal key={b} as="li" direction="left" delay={i * 0.08} duration={0.5}>

@@ -2,6 +2,10 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import './ConoceA.css'
 
+// TODO: reemplazar por la foto real de Valentina cuando la suba
+// (ej: import fotoValentina from '../assets/valentina.jpg')
+const FOTO_VALENTINA = null
+
 export default function ConoceA() {
   return (
     <>
@@ -10,9 +14,13 @@ export default function ConoceA() {
       {/* HERO FOTO GRANDE */}
       <section className="conoce-hero">
         <div className="conoce-hero-photo">
-          <div className="conoce-photo-placeholder">
-            <span className="conoce-photo-icon">✦</span>
-          </div>
+          {FOTO_VALENTINA ? (
+            <img src={FOTO_VALENTINA} alt="Valentina Melchior" className="conoce-hero-img" />
+          ) : (
+            <div className="conoce-photo-placeholder">
+              <span className="conoce-photo-icon">✦</span>
+            </div>
+          )}
           <div className="conoce-hero-overlay" />
         </div>
         <div className="conoce-hero-decor" />

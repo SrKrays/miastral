@@ -29,8 +29,12 @@ export default function Contacto() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (validate()) {
-      // TODO: Enviar a backend cuando esté listo
-      console.log('Formulario enviado:', form)
+      // No hay backend propio: armamos un mailto con los datos del formulario
+      // para que se abra el cliente de mail del usuario con todo precargado.
+      const asunto = `[Web] ${form.asunto}`
+      const cuerpo = `Nombre: ${form.nombre}\nEmail: ${form.email}\n\n${form.mensaje}`
+      window.location.href = `mailto:valemelchior11@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`
+
       setSubmitted(true)
       setForm({ nombre: '', email: '', asunto: '', mensaje: '' })
       setTimeout(() => setSubmitted(false), 3000)
@@ -57,7 +61,7 @@ export default function Contacto() {
               
               <div className="contacto-item">
                 <h3 className="contacto-item-title">Email</h3>
-                <a href="mailto:valemelchior@gmail.com" className="contacto-link">valemelchior@gmail.com</a>
+                <a href="mailto:valemelchior11@gmail.com" className="contacto-link">valemelchior11@gmail.com</a>
               </div>
 
               <div className="contacto-item">
@@ -82,8 +86,8 @@ export default function Contacto() {
               {submitted && (
                 <div className="contacto-success">
                   <span className="contacto-success-icon">✓</span>
-                  <h3>¡Mensaje enviado!</h3>
-                  <p>Gracias por ponerte en contacto. Te responderemos pronto.</p>
+                  <h3>¡Casi listo!</h3>
+                  <p>Se abrió tu cliente de mail con el mensaje precargado — solo tenés que enviarlo.</p>
                 </div>
               )}
 

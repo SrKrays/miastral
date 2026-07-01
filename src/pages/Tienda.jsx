@@ -5,37 +5,72 @@ import ProductModal from '../components/ProductModal/ProductModal'
 import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollReveal/ScrollReveal'
 import './Tienda.css'
 
-/* ── PRODUCTOS (físicos y digitales) ── */
+/* ── PRODUCTOS (físicos y digitales) ──
+   contacto: 'mail' | 'proximamente' — no hay pasarela de pago real, así que
+   todo lo que no tiene precio fijo se resuelve por consulta directa. */
 const PRODUCTOS = [
-  { id:1,  tipo:'Guía digital',  titulo:'Conecta con tu poder creador — guía de manifestación', precio:'$25.000', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'◈', tag:'', email:true },
-  { id:2,  tipo:'Oráculo',       titulo:'Oráculo Matriz Cuántica', precio:'Próximamente', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⬡', tag:'Pronto', proximamente:true },
-  { id:3,  tipo:'Oráculo',       titulo:'Oráculo 11:11', precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'✦', tag:'', email:true },
-  { id:4,  tipo:'Oráculo',       titulo:'Oráculo Espejo del alma', precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◐', tag:'', email:true },
+  {
+    id:1, tipo:'Guía física', titulo:'Conectá con tu poder creador — guía de manifestación',
+    precio:'$25.000', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'◈',
+    contacto:'mail',
+    desc:'Una guía impresa para adentrarte en el mundo de la manifestación: aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad. (Descripción a confirmar con foto real).',
+  },
+  {
+    id:2, tipo:'Oráculo', titulo:'Oráculo Matriz Cuántica',
+    precio:'Coming soon', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⬡', tag:'Coming soon',
+    contacto:'proximamente',
+    desc:'Mi propio oráculo, en camino. Dejá tu mail y te aviso apenas esté disponible.',
+  },
+  {
+    id:3, tipo:'Oráculo', titulo:'Oráculo 11:11',
+    precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'✦',
+    contacto:'mail',
+    desc:'(Descripción e imagen a confirmar).',
+  },
+  {
+    id:4, tipo:'Oráculo', titulo:'Oráculo Espejo del alma',
+    precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◐',
+    contacto:'mail',
+    desc:'(Descripción e imagen a confirmar).',
+  },
+  {
+    id:5, tipo:'Cuadro original', titulo:'Cuadros pintados a mano',
+    precio:'Consultar', bg:'linear-gradient(145deg,#4a2d1a,#2a1810)', emoji:'▲', tag:'Según disponibilidad',
+    contacto:'mail',
+    desc:'Obras únicas, pintadas a mano. La disponibilidad varía según lo que tenga pintado en el momento — escribime y te cuento qué hay.',
+  },
 ]
 
-/* ── SERVICIOS / SESIONES ── */
+/* ── SERVICIOS / SESIONES — se coordinan por WhatsApp, no tienen precio fijo ── */
 const SESIONES = [
-  { id:10, tipo:'Sesión 1:1',    titulo:'El poder de recordar — sesión individual',              precio:'Consultar', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'✦' },
-  { id:11, tipo:'Pack x4',       titulo:'Del macro al micro cosmos — pack de 4 sesiones',         precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'◈' },
-  { id:12, tipo:'Sesión 1:1',    titulo:'On demand — sesión individual',                          precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'⚡' },
-  { id:13, tipo:'Lectura vincular', titulo:'Sinergia frecuencial — lectura vincular',             precio:'Consultar', bg:'linear-gradient(145deg,#0d1520,#19232e)', emoji:'∿' },
-  { id:14, tipo:'PDF',           titulo:'Informe personalizado — PDF',                            precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◎' },
+  { id:10, tipo:'Sesión 1:1',       titulo:'El poder de recordar — sesión individual',        precio:'Consultar', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'✦', contacto:'whatsapp' },
+  { id:11, tipo:'Pack x4',          titulo:'Del macro al micro cosmos — pack de 4 sesiones',  precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'◈', contacto:'whatsapp' },
+  { id:12, tipo:'Sesión 1:1',       titulo:'On demand — sesión individual',                   precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'⚡', contacto:'whatsapp' },
+  { id:13, tipo:'Lectura vincular', titulo:'Sinergia frecuencial — lectura vincular',          precio:'Consultar', bg:'linear-gradient(145deg,#0d1520,#19232e)', emoji:'∿', contacto:'whatsapp' },
+  { id:14, tipo:'PDF',              titulo:'Informe personalizado — PDF',                      precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◎', contacto:'whatsapp' },
 ]
 
-/* ── PROGRAMAS Y TALLERES ── */
+/* ── PROGRAMAS Y TALLERES — la compra final ocurre en Tiendup / la landing que use;
+      acá solo se muestra la info y se deriva al link real. ── */
 const PROGRAMAS = [
-  { id:20, tipo:'Programa pregrabado', titulo:'Programa de transformación cuántica — 7 semanas', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'Más vendido', link:'https://byvalentinam.tiendup.com/curso/programadetransformacioncuantica' },
+  {
+    id:20, tipo:'Programa pregrabado', titulo:'Programa de transformación cuántica — 7 semanas',
+    precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'Más vendido',
+    contacto:'link', link:'https://byvalentinam.tiendup.com/curso/programadetransformacioncuantica', linkLabel:'Ver programa completo',
+    desc:'7 semanas de contenido pregrabado para integrar tu Diseño Humano desde la conciencia cuántica: liberar bloqueos y transformar tu energía en magnetismo.',
+  },
 ]
 
-/* ── CARD DE PRODUCTO ── */
-function ProductCard({ item, onView }) {
-  const isProximo = item.proximamente
+/* ── CARD única para productos, servicios y programas ── */
+function TiendaCard({ item, onView, delay = 0 }) {
+  const isProximo = item.contacto === 'proximamente'
   return (
-    <div className={`tienda-card${isProximo ? ' tienda-card--pronto' : ''}`}
-      onClick={() => !isProximo && onView(item)}
-      style={{ cursor: isProximo ? 'default' : 'pointer' }}>
+    <div className="tienda-card" onClick={() => onView(item)} style={{ cursor:'pointer', animationDelay:`${delay}s` }}>
       <div className="tienda-card-img" style={{ background: item.bg }}>
-        <span className="tienda-card-emoji">{item.emoji}</span>
+        {item.foto
+          ? <img src={item.foto} alt={item.titulo} className="tienda-card-photo" />
+          : <span className="tienda-card-emoji">{item.emoji}</span>
+        }
         {item.tag && <span className="tienda-card-tag">{item.tag}</span>}
       </div>
       <div className="tienda-card-body">
@@ -43,54 +78,9 @@ function ProductCard({ item, onView }) {
         <h3 className="tienda-card-title">{item.titulo}</h3>
         <div className="tienda-card-footer">
           <span className="tienda-card-precio">{item.precio}</span>
-          {!isProximo && (
-            item.email
-              ? <a href={`mailto:valemelchior@gmail.com?subject=Consulta sobre: ${encodeURIComponent(item.titulo)}`}
-                   className="btn-coral tienda-add-btn">Consultar por mail</a>
-              : <button className="btn-coral tienda-add-btn" onClick={e => { e.stopPropagation(); onView(item) }}>Ver detalle</button>
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ── CARD DE SESIÓN ── */
-function SesionCard({ item }) {
-  return (
-    <div className="tienda-card">
-      <div className="tienda-card-img" style={{ background: item.bg }}>
-        <span className="tienda-card-emoji">{item.emoji}</span>
-      </div>
-      <div className="tienda-card-body">
-        <span className="tienda-card-tipo">{item.tipo}</span>
-        <h3 className="tienda-card-title">{item.titulo}</h3>
-        <div className="tienda-card-footer">
-          <span className="tienda-card-precio">{item.precio}</span>
-          <a href={`https://api.whatsapp.com/send?phone=5493512115420&text=Hola%21%20me%20interesa%20la%20${encodeURIComponent(item.titulo)}`}
-             target="_blank" rel="noopener noreferrer" className="btn-sand tienda-add-btn">
-            Consultar por WP
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ── CARD DE PROGRAMA ── */
-function ProgramaCard({ item }) {
-  return (
-    <div className="tienda-card">
-      <div className="tienda-card-img" style={{ background: item.bg }}>
-        <span className="tienda-card-emoji">{item.emoji}</span>
-        {item.tag && <span className="tienda-card-tag">{item.tag}</span>}
-      </div>
-      <div className="tienda-card-body">
-        <span className="tienda-card-tipo">{item.tipo}</span>
-        <h3 className="tienda-card-title">{item.titulo}</h3>
-        <div className="tienda-card-footer">
-          <span className="tienda-card-precio">{item.precio}</span>
-          <a href={item.link} target="_blank" rel="noopener noreferrer" className="btn-coral tienda-add-btn">Ver programa</a>
+          <button className="btn-coral tienda-add-btn" onClick={e => { e.stopPropagation(); onView(item) }}>
+            {isProximo ? 'Ver más' : 'Ver detalle'}
+          </button>
         </div>
       </div>
     </div>
@@ -104,14 +94,8 @@ export default function Tienda() {
     <>
       <Navbar />
 
-      {/* BANNER */}
-      <section className="tienda-banner">
-        <h1 className="tienda-banner-title">Tienda</h1>
-        <p className="tienda-banner-subtitle">Servicios, productos y programas para acompañarte en tu proceso</p>
-      </section>
-
       {/* PRODUCTOS */}
-      <section id="productos" className="tienda-section">
+      <section id="productos" className="tienda-section tienda-section-first">
         <div className="container-astral">
           <ScrollReveal direction="up">
             <div className="tienda-section-header">
@@ -122,7 +106,7 @@ export default function Tienda() {
           <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
             {PRODUCTOS.map(item => (
               <StaggerItem key={item.id} direction="up">
-                <ProductCard item={item} onView={setSelectedProduct} />
+                <TiendaCard item={item} onView={setSelectedProduct} />
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -141,7 +125,7 @@ export default function Tienda() {
           <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
             {SESIONES.map(item => (
               <StaggerItem key={item.id} direction="up">
-                <SesionCard item={item} />
+                <TiendaCard item={item} onView={setSelectedProduct} />
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -160,7 +144,7 @@ export default function Tienda() {
           <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
             {PROGRAMAS.map(item => (
               <StaggerItem key={item.id} direction="up">
-                <ProgramaCard item={item} />
+                <TiendaCard item={item} onView={setSelectedProduct} />
               </StaggerItem>
             ))}
           </StaggerGroup>

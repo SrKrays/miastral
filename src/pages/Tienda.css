@@ -25,40 +25,10 @@
   to { opacity: 0; transform: translateY(10px); }
 }
 
-/* ===== BANNERS ===== */
-.tienda-banner {
-  position: relative;
-  overflow: hidden;
-  min-height: 340px;
-  padding: 80px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: rgba(9,13,16,0.7);
-}
-
-.tienda-banner-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  font-weight: 400;
-  color: #fff;
-  margin-bottom: 16px;
-  letter-spacing: -1px;
-}
-
-.tienda-banner-subtitle {
-  font-family: var(--font-body);
-  font-size: 18px;
-  color: var(--c-200);
-  opacity: 0.8;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
 /* ===== SECCIONES PRODUCTOS ===== */
 .tienda-section { background: var(--bg-primary); padding: 72px 0; }
 .tienda-section-alt { background: var(--bg-secondary); }
+.tienda-section-first { padding-top: 120px; }
 
 .tienda-section-header {
   text-align: center;
@@ -118,6 +88,15 @@
 }
 .tienda-card:hover .tienda-card-emoji {
   transform: scale(1.18) rotate(-6deg);
+}
+.tienda-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.tienda-card:hover .tienda-card-photo {
+  transform: scale(1.06);
 }
 
 .tienda-card-tag {
@@ -185,7 +164,6 @@
 }
 
 /* ── Estilos nuevos Tienda v2 ── */
-.tienda-card--pronto { opacity: 0.65; pointer-events: none; }
 .tienda-nota {
   text-align: center;
   color: var(--text-muted);

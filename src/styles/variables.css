@@ -38,6 +38,10 @@
   --accent-blue:     var(--c-400);
   --accent-blue-light: var(--c-300);
 
+  /* Acento dorado/bronce (etiquetas "tipo", categorías, labels de contacto) */
+  --accent-gold:       #A6883E;
+  --accent-gold-light: #C9AA5F;
+
   /* Bordes */
   --border-dark:   rgba(255,255,255,0.08);
   --border-mid:    rgba(255,255,255,0.14);

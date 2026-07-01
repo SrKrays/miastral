@@ -3,15 +3,16 @@ import Footer from '../components/Footer/Footer'
 import './Bienestar.css'
 
 const CONTENT_BIENESTAR = [
-  { id:1, section:'manifestacion', tipo:'Manifestación', titulo:'Conectá con tu poder creador', desc:'Una guía para adentrarte en el mundo de la manifestación: aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad.', emoji:'◈', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
-  { id:2, section:'manifestacion', tipo:'Manifestación', titulo:'Diseño Humano & Manifestación', desc:'Cuando te anclás en tu frecuencia propia y verdadera, la manifestación y los procesos de cocreación son más alineados y suaves.', emoji:'✺', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
-  { id:3, section:'conciencia-corporal', tipo:'Conciencia corporal', titulo:'Reconectá con tu verdad', desc:'Menos mente y más conciencia corporal: la espera como acto de alineación y cómo la mente interfiere en la toma de decisiones.', emoji:'◐', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
-  { id:4, section:'conciencia-corporal', tipo:'Conciencia corporal', titulo:'El poder de la palabra', desc:'Las palabras no son inocentes: cada una lleva una carga energética, una intención y una frecuencia que impacta en quien las recibe y en quien las emite.', emoji:'∿', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)' },
-  { id:5, section:'magnetismo', tipo:'Magnetismo', titulo:'Activá tu magnetismo único', desc:'Cuando entendemos cómo funcionamos energéticamente y honramos nuestra frecuencia, nos abrimos a vivir realidades más ligeras, creativas y expansivas.', emoji:'⚡', bg:'linear-gradient(145deg,#3a2040,#1a0d28)' },
-  { id:6, section:'centros', tipo:'Centros energéticos', titulo:'Centros energéticos de tu carta', desc:'Una guía para conocer los centros de energía de tu BodyGraph y cómo cada uno influye en tu manera de tomar decisiones.', emoji:'⚛', bg:'linear-gradient(145deg,#0d1520,#19232e)' },
+  { id:1, section:'manifestacion', tipo:'Manifestación', titulo:'Conectá con tu poder creador', desc:'Una guía para adentrarte en el mundo de la manifestación: aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad.', emoji:'◈', bg:'linear-gradient(145deg,#3a5069,#2f4156)', link:'/tienda#productos' },
+  { id:2, section:'manifestacion', tipo:'Manifestación', titulo:'Diseño Humano & Manifestación', desc:'Cuando te anclás en tu frecuencia propia y verdadera, la manifestación y los procesos de cocreación son más alineados y suaves.', emoji:'✺', bg:'linear-gradient(145deg,#2f4156,#19232e)', link:'https://youtu.be/tGXzNPjVgtc' },
+  { id:3, section:'conciencia-corporal', tipo:'Conciencia corporal', titulo:'Reconectá con tu verdad', desc:'Menos mente y más conciencia corporal: la espera como acto de alineación y cómo la mente interfiere en la toma de decisiones.', emoji:'◐', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', link:'https://youtu.be/wpdvSn7m3CY' },
+  { id:4, section:'conciencia-corporal', tipo:'Conciencia corporal', titulo:'El poder de la palabra', desc:'Las palabras no son inocentes: cada una lleva una carga energética, una intención y una frecuencia que impacta en quien las recibe y en quien las emite.', emoji:'∿', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', link:'https://youtu.be/yjfWwwnglEA' },
+  { id:5, section:'magnetismo', tipo:'Magnetismo', titulo:'Activá tu magnetismo único', desc:'Cuando entendemos cómo funcionamos energéticamente y honramos nuestra frecuencia, nos abrimos a vivir realidades más ligeras, creativas y expansivas.', emoji:'⚡', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', link:null },
+  { id:6, section:'centros', tipo:'Centros energéticos', titulo:'Centros energéticos de tu carta', desc:'Una guía para conocer los centros de energía de tu BodyGraph y cómo cada uno influye en tu manera de tomar decisiones.', emoji:'⚛', bg:'linear-gradient(145deg,#0d1520,#19232e)', link:'https://drive.google.com/file/d/1ddLx7wW2Zl6rFWN5Eu6oiXu5IpO4-EgI/view?usp=sharing' },
 ]
 
 function WellnessCard({ item, delay = 0 }) {
+  const isExternal = item.link && item.link.startsWith('http')
   return (
     <div className="wellness-card anim-fadeInUp" style={{ animationDelay: `${delay}s` }}>
       <div className="wellness-card-img" style={{ background: item.bg }}>
@@ -21,7 +22,11 @@ function WellnessCard({ item, delay = 0 }) {
         <span className="wellness-card-tipo">{item.tipo}</span>
         <h3 className="wellness-card-title">{item.titulo}</h3>
         <p className="wellness-card-desc">{item.desc}</p>
-        <button className="btn-blue wellness-card-cta">Ver clase</button>
+        {item.link ? (
+          <a href={item.link} {...(isExternal ? { target:'_blank', rel:'noopener noreferrer' } : {})} className="btn-blue wellness-card-cta">Ver clase</a>
+        ) : (
+          <span className="wellness-card-cta wellness-card-cta--soon">Muy pronto</span>
+        )}
       </div>
     </div>
   )

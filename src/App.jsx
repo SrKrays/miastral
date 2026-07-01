@@ -11,6 +11,7 @@ import ConoceA       from './pages/ConoceA'
 import Contacto      from './pages/Contacto'
 import Eventos       from './pages/Eventos'
 import Membresia     from './pages/Membresia'
+import MaterialGratuito from './pages/MaterialGratuito'
 import Login         from './pages/Login'
 import Registro      from './pages/Registro'
 import MiCuenta      from './pages/MiCuenta'
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contacto"     element={<PageTransition><Contacto /></PageTransition>} />
           <Route path="/eventos"      element={<PageTransition><Eventos /></PageTransition>} />
           <Route path="/membresia"    element={<PageTransition><Membresia /></PageTransition>} />
+          <Route path="/material-gratuito" element={<PageTransition><MaterialGratuito /></PageTransition>} />
           <Route path="/login"        element={<PageTransition><Login /></PageTransition>} />
           <Route path="/registro"     element={<PageTransition><Registro /></PageTransition>} />
           <Route path="/mi-cuenta"    element={<PageTransition><MiCuenta /></PageTransition>} />
