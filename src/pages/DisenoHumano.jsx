@@ -3,27 +3,27 @@ import Footer from '../components/Footer/Footer'
 import './DisenoHumano.css'
 
 const PILARES = [
-  { id:1, tipo:'Pilar 1', titulo:'Tipo', desc:'Devela tu naturaleza energética. Existen 5 tipos de energía y cada uno tiene características específicas que definen cómo te relacionás con el mundo.', emoji:'⚛', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
-  { id:2, tipo:'Pilar 2', titulo:'Estrategia', desc:'Representa la manera única de moverte por la vida de acuerdo a tu energía: cómo iniciás, respondés y te relacionás con los demás.', emoji:'∿', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
-  { id:3, tipo:'Pilar 3', titulo:'Autoridad', desc:'Tu propia brújula interna, la que te guía a tomar las decisiones más alineadas a tu energía y tu diseño. (Y no, no es la mente).', emoji:'◈', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
+  { id:1, tipo:'Pilar 1', titulo:'Tipo', desc:'Revela tu naturaleza energética. Existen 5 tipos áuricos y cada uno tiene características específicas que definen cómo te relacionás con el mundo y la vida.', emoji:'⚛', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
+  { id:2, tipo:'Pilar 2', titulo:'Estrategia', desc:'Es la manera más alineada de interactuar con la vida según tu tipo de energía. Te muestra cómo accionar desde un lugar correcto para fluir en armonía con la vida sin resistencias, moverte con mayor facilidad y conectar con tu autenticidad.', emoji:'∿', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
+  { id:3, tipo:'Pilar 3', titulo:'Autoridad', desc:'Tu propia brújula interna, la que te guía a tomar las decisiones más alineadas a tu energía y tu diseño. (Y no, tu brújula no es la mente).', emoji:'◈', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
 ]
 
 const TIPOS = [
-  { id:1, section:'tipos', tipo:'35% de la población', titulo:'Generador', desc:'Están aquí para experimentar satisfacción y para mover al mundo desde lo que les apasiona.', emoji:'⚡', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
-  { id:2, section:'tipos', tipo:'35% de la población', titulo:'Generador Manifestante', desc:'Su característica principal es la multipasionalidad y el multitasking. Vinieron a experimentarlo todo y a conectar con la satisfacción y la paz.', emoji:'✺', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
-  { id:3, section:'tipos', tipo:'20% de la población', titulo:'Proyector', desc:'Están aquí para traer los nuevos paradigmas y las nuevas formas. Vinieron a guiar y liderar desde su energía al mundo.', emoji:'◎', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
-  { id:4, section:'tipos', tipo:'8% de la población', titulo:'Manifestador', desc:'Están aquí para ser pioneros y traer lo nuevo. Es el único tipo que vino a accionar confiando en sus propios pulsos internos.', emoji:'✦', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)' },
-  { id:5, section:'tipos', tipo:'2% de la población', titulo:'Reflector', desc:'El único tipo lunar. Vinieron a espejar al mundo, a mostrarnos las energías disponibles y hacia dónde nos estamos dirigiendo.', emoji:'◐', bg:'linear-gradient(145deg,#0d1520,#19232e)' },
+  { id:1, tipo:'35% de la población', titulo:'Generador', desc:'Están aquí para experimentar satisfacción y construir una vida alineada con lo que verdaderamente los apasiona. Cuando siguen su respuesta interna, inspiran al mundo con su energía vital y creadora.', emoji:'⚡', bg:'linear-gradient(145deg,#2f4156,#19232e)', pdf:'https://drive.google.com/file/d/1oEED-TDQZlu51Njzd-VQLyrPKfFlyc19/view' },
+  { id:2, tipo:'35% de la población', titulo:'Generador Manifestante', desc:'Están aquí para experimentar, crear y abrirse a múltiples caminos. Su naturaleza multipotencial los impulsa a innovar, adaptarse y demostrar que no existe una única forma de vivir el propósito.', emoji:'✺', bg:'linear-gradient(145deg,#3a5069,#2f4156)', pdf:'https://drive.google.com/file/d/1Xm9Zs-p4vnr_p817CjKotkr67pmHkQ71/view' },
+  { id:3, tipo:'20% de la población', titulo:'Proyector', desc:'Están aquí para traer nuevos paradigmas y nuevas formas de comprender la vida. Su energía está diseñada para guiar, liderar y acompañar a otros hacia su máximo potencial.', emoji:'◎', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', pdf:'https://drive.google.com/file/d/1VjDnuXU7o7_geX57ehvBmqbFdP2vkpQ9/view' },
+  { id:4, tipo:'8% de la población', titulo:'Manifestador', desc:'Están aquí para ser pioneros y traer lo nuevo. Son el único tipo diseñado para iniciar desde sus propios impulsos internos, convirtiéndose en catalizadores del cambio.', emoji:'✦', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', pdf:'https://drive.google.com/file/d/1s4ZyTqY5rL7RXE6Bxl5zkfZaZqkd3AlT/view' },
+  { id:5, tipo:'2% de la población', titulo:'Reflector', desc:'Son el único tipo lunar. Están aquí para reflejar la salud de la comunidad y mostrarnos, a través de su sensibilidad, el potencial y la dirección de nuestro entorno.', emoji:'◐', bg:'linear-gradient(145deg,#0d1520,#19232e)', pdf:'https://drive.google.com/file/d/1X4MmvFhcjCvkgyGEn6mY2DFGLZ0o55uF/view' },
 ]
 
 const BENEFICIOS = [
-  'Comprender tu tipo de energía y cómo usarla de manera consciente, sin agotarte.',
+  'Comprender cómo funciona tu energía y aprender a gestionarla sin agotarte.',
   'Tomar decisiones alineadas con tu verdad interna.',
   'Reconocer los patrones mentales o condicionamientos que te alejan de tu autenticidad.',
   'Conectar con tu propósito y tu forma única de contribuir al mundo.',
   'Conocer y honrar la energía de las personas que te rodean.',
-  'Dejar de lado el sobrepensamiento y usar la mente para lo que realmente vino a ser utilizada.',
-  'Vivir una vida más ligera, consciente y coherente.',
+  'Dejar de identificarte con la mente y utilizarla para lo que realmente fue diseñada: observar, aprender e inspirar, no decidir.',
+  'Vivir con mayor coherencia, autenticidad y confianza en tu propio camino.',
   'Reactivar tu magnetismo único para manifestar desde tu propia coherencia interna.',
 ]
 
@@ -60,6 +60,11 @@ function TipoCard({ item, delay = 0 }) {
         <span className="astro-card-tipo">{item.tipo}</span>
         <h3 className="astro-card-title">{item.titulo}</h3>
         <p className="astro-card-desc">{item.desc}</p>
+        {item.pdf && (
+          <a href={item.pdf} target="_blank" rel="noopener noreferrer" className="btn-sand" style={{ fontSize:11, marginTop:12 }}>
+            Descargá la guía gratuita
+          </a>
+        )}
       </div>
     </div>
   )
@@ -72,25 +77,9 @@ export default function DisenoHumano() {
 
       {/* BANNER */}
       <section className="astro-banner">
-        <div className="astro-banner-decoration astro-banner-left">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="90" fill="var(--bg-cream)" />
-            <circle cx="100" cy="100" r="85" fill="var(--accent-coral)" />
-            <circle cx="100" cy="100" r="60" fill="var(--bg-black)" opacity="0.8" />
-            <circle cx="100" cy="100" r="50" fill="none" stroke="var(--text-dark)" strokeWidth="2" opacity="0.3" />
-          </svg>
-        </div>
         <div className="astro-banner-content">
           <h1 className="astro-banner-title">Diseño Humano</h1>
-          <p className="astro-banner-subtitle">Una guía energética para recordar quién sos, libre de condicionamientos</p>
-        </div>
-        <div className="astro-banner-decoration astro-banner-right">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="90" fill="var(--bg-cream)" />
-            <circle cx="100" cy="100" r="80" fill="var(--bg-black)" />
-            <circle cx="100" cy="100" r="70" fill="var(--accent-coral)" opacity="0.9" />
-            <circle cx="70" cy="70" r="25" fill="var(--bg-cream)" opacity="0.6" />
-          </svg>
+          <p className="astro-banner-subtitle">Un mapa energético para recordar tu verdad, liberarte de los condicionamientos y vivir más auténticamente</p>
         </div>
       </section>
 
@@ -102,19 +91,23 @@ export default function DisenoHumano() {
           </div>
           <div className="dh-intro">
             <p>
-              Diseño Humano es una guía energética que te invita a <strong>recordar quién sos</strong> realmente,
-              en esencia y libre de condicionamientos.
+              El Diseño Humano es un mapa energético que se calcula a partir de tus datos de nacimiento y te invita
+              a recordar quién sos realmente: más allá de los condicionamientos, las expectativas y los mandatos
+              que fuiste incorporando a lo largo de tu vida.
             </p>
             <p>
-              Es una herramienta de autoconocimiento canalizada en 1987 que combina <strong>conocimiento ancestral</strong>
-              {' '}(Astrología, I Ching, Chakras y Kabbalah) <strong>y moderno</strong> (física cuántica y genética),
-              revelando cómo funciona tu energía.
+              Es una herramienta de autoconocimiento canalizada en 1987 por Ra Uru Hu que integra sabidurías
+              ancestrales como la Astrología, el I Ching, la Kabbalah y el sistema de chakras, junto con
+              conocimientos modernos de la genética y la física.
             </p>
             <p>
-              Es la ciencia de la diferenciación y representa tu propio "manual de uso" para que puedas vivir
-              una vida más consciente, coherente y auténtica.
+              Conocido como "la ciencia de la diferenciación", el Diseño Humano revela la forma única en que tu
+              energía fue diseñada para expresarse. Más que decirte quién tenés que ser, te ofrece una guía para
+              comprender cómo tomar decisiones alineadas con tu naturaleza, relacionarte con mayor autenticidad
+              y vivir una vida más consciente, coherente y en armonía con vos mismo.
             </p>
           </div>
+          <p className="dh-benefits-title">Esta herramienta te ayuda a:</p>
           <ul className="dh-benefits-list">
             {BENEFICIOS.map(b => (
               <li key={b}><span className="benefit-star">✦</span><span>{b}</span></li>
@@ -152,6 +145,22 @@ export default function DisenoHumano() {
         </div>
       </section>
 
+      {/* VIDEO — placeholder hasta que Valentina lo tenga listo */}
+      <section className="astro-section astro-section-alt">
+        <div className="container-astral" style={{ textAlign:'center' }}>
+          <div className="astro-section-header">
+            <h2 className="astro-section-title">Cómo interpretar tu BodyGraph</h2>
+            <p className="astro-section-desc">Una guía visual para empezar a leer tu carta desde cero</p>
+          </div>
+          <div className="dh-video-wrap">
+            <div className="dh-video-placeholder">
+              <div className="play-icon">▶</div>
+              <p style={{ fontSize:12, fontFamily:'var(--font-label)', letterSpacing:'0.1em', textTransform:'uppercase', marginTop:16, color:'rgba(255,255,255,0.5)' }}>Video próximamente</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="astro-section astro-section-alt">
         <div className="container-astral">
@@ -176,8 +185,8 @@ export default function DisenoHumano() {
             ¿Estás listx para conocerte en profundidad y encarnar tu energía?
           </p>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <a href="/eventos" className="btn-coral">Conocé mis espacios en vivo</a>
-            <a href="/tienda" className="btn-outline-dark">Ver programas y guías</a>
+            <a href="/tienda#sesiones" className="btn-coral">Conocé mis servicios</a>
+            <a href="/tienda#programas" className="btn-sand">Ver programas y talleres</a>
           </div>
         </div>
       </section>

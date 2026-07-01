@@ -57,7 +57,7 @@ export default function Contacto() {
               
               <div className="contacto-item">
                 <h3 className="contacto-item-title">Email</h3>
-                <p className="contacto-item-text">hola@disenohumano.com</p>
+                <a href="mailto:valemelchior@gmail.com" className="contacto-link">valemelchior@gmail.com</a>
               </div>
 
               <div className="contacto-item">
@@ -72,8 +72,8 @@ export default function Contacto() {
 
               <div className="contacto-item">
                 <h3 className="contacto-item-title">¿Trabajás en bienestar o Diseño Humano?</h3>
-                <p className="contacto-item-text">Si querés colaborar o tener una mención especial en el podcast, escribinos a</p>
-                <a href="mailto:colaboraciones@disenohumano.com" className="contacto-link">colaboraciones@disenohumano.com</a>
+                <p className="contacto-item-text">Si querés colaborar, proponer una mención en el podcast o simplemente escribirme, te espero por WhatsApp:</p>
+                <a href="https://api.whatsapp.com/send?phone=5493512115420&text=Hola%21%20me%20interesa%20colaborar..." target="_blank" rel="noopener noreferrer" className="btn-sand" style={{ marginTop:12, fontSize:11 }}>Escribir por WhatsApp</a>
               </div>
             </div>
 

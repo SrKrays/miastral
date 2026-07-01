@@ -65,6 +65,32 @@ img { max-width: 100%; display: block; }
   color: #fff;
 }
 
+/* --- Botón arena/secundario (#B4A484) --- */
+.btn-sand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 32px;
+  background: var(--accent-sand);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.btn-sand:hover {
+  background: var(--accent-sand-hover);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
 /* --- Outline oscuro (spinner ring on hover) --- */
 .btn-outline-dark {
   position: relative;

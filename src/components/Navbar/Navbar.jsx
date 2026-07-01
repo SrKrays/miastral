@@ -3,11 +3,12 @@ import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
 const NAV_LINKS = [
-  { label: 'Diseño Humano', path: '/diseno-humano' },
-  { label: 'Bienestar',  path: '/bienestar' },
-  { label: 'Tienda',     path: '/tienda' },
-  { label: 'Conoce a',   path: '/conoce' },
-  { label: 'Contacto',   path: '/contacto' },
+  { label: 'Diseño Humano',   path: '/diseno-humano' },
+  { label: 'Física Cuántica', path: '/bienestar' },
+  { label: 'Tienda',          path: '/tienda' },
+  { label: 'Sobre mí',        path: '/conoce' },
+  { label: 'Contacto',        path: '/contacto' },
+  { label: 'Material gratuito', path: '/material-gratuito' },
 ]
 
 export default function Navbar({ cartCount = 0 }) {
@@ -29,8 +30,8 @@ export default function Navbar({ cartCount = 0 }) {
       <div className="navbar-topbar">
         <div className="navbar-topbar-inner">
           <Link to="/" className="navbar-logo-top">
-            DISEÑO HUMANO
-            <span>& Física Cuántica</span>
+            By Valentina M.
+            <span>Diseño Humano & Física Cuántica</span>
           </Link>
 
           <div className="navbar-topbar-right">
@@ -78,13 +79,13 @@ export default function Navbar({ cartCount = 0 }) {
       {/* Mobile */}
       <div className={`navbar-mobile-menu${mobileOpen ? ' open' : ''}`}>
         <button className="mobile-close" onClick={() => setMobileOpen(false)}>✕</button>
-        <Link to="/" className="navbar-logo-top" style={{ color:'#fff', marginBottom:32, fontSize:24 }}>
-          DISEÑO HUMANO<span style={{ color:'rgba(255,255,255,0.4)' }}>& Física Cuántica</span>
+        <Link to="/" className="navbar-logo-top" style={{ color:'#fff', marginBottom:32, fontSize:20 }}>
+          By Valentina M.<span style={{ color:'rgba(255,255,255,0.4)' }}> Diseño Humano & Física Cuántica</span>
         </Link>
         {NAV_LINKS.map(item => <Link key={item.label} to={item.path} className="mobile-nav-link">{item.label}</Link>)}
         <div style={{ marginTop:32, display:'flex', gap:12, flexDirection:'column' }}>
           <Link to="/login"    className="btn-outline-white" style={{ justifyContent:'center' }}>Iniciar sesión</Link>
-          <Link to="/registro" className="btn-coral"         style={{ justifyContent:'center' }}>Registrarse</Link>
+          <Link to="/registro" className="btn-sand"          style={{ justifyContent:'center' }}>Registrarse</Link>
         </div>
       </div>
     </header>

@@ -57,7 +57,7 @@ export default function ConoceA() {
               </p>
               <p className="conoce-disclaimer">
                 <strong>El contenido que se comparte en este sitio</strong> es desarrollado con la intención de crear
-                consciencia sobre un tema y ofrecer lecciones para aprender al respecto. Esta información no sustituye
+                consciencia sobre un tema y ofrecer espacios para aprender al respecto. Esta información no sustituye
                 el consejo de un/a especialista de la salud mental.
               </p>
             </div>
@@ -72,8 +72,8 @@ export default function ConoceA() {
             {[
               { num:'✦',  label:'Generadora Manifestante — Autoridad esplénico-generada, perfil 2/4' },
               { num:'⚛',  label:'De Arquitecta a guía de Diseño Humano y Física Cuántica' },
-              { num:'◈',  label:'Creadora del Programa de Transformación Cuántica' },
-              { num:'✺',  label:'Comunidad "Tribu & Diseño Humano" + podcast y colaboraciones' },
+              { num:'◈',  label:'Creadora del oráculo Matriz Cuántica' },
+              { num:'✺',  label:'Creadora del podcast "El poder de recordar quien eres"' },
             ].map(s => (
               <div key={s.label} className="stat-item">
                 <span className="stat-num">{s.num}</span>

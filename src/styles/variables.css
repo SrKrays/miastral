@@ -31,6 +31,8 @@
   --accent-coral:       #e8735a;
   --accent-coral-hover: #d4614a;
   --accent-coral-light: #f0957e;
+  --accent-sand:        #B4A484;
+  --accent-sand-hover:  #9e9070;
 
   /* Acento azul brillante */
   --accent-blue:     var(--c-400);

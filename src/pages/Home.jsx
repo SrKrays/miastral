@@ -95,21 +95,21 @@ export default function Home() {
         </Suspense>
         <div className="hero-content">
           <ScrollReveal direction="down" delay={0}>
-            <div className="hero-eyebrow">Bienvenidx a esta tribu ✦</div>
+            <div className="hero-eyebrow">Bienvenidx a mi tribu ✦</div>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.1}>
-            <h1 className="hero-title">Recordá<br />quién sos</h1>
+            <h1 className="hero-title">El poder de recordar<br />quién eres.</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
-            <p className="hero-subtitle">¿Buscás reconectar con tu energía y tu autenticidad?<br /><strong>Estás en el lugar correcto.</strong></p>
+            <p className="hero-subtitle">La transformación ocurre cuando dejás de resistirte a tu propia naturaleza y abrazás todo eso que ya te habita.<br /><strong>Es hora de volver a tu frecuencia.</strong></p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.3}>
-            <p className="hero-tagline">Diseño Humano & Física Cuántica para tu autoconocimiento.</p>
+            <p className="hero-tagline">Autoconocimiento · Física cuántica · Energía auténtica</p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.4}>
             <div className="hero-cta" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
-              <MagneticButton><Link to="/tienda" className="btn-coral">Quiero explorar</Link></MagneticButton>
-              <MagneticButton strength={0.25}><Link to="/diseno-humano" className="btn-outline-dark">Conocé más</Link></MagneticButton>
+              <MagneticButton><Link to="/diseno-humano" className="btn-coral">Conocé más de DH</Link></MagneticButton>
+              <MagneticButton strength={0.25}><Link to="/tienda" className="btn-sand">Explorá tu carta conmigo</Link></MagneticButton>
             </div>
           </ScrollReveal>
         </div>

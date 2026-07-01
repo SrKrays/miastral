@@ -1,24 +1,39 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import ProductModal from '../components/ProductModal/ProductModal'
 import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollReveal/ScrollReveal'
 import './Tienda.css'
 
-/* ===== DATA ===== */
-const GUIAS = [
-  { id:1, tipo:'Producto', titulo:'Conectá con tu poder creador — guía de manifestación', precio:'$25.000', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'◈', tag:'Nuevo' },
+/* ── PRODUCTOS (físicos y digitales) ── */
+const PRODUCTOS = [
+  { id:1,  tipo:'Guía digital',  titulo:'Conecta con tu poder creador — guía de manifestación', precio:'$25.000', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'◈', tag:'', email:true },
+  { id:2,  tipo:'Oráculo',       titulo:'Oráculo Matriz Cuántica', precio:'Próximamente', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⬡', tag:'Pronto', proximamente:true },
+  { id:3,  tipo:'Oráculo',       titulo:'Oráculo 11:11', precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'✦', tag:'', email:true },
+  { id:4,  tipo:'Oráculo',       titulo:'Oráculo Espejo del alma', precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◐', tag:'', email:true },
 ]
 
+/* ── SERVICIOS / SESIONES ── */
+const SESIONES = [
+  { id:10, tipo:'Sesión 1:1',    titulo:'El poder de recordar — sesión individual',              precio:'Consultar', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'✦' },
+  { id:11, tipo:'Pack x4',       titulo:'Del macro al micro cosmos — pack de 4 sesiones',         precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'◈' },
+  { id:12, tipo:'Sesión 1:1',    titulo:'On demand — sesión individual',                          precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'⚡' },
+  { id:13, tipo:'Lectura vincular', titulo:'Sinergia frecuencial — lectura vincular',             precio:'Consultar', bg:'linear-gradient(145deg,#0d1520,#19232e)', emoji:'∿' },
+  { id:14, tipo:'PDF',           titulo:'Informe personalizado — PDF',                            precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◎' },
+]
+
+/* ── PROGRAMAS Y TALLERES ── */
 const PROGRAMAS = [
-  { id:2, tipo:'Producto', titulo:'Tribu & Diseño Humano — taller grupal de 3 semanas', precio:'$77.000', bg:'linear-gradient(145deg,#0d1f2d,#1a3040)', emoji:'✺', tag:'Oferta' },
-  { id:3, tipo:'Producto', titulo:'Programa de transformación cuántica — pregrabado, 7 semanas', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'Más vendido' },
+  { id:20, tipo:'Programa pregrabado', titulo:'Programa de transformación cuántica — 7 semanas', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'Más vendido', link:'https://byvalentinam.tiendup.com/curso/programadetransformacioncuantica' },
 ]
 
+/* ── CARD DE PRODUCTO ── */
 function ProductCard({ item, onView }) {
+  const isProximo = item.proximamente
   return (
-    <div className="tienda-card" onClick={() => onView(item)} style={{ cursor:'pointer' }}>
+    <div className={`tienda-card${isProximo ? ' tienda-card--pronto' : ''}`}
+      onClick={() => !isProximo && onView(item)}
+      style={{ cursor: isProximo ? 'default' : 'pointer' }}>
       <div className="tienda-card-img" style={{ background: item.bg }}>
         <span className="tienda-card-emoji">{item.emoji}</span>
         {item.tag && <span className="tienda-card-tag">{item.tag}</span>}
@@ -28,12 +43,54 @@ function ProductCard({ item, onView }) {
         <h3 className="tienda-card-title">{item.titulo}</h3>
         <div className="tienda-card-footer">
           <span className="tienda-card-precio">{item.precio}</span>
-          <button className="btn-coral tienda-add-btn" onClick={(e) => {
-            e.stopPropagation()
-            onView(item)
-          }}>
-            Ver detalle
-          </button>
+          {!isProximo && (
+            item.email
+              ? <a href={`mailto:valemelchior@gmail.com?subject=Consulta sobre: ${encodeURIComponent(item.titulo)}`}
+                   className="btn-coral tienda-add-btn">Consultar por mail</a>
+              : <button className="btn-coral tienda-add-btn" onClick={e => { e.stopPropagation(); onView(item) }}>Ver detalle</button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ── CARD DE SESIÓN ── */
+function SesionCard({ item }) {
+  return (
+    <div className="tienda-card">
+      <div className="tienda-card-img" style={{ background: item.bg }}>
+        <span className="tienda-card-emoji">{item.emoji}</span>
+      </div>
+      <div className="tienda-card-body">
+        <span className="tienda-card-tipo">{item.tipo}</span>
+        <h3 className="tienda-card-title">{item.titulo}</h3>
+        <div className="tienda-card-footer">
+          <span className="tienda-card-precio">{item.precio}</span>
+          <a href={`https://api.whatsapp.com/send?phone=5493512115420&text=Hola%21%20me%20interesa%20la%20${encodeURIComponent(item.titulo)}`}
+             target="_blank" rel="noopener noreferrer" className="btn-sand tienda-add-btn">
+            Consultar por WP
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ── CARD DE PROGRAMA ── */
+function ProgramaCard({ item }) {
+  return (
+    <div className="tienda-card">
+      <div className="tienda-card-img" style={{ background: item.bg }}>
+        <span className="tienda-card-emoji">{item.emoji}</span>
+        {item.tag && <span className="tienda-card-tag">{item.tag}</span>}
+      </div>
+      <div className="tienda-card-body">
+        <span className="tienda-card-tipo">{item.tipo}</span>
+        <h3 className="tienda-card-title">{item.titulo}</h3>
+        <div className="tienda-card-footer">
+          <span className="tienda-card-precio">{item.precio}</span>
+          <a href={item.link} target="_blank" rel="noopener noreferrer" className="btn-coral tienda-add-btn">Ver programa</a>
         </div>
       </div>
     </div>
@@ -41,145 +98,85 @@ function ProductCard({ item, onView }) {
 }
 
 export default function Tienda() {
-  const [cartItems, setCartItems] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(null)
-  const [toast, setToast] = useState(null)
-
-  const addToCart = (item) => {
-    setCartItems(prev => {
-      const exists = prev.find(i => i.id === item.id)
-      if (exists) return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + item.qty } : i)
-      return [...prev, item]
-    })
-    setToast(item.titulo)
-    setTimeout(() => setToast(null), 2500)
-  }
 
   return (
     <>
-      <Navbar cartCount={cartItems.reduce((a,i) => a+i.qty, 0)} />
+      <Navbar />
 
-      {toast && (
-        <div className="toast-notification">
-          <span>✓</span> Agregado al carrito
+      {/* BANNER */}
+      <section className="tienda-banner">
+        <h1 className="tienda-banner-title">Tienda</h1>
+        <p className="tienda-banner-subtitle">Servicios, productos y programas para acompañarte en tu proceso</p>
+      </section>
+
+      {/* PRODUCTOS */}
+      <section id="productos" className="tienda-section">
+        <div className="container-astral">
+          <ScrollReveal direction="up">
+            <div className="tienda-section-header">
+              <h2 className="tienda-section-title">Productos</h2>
+              <p className="tienda-section-desc">Guías, oráculos y materiales para tu proceso de autoconocimiento</p>
+            </div>
+          </ScrollReveal>
+          <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
+            {PRODUCTOS.map(item => (
+              <StaggerItem key={item.id} direction="up">
+                <ProductCard item={item} onView={setSelectedProduct} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
-      )}
+      </section>
+
+      {/* SESIONES */}
+      <section id="sesiones" className="tienda-section tienda-section-alt">
+        <div className="container-astral">
+          <ScrollReveal direction="up">
+            <div className="tienda-section-header">
+              <h2 className="tienda-section-title">Servicios</h2>
+              <p className="tienda-section-desc">Sesiones individuales y lecturas personalizadas de Diseño Humano</p>
+            </div>
+          </ScrollReveal>
+          <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
+            {SESIONES.map(item => (
+              <StaggerItem key={item.id} direction="up">
+                <SesionCard item={item} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
+      {/* PROGRAMAS */}
+      <section id="programas" className="tienda-section">
+        <div className="container-astral">
+          <ScrollReveal direction="up">
+            <div className="tienda-section-header">
+              <h2 className="tienda-section-title">Programas y talleres</h2>
+              <p className="tienda-section-desc">Experiencias grupales e intensivos de transformación</p>
+            </div>
+          </ScrollReveal>
+          <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
+            {PROGRAMAS.map(item => (
+              <StaggerItem key={item.id} direction="up">
+                <ProgramaCard item={item} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <p className="tienda-nota">
+            ✦ Los programas y talleres en vivo se publican a medida que se confirman fechas. Seguí las novedades en Instagram <a href="https://www.instagram.com/byvalentinam__/" target="_blank" rel="noopener noreferrer" className="contacto-link">@byvalentinam__</a>
+          </p>
+        </div>
+      </section>
 
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
-          onAddCart={addToCart}
+          onAddCart={() => setSelectedProduct(null)}
         />
       )}
-
-      {/* ===== BANNER 1 — GUÍAS ===== */}
-      <section className="tienda-banner tienda-banner-dark">
-        <div className="tienda-banner-inner">
-          <ScrollReveal direction="left">
-            <div className="tienda-banner-book">
-              <div className="book-mockup">
-                <span style={{ fontSize:'4rem' }}>◈</span>
-                <div className="book-label">
-                  <span>Guía de</span>
-                  <strong>Manifestación<br />Cuántica</strong>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.1}>
-            <div className="tienda-banner-content">
-              <h2 className="tienda-banner-title">
-                Activá tu poder<br />
-                <em>de manifestación</em>
-              </h2>
-              <p className="tienda-banner-desc">
-                Si estás adentrándote en el mundo de la manifestación, esta guía es para vos: un espacio de
-                aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad.
-              </p>
-              <Link to="#guias" className="btn-blue">Adquirí tu guía aquí</Link>
-            </div>
-          </ScrollReveal>
-          <div className="tienda-banner-decor" />
-        </div>
-      </section>
-
-      {/* ===== SECCIÓN GUÍAS ===== */}
-      <section id="guias" className="tienda-section">
-        <div className="container-astral">
-          <ScrollReveal direction="up">
-            <div className="tienda-section-header">
-              <div>
-                <p className="section-eyebrow">Recursos para tu proceso</p>
-                <h2 className="tienda-section-title">
-                  <em>Guías</em><br />descargables
-                </h2>
-              </div>
-              <Link to="#guias" className="btn-outline-white">Ver todas</Link>
-            </div>
-          </ScrollReveal>
-          <StaggerGroup className="tienda-products-grid" staggerDelay={0.12}>
-            {GUIAS.map(item => (
-              <StaggerItem key={item.id} direction="up">
-                <ProductCard item={item} onView={setSelectedProduct} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </div>
-      </section>
-
-      {/* ===== BANNER 2 — PROGRAMAS ===== */}
-      <section className="tienda-banner tienda-banner-blue">
-        <div className="tienda-banner-inner tienda-banner-inner-rev">
-          <ScrollReveal direction="right">
-            <div className="tienda-banner-content">
-              <p className="tienda-banner-eyebrow">✦ Formación completa</p>
-              <h2 className="tienda-banner-title tienda-banner-title-light">
-                Habitá tu Diseño Humano<br />
-                <em>desde la conciencia cuántica</em>
-              </h2>
-              <p className="tienda-banner-desc tienda-banner-desc-light">
-                Pasá de la confusión y el autosabotaje a habitar tu Diseño Humano, liberar bloqueos y transformar
-                tu energía en magnetismo, integrando principios cuánticos para crear desde tu esencia auténtica.
-              </p>
-              <Link to="#programas" className="btn-coral">Explorar programas</Link>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="left" delay={0.1}>
-            <div className="tienda-banner-visual">
-              <div className="course-mockup">
-                {['⚛','✺','◈'].map((e,i) => (
-                  <div key={i} className="course-icon-card" style={{ animationDelay:`${i*0.3}s` }}>{e}</div>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ===== SECCIÓN PROGRAMAS ===== */}
-      <section id="programas" className="tienda-section tienda-section-alt">
-        <div className="container-astral">
-          <ScrollReveal direction="up">
-            <div className="tienda-section-header">
-              <div>
-                <p className="section-eyebrow">Programas y talleres</p>
-                <h2 className="tienda-section-title">
-                  <em>Formación</em><br />en Diseño Humano
-                </h2>
-              </div>
-              <Link to="#programas" className="btn-outline-white">Ver todos</Link>
-            </div>
-          </ScrollReveal>
-          <StaggerGroup className="tienda-products-grid" staggerDelay={0.12}>
-            {PROGRAMAS.map(item => (
-              <StaggerItem key={item.id} direction="up">
-                <ProductCard item={item} onView={setSelectedProduct} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </div>
-      </section>
 
       <Footer />
     </>
