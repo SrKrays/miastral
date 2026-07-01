@@ -61,7 +61,7 @@ img { max-width: 100%; display: block; }
 .btn-coral:hover {
   background: var(--accent-coral-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(232,115,90,0.5);
+  box-shadow: 0 8px 28px rgba(180,164,132,0.5);
   color: #fff;
 }
 

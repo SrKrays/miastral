@@ -39,25 +39,9 @@ export default function Bienestar() {
 
       {/* BANNER */}
       <section className="wellness-banner">
-        <div className="wellness-banner-decoration wellness-banner-left">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="90" fill="var(--bg-cream)" />
-            <circle cx="100" cy="100" r="85" fill="var(--accent-coral)" />
-            <circle cx="100" cy="100" r="60" fill="var(--bg-black)" opacity="0.8" />
-            <circle cx="100" cy="100" r="50" fill="none" stroke="var(--text-dark)" strokeWidth="2" opacity="0.3" />
-          </svg>
-        </div>
         <div className="wellness-banner-content">
           <h1 className="wellness-banner-title">Bienestar</h1>
           <p className="wellness-banner-subtitle">Conciencia corporal, magnetismo y frecuencia: cuidá tu energía desde adentro</p>
-        </div>
-        <div className="wellness-banner-decoration wellness-banner-right">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="90" fill="var(--bg-cream)" />
-            <circle cx="100" cy="100" r="80" fill="var(--bg-black)" />
-            <circle cx="100" cy="100" r="70" fill="var(--accent-coral)" opacity="0.9" />
-            <circle cx="70" cy="70" r="25" fill="var(--bg-cream)" opacity="0.6" />
-          </svg>
         </div>
       </section>
 

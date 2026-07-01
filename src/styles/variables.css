@@ -27,10 +27,10 @@
   --text-dark:      var(--c-950);   /* texto sobre fondo claro */
   --text-mid:       var(--c-700);
 
-  /* Acento coral (CTA, botones de acción) — se mantiene */
-  --accent-coral:       #e8735a;
-  --accent-coral-hover: #d4614a;
-  --accent-coral-light: #f0957e;
+  /* Acento principal (CTA, botones de acción) — marrón claro, antes era coral/naranja */
+  --accent-coral:       #B4A484;
+  --accent-coral-hover: #9E9070;
+  --accent-coral-light: #C9BDA3;
   --accent-sand:        #B4A484;
   --accent-sand-hover:  #9e9070;
 
@@ -58,7 +58,7 @@
   /* Sombras */
   --shadow-card:  0 2px 20px rgba(0,0,0,0.25);
   --shadow-hover: 0 8px 40px rgba(0,0,0,0.4);
-  --shadow-coral: 0 4px 24px rgba(232,115,90,0.35);
+  --shadow-coral: 0 4px 24px rgba(180,164,132,0.35);
   --shadow-blue:  0 4px 24px rgba(91,125,164,0.3);
 
   /* Transición */

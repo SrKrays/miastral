@@ -2,11 +2,10 @@
 .wellness-banner {
   background: rgba(9,13,16,0.7);
   padding: 80px 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   align-items: center;
-  gap: 40px;
-  min-height: 400px;
+  justify-content: center;
+  min-height: 340px;
   position: relative;
   overflow: hidden;
 }
@@ -58,11 +57,7 @@
 
 @media (max-width: 1024px) {
   .wellness-banner {
-    grid-template-columns: 1fr;
     padding: 60px 24px;
-  }
-  .wellness-banner-decoration {
-    height: 200px;
   }
 }
 
