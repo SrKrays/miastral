@@ -97,3 +97,20 @@
   .navbar-topbar-right { position: static; transform: none; margin-top: 8px; }
   .navbar-topbar-inner { flex-direction: column; gap: 6px; }
 }
+
+/* ── Mobile menu overlay background ── */
+@media (max-width: 900px) {
+  .navbar-mobile-menu {
+    background: rgba(9,13,16,0.97);
+    backdrop-filter: blur(12px);
+    padding: 32px 24px;
+    gap: 8px;
+  }
+  .navbar-topbar-inner {
+    padding: 0 16px;
+  }
+}
+@media (max-width: 480px) {
+  .navbar-logo-top { font-size: 16px; }
+  .navbar-logo-top span { font-size: 9px; }
+}

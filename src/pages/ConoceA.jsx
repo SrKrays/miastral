@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import './ConoceA.css'
@@ -98,8 +99,8 @@ export default function ConoceA() {
             Explorá todos los recursos y contenidos disponibles.
           </p>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <a href="/diseno-humano" className="btn-coral">Explorar Diseño Humano</a>
-            <a href="/tienda" className="btn-outline-white">Ver tienda</a>
+            <Link to="/diseno-humano" className="btn-coral">Explorar Diseño Humano</Link>
+            <Link to="/tienda" className="btn-outline-white">Ver tienda</Link>
           </div>
         </div>
       </section>

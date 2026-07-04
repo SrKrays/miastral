@@ -4,7 +4,7 @@ import './Navbar.css'
 
 const NAV_LINKS = [
   { label: 'Diseño Humano',   path: '/diseno-humano' },
-  { label: 'Física Cuántica', path: '/bienestar' },
+  { label: 'Bienestar', path: '/bienestar' },
   { label: 'Tienda',          path: '/tienda' },
   { label: 'Sobre mí',        path: '/conoce' },
   { label: 'Contacto',        path: '/contacto' },

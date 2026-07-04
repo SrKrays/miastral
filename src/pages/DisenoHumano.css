@@ -305,3 +305,14 @@
   text-align: center;
   margin: 32px 0 20px;
 }
+
+/* ── Mobile extra fixes ── */
+@media (max-width: 480px) {
+  .astro-banner { padding: 48px 16px; }
+  .astro-banner-title { font-size: 2.2rem; }
+  .astro-banner-subtitle { font-size: 0.9rem; }
+  .astro-cards-grid { grid-template-columns: 1fr; }
+  .dh-video-wrap { border-radius: var(--radius-md); }
+  .dh-pilares-grid { grid-template-columns: 1fr; }
+  .dh-tipos-grid { grid-template-columns: 1fr; }
+}

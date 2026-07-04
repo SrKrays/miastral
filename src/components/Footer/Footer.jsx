@@ -1,16 +1,14 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import './Footer.css'
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
   return (
     <footer className="footer">
       <div className="container-astral">
         <div className="footer-grid">
           <div>
-            <div className="footer-brand-logo">DISEÑO HUMANO</div>
-            <div className="footer-brand-sub">& Física Cuántica</div>
+            <div className="footer-brand-logo">By Valentina M.</div>
+            <div className="footer-brand-sub">Diseño Humano & Física Cuántica</div>
             <p className="footer-desc">Una guía para recordar quién sos: Diseño Humano y Física Cuántica al servicio de tu autoconocimiento, tu energía y tu magnetismo.</p>
           </div>
           <div>
@@ -19,9 +17,9 @@ export default function Footer() {
               <li><Link to="/diseno-humano">Diseño Humano</Link></li>
               <li><Link to="/bienestar">Bienestar</Link></li>
               <li><Link to="/tienda">Tienda</Link></li>
-              <li><Link to="/eventos">Eventos</Link></li>
+              <li><Link to="/material-gratuito">Material gratuito</Link></li>
               <li><Link to="/membresia">Membresía</Link></li>
-              <li><Link to="/conoce">Conoce a Valentina</Link></li>
+              <li><Link to="/conoce">Sobre mí</Link></li>
               <li><Link to="/contacto">Contacto</Link></li>
             </ul>
           </div>
@@ -35,17 +33,18 @@ export default function Footer() {
               <li><Link to="/contacto">Ayuda y soporte</Link></li>
             </ul>
           </div>
-          <div className="footer-newsletter">
-            <div className="footer-col-title">Newsletter</div>
-            <p>Recibí contenido, guías gratuitas y novedades sobre nuevos espacios.</p>
-            <div className="footer-input-row">
-              <input type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} />
-              <button type="button">Suscribir</button>
-            </div>
+          <div>
+            <div className="footer-col-title">Seguime</div>
+            <ul className="footer-links">
+              <li><a href="https://www.instagram.com/byvalentinam__/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://www.tiktok.com/@byvalentinam__" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+              <li><a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify (podcast)</a></li>
+              <li><a href="https://api.whatsapp.com/send?phone=5493512115420" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Diseño Humano & Física Cuántica. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} By Valentina M. Todos los derechos reservados.</p>
           <nav className="footer-legal">
             <Link to="/contacto">Política de privacidad</Link>
             <Link to="/contacto">Términos de uso</Link>

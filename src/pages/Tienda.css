@@ -179,3 +179,11 @@
   object-fit: cover;
   display: block;
 }
+
+/* ── Mobile extra fixes ── */
+@media (max-width: 480px) {
+  .tienda-banner { padding: 48px 16px; }
+  .tienda-banner-title { font-size: 2.2rem; }
+  .tienda-card-footer { flex-direction: column; gap: 8px; }
+  .tienda-add-btn { width: 100%; justify-content: center; }
+}

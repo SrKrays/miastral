@@ -168,3 +168,14 @@
 @media (max-width:600px) {
   .products-grid { grid-template-columns:1fr; }
 }
+
+/* ── Mobile extra fixes ── */
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.4rem; }
+  .hero-subtitle { font-size: 0.95rem; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .hero-cta a, .hero-cta button { width: 100%; justify-content: center; }
+  .section-title-display { font-size: 2rem; }
+  .bestsellers-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .membresia-banner .container-astral { padding: 0 16px; }
+}
