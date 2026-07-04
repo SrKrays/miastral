@@ -12,8 +12,9 @@ const PRODUCTOS = [
   {
     id:1, tipo:'Guía física', titulo:'Conectá con tu poder creador — guía de manifestación',
     precio:'$25.000', bg:'linear-gradient(145deg,#3a2040,#1a0d28)', emoji:'◈',
+    foto:'/img/guia-poder-creador-1.jpg',
     contacto:'mail',
-    desc:'Una guía impresa para adentrarte en el mundo de la manifestación: aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad. (Descripción a confirmar con foto real).',
+    desc:'Una guía impresa para adentrarte en el mundo de la manifestación: aprendizaje, consciencia y reprogramación para volverte dueñx de tu realidad.',
   },
   {
     id:2, tipo:'Oráculo', titulo:'Oráculo Matriz Cuántica',
@@ -24,14 +25,16 @@ const PRODUCTOS = [
   {
     id:3, tipo:'Oráculo', titulo:'Oráculo 11:11',
     precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'✦',
+    foto:'/img/oraculo-1111-1.jpg',
     contacto:'mail',
-    desc:'(Descripción e imagen a confirmar).',
+    desc:'Oráculo de mensajes universales para conectar con la sincronía y la guía del universo.',
   },
   {
     id:4, tipo:'Oráculo', titulo:'Oráculo Espejo del alma',
     precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◐',
+    foto:'/img/oraculo-espejo-1.jpg',
     contacto:'mail',
-    desc:'(Descripción e imagen a confirmar).',
+    desc:'Un oráculo para mirarte de adentro hacia afuera, conectar con tu verdad más profunda y activar tu autoconocimiento.',
   },
   {
     id:5, tipo:'Cuadro original', titulo:'Cuadros pintados a mano',
@@ -41,17 +44,16 @@ const PRODUCTOS = [
   },
 ]
 
-/* ── SERVICIOS / SESIONES — se coordinan por WhatsApp, no tienen precio fijo ── */
+/* ── SERVICIOS / SESIONES ── */
 const SESIONES = [
-  { id:10, tipo:'Sesión 1:1',       titulo:'El poder de recordar — sesión individual',        precio:'Consultar', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'✦', contacto:'whatsapp' },
-  { id:11, tipo:'Pack x4',          titulo:'Del macro al micro cosmos — pack de 4 sesiones',  precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'◈', contacto:'whatsapp' },
-  { id:12, tipo:'Sesión 1:1',       titulo:'On demand — sesión individual',                   precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'⚡', contacto:'whatsapp' },
-  { id:13, tipo:'Lectura vincular', titulo:'Sinergia frecuencial — lectura vincular',          precio:'Consultar', bg:'linear-gradient(145deg,#0d1520,#19232e)', emoji:'∿', contacto:'whatsapp' },
-  { id:14, tipo:'PDF',              titulo:'Informe personalizado — PDF',                      precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◎', contacto:'whatsapp' },
+  { id:10, tipo:'Sesión 1:1',       titulo:'El poder de recordar — sesión individual',        precio:'Consultar', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'✦', foto:'/img/sesion-poder-recordar.jpg', contacto:'whatsapp' },
+  { id:11, tipo:'Pack x4',          titulo:'Del macro al micro cosmos — pack de 4 sesiones',  precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'◈', foto:'/img/sesion-macro-micro.jpg',    contacto:'whatsapp' },
+  { id:12, tipo:'Sesión 1:1',       titulo:'On demand — sesión individual',                   precio:'Consultar', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', emoji:'⚡', foto:'/img/sesion-on-demand.jpg',      contacto:'whatsapp' },
+  { id:13, tipo:'Lectura vincular', titulo:'Sinergia frecuencial — lectura vincular',          precio:'Consultar', bg:'linear-gradient(145deg,#0d1520,#19232e)', emoji:'∿', foto:'/img/sesion-sinergia.jpg',       contacto:'whatsapp' },
+  { id:14, tipo:'PDF',              titulo:'Informe personalizado — PDF',                      precio:'Consultar', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', emoji:'◎', foto:'/img/sesion-informe.jpg',        contacto:'whatsapp' },
 ]
 
-/* ── PROGRAMAS Y TALLERES — la compra final ocurre en Tiendup / la landing que use;
-      acá solo se muestra la info y se deriva al link real. ── */
+/* ── PROGRAMAS Y TALLERES ── */
 const PROGRAMAS = [
   {
     id:20, tipo:'Programa pregrabado', titulo:'Programa de transformación cuántica — 7 semanas',

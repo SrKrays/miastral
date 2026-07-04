@@ -2,9 +2,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import './ConoceA.css'
 
-// TODO: reemplazar por la foto real de Valentina cuando la suba
-// (ej: import fotoValentina from '../assets/valentina.jpg')
-const FOTO_VALENTINA = null
+const FOTO_VALENTINA = '/img/valentina-hero.jpg'
 
 export default function ConoceA() {
   return (

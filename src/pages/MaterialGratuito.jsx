@@ -7,18 +7,21 @@ const VIDEOS = [
     id:1, tipo:'Video', titulo:'El poder de la palabra',
     desc:'Las palabras no son inocentes. Cada una lleva en sí una carga energética, una intención y una frecuencia que impacta no solo en quienes las reciben, sino también en quien las emite.',
     emoji:'∿', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)',
+    foto:'/img/material-poder-palabra.jpg',
     link:'https://youtu.be/yjfWwwnglEA',
   },
   {
     id:2, tipo:'Video', titulo:'Diseño Humano y manifestación',
     desc:'Por qué cuando nos anclamos en nuestra frecuencia propia y verdadera, la manifestación y los procesos de cocreación son más alineados y suaves. Introducción a nuestra carta de Diseño Humano y al Programa de Transformación Cuántica.',
     emoji:'✺', bg:'linear-gradient(145deg,#2f4156,#19232e)',
+    foto:'/img/dh-manifestacion.jpg',
     link:'https://youtu.be/tGXzNPjVgtc',
   },
   {
     id:3, tipo:'Video', titulo:'Reconectá con tu verdad',
     desc:'Menos mente y más conciencia corporal. La espera como acto de alineación y cómo la mente interfiere en la toma de decisiones.',
     emoji:'◐', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)',
+    foto:'/img/material-reconecta.jpg',
     link:'https://youtu.be/wpdvSn7m3CY',
   },
 ]

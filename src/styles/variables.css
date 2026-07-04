@@ -50,8 +50,8 @@
 
   /* Tipografías */
   --font-display: 'Cormorant Garamond', 'Georgia', serif;
-  --font-body:    'Inter', sans-serif;
-  --font-label:   'Montserrat', sans-serif;
+  --font-body:    'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --font-label:   'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 
   /* Radios */
   --radius-sm:   6px;
