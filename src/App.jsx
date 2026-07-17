@@ -17,6 +17,7 @@ import Login         from './pages/Login'
 import Registro      from './pages/Registro'
 import MiCuenta      from './pages/MiCuenta'
 import Carrito       from './pages/Carrito'
+import ConfirmacionPedido from './pages/ConfirmacionPedido'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -46,6 +47,7 @@ function App() {
           <Route path="/registro"          element={<PageTransition><Registro /></PageTransition>} />
           <Route path="/mi-cuenta"         element={<PageTransition><MiCuenta /></PageTransition>} />
           <Route path="/carrito"           element={<PageTransition><Carrito /></PageTransition>} />
+          <Route path="/carrito/confirmacion" element={<PageTransition><ConfirmacionPedido /></PageTransition>} />
           <Route path="*"                  element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>

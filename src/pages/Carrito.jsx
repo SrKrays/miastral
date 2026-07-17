@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import { CartContext } from '../context/CartContext'
@@ -13,10 +13,14 @@ export default function Carrito() {
   const { items, updateQty: setQty, removeItem, clearCart, total } = useContext(CartContext)
   const { token, isAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
-  const [checkoutStep, setCheckoutStep] = useState(0) // 0=carrito, 1=envio, 2=confirmacion
-  const [ordenConfirmada, setOrdenConfirmada] = useState(null)
+  const [searchParams] = useSearchParams()
+  const [checkoutStep, setCheckoutStep] = useState(0) // 0=carrito, 1=envio
   const [submitError, setSubmitError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [reintentando, setReintentando] = useState(false)
+
+  const pagoFallido = searchParams.get('pago') === 'fallido'
+  const ordenFallida = searchParams.get('orden')
 
   const updateQty = (id, delta) => {
     const item = items.find(i => i.id === id)
@@ -33,11 +37,26 @@ export default function Carrito() {
     setCheckoutStep(1)
   }
 
+  const reintentarPago = async () => {
+    setReintentando(true)
+    try {
+      const response = await fetch(`${API_URL}/api/pagos/ordenes/${ordenFallida}/preferencia`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.message)
+      window.location.href = data.initPoint
+    } catch {
+      setReintentando(false)
+    }
+  }
+
   const finishOrder = async (envio) => {
     setSubmitError('')
     setSubmitting(true)
     try {
-      const response = await fetch(`${API_URL}/api/ordenes`, {
+      const ordenResponse = await fetch(`${API_URL}/api/ordenes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,21 +67,27 @@ export default function Carrito() {
           envio,
         }),
       })
-      const data = await response.json()
-      if (!response.ok) {
-        throw new Error(data.message || 'No pudimos generar el pedido, intentá de nuevo.')
+      const orden = await ordenResponse.json()
+      if (!ordenResponse.ok) {
+        throw new Error(orden.message || 'No pudimos generar el pedido, intentá de nuevo.')
       }
-      setOrdenConfirmada(data)
+
+      const prefResponse = await fetch(`${API_URL}/api/pagos/ordenes/${orden.id}/preferencia`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      const preferencia = await prefResponse.json()
+      if (!prefResponse.ok) {
+        throw new Error(preferencia.message || 'El pedido se guardó, pero no pudimos generar el link de pago. Escribinos y lo resolvemos.')
+      }
+
       clearCart()
-      setCheckoutStep(2)
+      window.location.href = preferencia.initPoint
     } catch (err) {
       setSubmitError(err.message || 'No pudimos conectar con el servidor, intentá de nuevo.')
-    } finally {
       setSubmitting(false)
     }
   }
-
-  if (checkoutStep === 2) return <OrderConfirmed orden={ordenConfirmada} />
 
   return (
     <>
@@ -71,9 +96,20 @@ export default function Carrito() {
       <section className="carrito-section">
         <div className="container-astral">
 
+          {pagoFallido && (
+            <div className="auth-error" style={{ marginBottom:24, display:'flex', alignItems:'center', gap:16, flexWrap:'wrap' }}>
+              <span>El pago no se completó. Tu pedido quedó guardado, podés reintentarlo cuando quieras.</span>
+              {ordenFallida && (
+                <button className="btn-coral" onClick={reintentarPago} disabled={reintentando}>
+                  {reintentando ? 'Redirigiendo...' : 'Reintentar pago'}
+                </button>
+              )}
+            </div>
+          )}
+
           {/* Steps */}
           <div className="carrito-steps">
-            {['Carrito', 'Datos de envío', 'Confirmación'].map((s, i) => (
+            {['Carrito', 'Datos de envío', 'Pago'].map((s, i) => (
               <div key={s} className={`step ${checkoutStep === i ? 'active' : ''} ${checkoutStep > i ? 'done' : ''}`}>
                 <span className="step-num">{checkoutStep > i ? '✓' : i+1}</span>
                 <span className="step-label">{s}</span>
@@ -204,7 +240,7 @@ function ShippingForm({ total, onConfirm, onBack, submitting, submitError }) {
           <div className="shipping-actions">
             <button type="button" className="btn-outline-white" onClick={onBack} disabled={submitting}>← Volver</button>
             <button type="submit" className="btn-coral" disabled={submitting}>
-              {submitting ? 'Generando pedido...' : `Confirmar pedido — ${formatARS(total)}`}
+              {submitting ? 'Generando link de pago...' : `Pagar con Mercado Pago — ${formatARS(total)}`}
             </button>
           </div>
         </form>
@@ -220,28 +256,5 @@ function Field({ label, name, type='text', value, onChange, error }) {
       <input className={`auth-input${error ? ' input-error' : ''}`} type={type} name={name} value={value} onChange={onChange} />
       {error && <span className="field-error">{error}</span>}
     </div>
-  )
-}
-
-function OrderConfirmed({ orden }) {
-  return (
-    <>
-      <Navbar />
-      <section className="confirm-section">
-        <div className="confirm-card anim-scaleIn">
-          <div className="confirm-icon">✓</div>
-          <h2 className="confirm-title">¡Pedido confirmado!</h2>
-          <p className="confirm-desc">
-            {orden ? `Tu pedido #${orden.id} por ${formatARS(orden.total)} quedó registrado. ` : ''}
-            Nos vamos a poner en contacto para coordinar el pago y el envío.
-          </p>
-          <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginTop:32 }}>
-            <Link to="/"       className="btn-outline-white">Ir al inicio</Link>
-            <Link to="/tienda" className="btn-coral">Seguir comprando</Link>
-          </div>
-        </div>
-      </section>
-      <Footer />
-    </>
   )
 }
