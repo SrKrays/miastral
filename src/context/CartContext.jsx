@@ -17,14 +17,15 @@ export function CartProvider({ children }) {
   }, [items])
 
   const addItem = (product) => {
+    const addQty = product.qty || 1
     setItems(prev => {
       const exists = prev.find(i => i.id === product.id)
       if (exists) {
-        return prev.map(i => 
-          i.id === product.id ? { ...i, qty: i.qty + 1 } : i
-        )
+        const nextQty = product.stock ? Math.min(exists.qty + addQty, product.stock) : exists.qty + addQty
+        return prev.map(i => i.id === product.id ? { ...i, qty: nextQty } : i)
       }
-      return [...prev, { ...product, qty: 1 }]
+      const qty = product.stock ? Math.min(addQty, product.stock) : addQty
+      return [...prev, { ...product, qty }]
     })
   }
 
@@ -47,7 +48,7 @@ export function CartProvider({ children }) {
   }
 
   const getTotal = () => {
-    return items.reduce((acc, item) => acc + (item.precio * item.qty), 0)
+    return items.reduce((acc, item) => acc + ((item.precioNum || 0) * item.qty), 0)
   }
 
   const getItemCount = () => {

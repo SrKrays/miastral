@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import { AuthContext } from '../context/AuthContext'
 import './AuthPages.css'
 
 export default function Login() {
   const [form, setForm]   = useState({ email:'', password:'' })
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { login, isLoading } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const handle = e => setForm({ ...form, [e.target.name]: e.target.value })
@@ -16,11 +17,9 @@ export default function Login() {
     e.preventDefault()
     setError('')
     if (!form.email || !form.password) { setError('Completá todos los campos.'); return }
-    setLoading(true)
-    // Simulación — reemplazar con fetch real al backend
-    await new Promise(r => setTimeout(r, 1000))
-    setLoading(false)
-    navigate('/')
+    const ok = await login(form.email, form.password)
+    if (ok) navigate('/mi-cuenta')
+    else setError('Email o contraseña incorrectos.')
   }
 
   return (
@@ -56,8 +55,8 @@ export default function Login() {
             <div className="auth-forgot">
               <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
-            <button className="btn-coral auth-submit" type="submit" disabled={loading}>
-              {loading ? 'Ingresando...' : 'Ingresar'}
+            <button className="btn-coral auth-submit" type="submit" disabled={isLoading}>
+              {isLoading ? 'Ingresando...' : 'Ingresar'}
             </button>
           </form>
 

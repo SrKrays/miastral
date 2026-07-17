@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
+import { CartContext } from '../../context/CartContext'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -11,10 +13,20 @@ const NAV_LINKS = [
   { label: 'Material gratuito', path: '/material-gratuito' },
 ]
 
-export default function Navbar({ cartCount = 0 }) {
+export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+  const { user, isAuthenticated, logout } = useContext(AuthContext)
+  const { count: cartCount } = useContext(CartContext)
+  const logueado = isAuthenticated()
+
+  const handleLogout = () => {
+    logout()
+    setMobileOpen(false)
+    navigate('/')
+  }
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
@@ -35,11 +47,17 @@ export default function Navbar({ cartCount = 0 }) {
           </Link>
 
           <div className="navbar-topbar-right">
-            <Link to="/login" className="navbar-icon-btn" aria-label="Mi cuenta">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-              </svg>
-            </Link>
+            {logueado ? (
+              <Link to="/mi-cuenta" className="navbar-icon-btn navbar-user-btn" aria-label="Mi cuenta" title={`Hola, ${user?.nombre || ''}`}>
+                <span className="navbar-user-avatar">{(user?.nombre || '?').charAt(0).toUpperCase()}</span>
+              </Link>
+            ) : (
+              <Link to="/login" className="navbar-icon-btn" aria-label="Iniciar sesión" title="Iniciar sesión">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </Link>
+            )}
             <Link to="/carrito" className="navbar-icon-btn" aria-label="Carrito">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
@@ -84,8 +102,18 @@ export default function Navbar({ cartCount = 0 }) {
         </Link>
         {NAV_LINKS.map(item => <Link key={item.label} to={item.path} className="mobile-nav-link">{item.label}</Link>)}
         <div style={{ marginTop:32, display:'flex', gap:12, flexDirection:'column' }}>
-          <Link to="/login"    className="btn-outline-white" style={{ justifyContent:'center' }}>Iniciar sesión</Link>
-          <Link to="/registro" className="btn-sand"          style={{ justifyContent:'center' }}>Registrarse</Link>
+          {logueado ? (
+            <>
+              <span style={{ color:'#fff', fontSize:14, opacity:0.8 }}>Hola, {user?.nombre}</span>
+              <Link to="/mi-cuenta" className="btn-sand" style={{ justifyContent:'center' }}>Mi cuenta</Link>
+              <button onClick={handleLogout} className="btn-outline-white" style={{ justifyContent:'center' }}>Cerrar sesión</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login"    className="btn-outline-white" style={{ justifyContent:'center' }}>Iniciar sesión</Link>
+              <Link to="/registro" className="btn-sand"          style={{ justifyContent:'center' }}>Registrarse</Link>
+            </>
+          )}
         </div>
       </div>
     </header>

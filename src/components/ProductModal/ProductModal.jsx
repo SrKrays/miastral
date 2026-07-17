@@ -23,6 +23,7 @@ const FEATURES_DEFAULT = [
 export default function ProductModal({ product, onClose, onAddCart }) {
   const [quantity, setQuantity] = useState(1)
   const contacto = product.contacto || 'cart'
+  const maxQty = product.stock || 99
 
   const handleAddCart = () => {
     onAddCart({ ...product, qty: quantity })
@@ -61,12 +62,24 @@ export default function ProductModal({ product, onClose, onAddCart }) {
 
             <div className="product-modal-description">
               <p>{product.desc || 'Accedé a contenido exclusivo y transformador que te va a llevar a un nuevo nivel de comprensión de tu energía.'}</p>
+
+              {product.descCompleta && product.descCompleta.split('\n\n').map((para, i) => (
+                <p key={i} className="product-modal-desc-extra">{para}</p>
+              ))}
+
+              {product.detalles && (
+                <ul className="product-modal-detalles">
+                  {product.detalles.map(d => <li key={d.label}><strong>{d.label}:</strong> {d.value}</li>)}
+                </ul>
+              )}
+
               <ul className="product-modal-features">
                 {(product.features || FEATURES_DEFAULT).map(f => <li key={f}>{f}</li>)}
               </ul>
             </div>
 
             <div className="product-modal-price">{product.precio}</div>
+            {product.nota && <p className="product-modal-nota">{product.nota}</p>}
 
             {/* ── Acción según tipo de contacto ── */}
             {contacto === 'cart' && (
@@ -74,10 +87,11 @@ export default function ProductModal({ product, onClose, onAddCart }) {
                 <div className="product-modal-qty">
                   <label>Cantidad:</label>
                   <div className="qty-selector">
-                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
+                    <button onClick={() => setQuantity(q => Math.max(1, q - 1))}>−</button>
                     <input type="number" value={quantity} readOnly />
-                    <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                    <button onClick={() => setQuantity(q => Math.min(maxQty, q + 1))} disabled={quantity >= maxQty}>+</button>
                   </div>
+                  {product.stock && <p className="product-modal-stock">{product.stock} disponibles</p>}
                 </div>
                 <button className="btn-coral product-modal-cta" onClick={handleAddCart}>
                   Agregar al carrito

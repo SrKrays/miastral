@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, useEffect, useContext, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
@@ -7,18 +7,27 @@ import AnimatedIcon from '../components/AnimatedIcon/AnimatedIcon'
 import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollReveal/ScrollReveal'
 import MagneticButton from '../components/MagneticButton/MagneticButton'
 import TiltCard from '../components/TiltCard/TiltCard'
+import { API_URL } from '../config/api'
+import { mapProducto } from '../utils/productAdapter'
+import { CartContext } from '../context/CartContext'
 import './Home.css'
 
 const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
 
-const BEST_SELLERS = [
+// Curados a pedido de Vale: programa cuántico, pack de sesiones y el oráculo Matriz Cuántica.
+// Buscamos estos 3 por nombre dentro de lo que devuelva la API — si todavía no responde,
+// usamos este fallback fijo para no dejar la sección vacía.
+const BESTSELLER_NOMBRES = ['Programa de transformación cuántica', 'Del macro al micro cosmos', 'Oráculo Matriz Cuántica']
+
+const BEST_SELLERS_FALLBACK = [
   { id:20, tipo:'Programa', titulo:'Programa de transformación cuántica', precio:'$111.000', bg:'linear-gradient(145deg,#2f4156,#19232e)', emoji:'⚛', tag:'',
     contacto:'link', link:'https://byvalentinam.tiendup.com/curso/programadetransformacioncuantica', linkLabel:'Ver programa completo',
     desc:'7 semanas de contenido pregrabado para integrar tu Diseño Humano desde la conciencia cuántica: liberar bloqueos y transformar tu energía en magnetismo.' },
   { id:11, tipo:'Sesiones', titulo:'Del macro al micro cosmos — pack x4 sesiones personalizadas', precio:'Consultar', bg:'linear-gradient(145deg,#3a5069,#2f4156)', emoji:'∿', tag:'',
-    contacto:'whatsapp' },
-  { id:2, tipo:'Oráculo', titulo:'Oráculo Matriz Cuántica', precio:'Coming soon', bg:'linear-gradient(145deg,#4a6787,#3a5069)', emoji:'⬡', tag:'Coming soon',
-    contacto:'proximamente', desc:'Mi propio oráculo, en camino. Dejá tu mail y te aviso apenas esté disponible.' },
+    contacto:'whatsapp', foto:'/img/sesion-macro-micro.jpg' },
+  { id:2, tipo:'Oráculo', titulo:'Oráculo Matriz Cuántica', precio:'$28.000', precioNum:28000, bg:'linear-gradient(145deg,#4a6787,#3a5069)', emoji:'⬡', tag:'Nuevo', stock:50,
+    contacto:'cart', desc:'Un oráculo canalizado por Valentina para conectar con el campo unificado a través de mensajes, sincronicidades y señales. Mazo de 44 cartas + bolsita de lienzo.',
+    features:['✓ Mazo de 44 cartas', '✓ Bolsita de lienzo para llevarlo a todos lados'] },
 ]
 
 const TOOLS = [
@@ -39,7 +48,10 @@ function ProductCard({ item, onView }) {
     <TiltCard maxTilt={8}>
       <div className="product-card" onClick={() => onView(item)} style={{ cursor:'pointer' }}>
       <div className="product-card-img-placeholder" style={{ background:item.bg }}>
-        <span style={{ fontSize:'3.5rem', opacity:0.6 }}>{item.emoji}</span>
+        {item.foto
+          ? <img src={item.foto} alt={item.titulo} className="product-card-photo" />
+          : <span style={{ fontSize:'3.5rem', opacity:0.6 }}>{item.emoji}</span>
+        }
       </div>
       <div className="product-card-body">
         <div className="product-card-category">{item.tipo}</div>
@@ -60,23 +72,36 @@ function ProductCard({ item, onView }) {
 }
 
 export default function Home() {
-  const [cartItems, setCartItems] = useState([])
+  const { addItem } = useContext(CartContext)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [toast, setToast] = useState(null)
+  const [bestSellers, setBestSellers] = useState(BEST_SELLERS_FALLBACK)
+
+  useEffect(() => {
+    let cancelado = false
+    fetch(`${API_URL}/api/productos`)
+      .then(res => { if (!res.ok) throw new Error('bad response'); return res.json() })
+      .then(data => {
+        if (cancelado || !Array.isArray(data)) return
+        const curados = BESTSELLER_NOMBRES
+          .map(nombre => data.find(p => p.nombre.includes(nombre)))
+          .filter(Boolean)
+          .map(mapProducto)
+        if (curados.length) setBestSellers(curados)
+      })
+      .catch(() => { /* nos quedamos con el fallback */ })
+    return () => { cancelado = true }
+  }, [])
 
   const addToCart = (item) => {
-    setCartItems(prev => {
-      const exists = prev.find(i => i.id === item.id)
-      if (exists) return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + item.qty } : i)
-      return [...prev, item]
-    })
+    addItem(item)
     setToast(item.titulo)
     setTimeout(() => setToast(null), 2500)
   }
 
   return (
     <>
-      <Navbar cartCount={cartItems.reduce((a,i) => a+i.qty, 0)} />
+      <Navbar />
 
       {toast && (
         <div className="toast-notification">
@@ -132,7 +157,7 @@ export default function Home() {
             </div>
           </ScrollReveal>
           <StaggerGroup className="products-grid" staggerDelay={0.15}>
-            {BEST_SELLERS.map(item => (
+            {bestSellers.map(item => (
               <StaggerItem key={item.id} direction="up">
                 <ProductCard item={item} onView={setSelectedProduct} />
               </StaggerItem>

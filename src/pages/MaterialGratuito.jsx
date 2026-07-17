@@ -58,7 +58,10 @@ function FreebieCard({ item, delay = 0, ctaLabel }) {
     <a href={item.link} target="_blank" rel="noopener noreferrer"
        className="wellness-card anim-fadeInUp" style={{ animationDelay:`${delay}s`, textDecoration:'none' }}>
       <div className="wellness-card-img" style={{ background: item.bg }}>
-        <span className="wellness-card-emoji">{item.emoji}</span>
+        {item.foto
+          ? <img src={item.foto} alt={item.titulo} className="wellness-card-photo" />
+          : <span className="wellness-card-emoji">{item.emoji}</span>
+        }
       </div>
       <div className="wellness-card-body">
         <span className="wellness-card-tipo">{item.tipo}</span>

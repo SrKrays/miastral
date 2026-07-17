@@ -21,9 +21,13 @@ export default function ScrollReveal({
   duration = 0.7,
   once = true,
   className = '',
-  as: Component = motion.div,
+  as = 'div',
 }) {
   const variant = VARIANTS[direction] || VARIANTS.up
+  // `as` puede venir como tag string ("li") o ya como componente motion.
+  // motion['li'] existe (proxy de framer-motion para cualquier tag html) —
+  // si viniera un componente custom no-string, lo usamos tal cual.
+  const Component = typeof as === 'string' ? motion[as] || motion.div : as
 
   return (
     <Component

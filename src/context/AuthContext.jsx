@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
+import { API_URL } from '../config/api'
 
 export const AuthContext = createContext()
 
@@ -40,58 +41,44 @@ export function AuthProvider({ children }) {
     setIsLoading(true)
     setError(null)
     try {
-      // TODO: Conectar a backend cuando esté listo
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email, password })
-      // })
-      // const data = await response.json()
-      // setToken(data.token)
-      // setUser(data.user)
-      
-      // Por ahora, simulamos login exitoso
-      setUser({ 
-        id: '1', 
-        email, 
-        nombre: email.split('@')[0],
-        rol: 'USER'
+      const response = await fetch(`${API_URL}/api/Auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       })
-      setToken('mock-token-' + Date.now())
+      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(data.message || 'Email o contraseña incorrectos')
+      }
+      setToken(data.token)
+      setUser({ email: data.email, nombre: data.nombre, rol: 'usuario' })
       return true
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'No pudimos conectar con el servidor, intentá de nuevo.')
       return false
     } finally {
       setIsLoading(false)
     }
   }
 
-  const register = async (email, password, nombre) => {
+  const register = async ({ nombre, apellido, email, password, telefono }) => {
     setIsLoading(true)
     setError(null)
     try {
-      // TODO: Conectar a backend cuando esté listo
-      // const response = await fetch('/api/auth/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email, password, nombre })
-      // })
-      // const data = await response.json()
-      // setToken(data.token)
-      // setUser(data.user)
-      
-      // Por ahora, simulamos registro exitoso
-      setUser({ 
-        id: Math.random().toString(36).substr(2, 9),
-        email, 
-        nombre,
-        rol: 'USER'
+      const response = await fetch(`${API_URL}/api/Auth/registro`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, apellido, email, password, telefono }),
       })
-      setToken('mock-token-' + Date.now())
+      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(data.message || 'No pudimos crear la cuenta.')
+      }
+      setToken(data.token)
+      setUser({ email: data.email, nombre: data.nombre, rol: 'usuario' })
       return true
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'No pudimos conectar con el servidor, intentá de nuevo.')
       return false
     } finally {
       setIsLoading(false)
