@@ -161,7 +161,7 @@ export default function AdminProductos() {
                   <td>{formatPrecio(p.precio)}</td>
                   <td>{p.stock ?? '—'}</td>
                   <td><span className={`admin-badge ${p.activo ? 'activo' : 'inactivo'}`}>{p.activo ? 'Activo' : 'Inactivo'}</span></td>
-                  <td style={{ display:'flex', gap:8 }}>
+                  <td style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
                     <button className="admin-btn-small" onClick={() => abrirEditar(p)}>Editar</button>
                     <button className="admin-btn-small" onClick={() => toggleActivo(p)}>{p.activo ? 'Desactivar' : 'Activar'}</button>
                     <button className="admin-btn-small admin-btn-danger" onClick={() => eliminarPermanente(p)}>Eliminar</button>

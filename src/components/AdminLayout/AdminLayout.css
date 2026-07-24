@@ -2,6 +2,10 @@
   min-height: 100vh;
   background: var(--bg-primary);
   color: var(--text-primary);
+  /* Red de seguridad: si algún elemento hijo se pasa de ancho en pantallas
+     chicas, esto evita que aparezca un scroll horizontal de toda la página
+     (muy común y feo en celulares). */
+  overflow-x: hidden;
 }
 
 .admin-topbar {
@@ -238,9 +242,21 @@
   margin-top: 22px;
 }
 
+/* Tablet: el layout de 1200px ya se achica solo, acá solo bajamos un poco
+   el padding lateral para que no se vea con márgenes gigantes. */
+@media (max-width: 1024px) {
+  .admin-content { padding: 28px 20px 60px; }
+}
+
 @media (max-width: 640px) {
-  .admin-topbar { flex-wrap: wrap; gap: 12px; }
+  .admin-topbar { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
+  .admin-nav { gap: 14px; }
+  .admin-user-name { display: none; } /* el nombre no aporta en celular, ocupa lugar */
   .admin-content { padding: 20px 16px 60px; }
-  .admin-table-wrap { overflow-x: auto; }
+  .admin-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .admin-table { min-width: 640px; }
+  .admin-header-row { gap: 10px; }
+  .admin-title { font-size: 22px; }
+  .admin-form-actions { flex-wrap: wrap; }
+  .admin-form-actions button { flex: 1 1 auto; }
 }
