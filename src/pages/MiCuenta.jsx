@@ -16,7 +16,7 @@ const ESTADO_LABEL = {
 }
 
 export default function MiCuenta() {
-  const { user, token, isAuthenticated, logout } = useContext(AuthContext)
+  const { user, token, isAuthenticated, logout, authFetch } = useContext(AuthContext)
   const navigate = useNavigate()
   const [tab, setTab] = useState('perfil') // perfil, ordenes, membresia, direcciones
   const [ordenes, setOrdenes] = useState([])
@@ -29,9 +29,7 @@ export default function MiCuenta() {
   useEffect(() => {
     if (!token) return
     let cancelado = false
-    fetch(`${API_URL}/api/ordenes/mis-ordenes`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    authFetch(`${API_URL}/api/ordenes/mis-ordenes`)
       .then(res => { if (!res.ok) throw new Error('bad response'); return res.json() })
       .then(data => { if (!cancelado && Array.isArray(data)) setOrdenes(data) })
       .catch(() => { /* nos quedamos con la lista vacía */ })

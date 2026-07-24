@@ -118,6 +118,25 @@ const PROGRAMAS_FALLBACK = [
   },
 ]
 
+/* ── Skeleton: se muestra mientras carga el catálogo real, en vez de
+   mostrar datos de fallback primero y "saltar" al dato real después ── */
+function TiendaCardSkeleton() {
+  return (
+    <div className="tienda-card-skeleton">
+      <div className="tienda-card-img skeleton-img skeleton-shimmer" />
+      <div className="skeleton-line title skeleton-shimmer" />
+      <div className="skeleton-line price skeleton-shimmer" />
+    </div>
+  )
+}
+function SkeletonGrid({ count = 3 }) {
+  return (
+    <div className="tienda-grid">
+      {Array.from({ length: count }, (_, i) => <TiendaCardSkeleton key={i} />)}
+    </div>
+  )
+}
+
 /* ── CARD única para productos, servicios y programas ── */
 function TiendaCard({ item, onView, delay = 0 }) {
   const isProximo = item.contacto === 'proximamente'
@@ -147,9 +166,9 @@ function TiendaCard({ item, onView, delay = 0 }) {
 export default function Tienda() {
   const { addItem } = useContext(CartContext)
   const [selectedProduct, setSelectedProduct] = useState(null)
-  const [productos, setProductos] = useState(PRODUCTOS_FALLBACK)
-  const [sesiones, setSesiones] = useState(SESIONES_FALLBACK)
-  const [programas, setProgramas] = useState(PROGRAMAS_FALLBACK)
+  const [productos, setProductos] = useState([])
+  const [sesiones, setSesiones] = useState([])
+  const [programas, setProgramas] = useState([])
   const [loading, setLoading] = useState(true)
   const [toast, setToast] = useState(null)
 
@@ -170,7 +189,14 @@ export default function Tienda() {
         setSesiones(data.filter(p => p.tipo === 'servicio').map(mapProducto))
         setProgramas(data.filter(p => p.tipo === 'programa').map(mapProducto))
       })
-      .catch(() => { /* nos quedamos con el fallback */ })
+      .catch(() => {
+        if (cancelado) return
+        // Recién acá, si la conexión realmente falla, mostramos el fallback
+        // fijo — nunca antes, para no tener el "salto" de datos falsos a reales.
+        setProductos(PRODUCTOS_FALLBACK)
+        setSesiones(SESIONES_FALLBACK)
+        setProgramas(PROGRAMAS_FALLBACK)
+      })
       .finally(() => { if (!cancelado) setLoading(false) })
     return () => { cancelado = true }
   }, [])
@@ -188,13 +214,15 @@ export default function Tienda() {
               <p className="tienda-section-desc">Guías, oráculos y materiales para tu proceso de autoconocimiento</p>
             </div>
           </ScrollReveal>
-          <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
-            {productos.map(item => (
-              <StaggerItem key={item.id} direction="up">
-                <TiendaCard item={item} onView={setSelectedProduct} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          {loading ? <SkeletonGrid count={5} /> : (
+            <StaggerGroup key={`productos-${productos.map(p => p.id).join(',')}`} className="tienda-grid" staggerDelay={0.12}>
+              {productos.map(item => (
+                <StaggerItem key={item.id} direction="up">
+                  <TiendaCard item={item} onView={setSelectedProduct} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          )}
         </div>
       </section>
 
@@ -207,13 +235,15 @@ export default function Tienda() {
               <p className="tienda-section-desc">Sesiones individuales y lecturas personalizadas de Diseño Humano</p>
             </div>
           </ScrollReveal>
-          <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
-            {sesiones.map(item => (
-              <StaggerItem key={item.id} direction="up">
-                <TiendaCard item={item} onView={setSelectedProduct} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          {loading ? <SkeletonGrid count={5} /> : (
+            <StaggerGroup key={`sesiones-${sesiones.map(p => p.id).join(',')}`} className="tienda-grid" staggerDelay={0.12}>
+              {sesiones.map(item => (
+                <StaggerItem key={item.id} direction="up">
+                  <TiendaCard item={item} onView={setSelectedProduct} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          )}
         </div>
       </section>
 
@@ -226,13 +256,15 @@ export default function Tienda() {
               <p className="tienda-section-desc">Experiencias grupales e intensivos de transformación</p>
             </div>
           </ScrollReveal>
-          <StaggerGroup className="tienda-grid" staggerDelay={0.12}>
-            {programas.map(item => (
-              <StaggerItem key={item.id} direction="up">
-                <TiendaCard item={item} onView={setSelectedProduct} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          {loading ? <SkeletonGrid count={2} /> : (
+            <StaggerGroup key={`programas-${programas.map(p => p.id).join(',')}`} className="tienda-grid" staggerDelay={0.12}>
+              {programas.map(item => (
+                <StaggerItem key={item.id} direction="up">
+                  <TiendaCard item={item} onView={setSelectedProduct} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          )}
           <p className="tienda-nota">
             ✦ Los programas y talleres en vivo se publican a medida que se confirman fechas. Seguí las novedades en Instagram <a href="https://www.instagram.com/byvalentinam__/" target="_blank" rel="noopener noreferrer" className="contacto-link">@byvalentinam__</a>
           </p>

@@ -18,6 +18,9 @@ import Registro      from './pages/Registro'
 import MiCuenta      from './pages/MiCuenta'
 import Carrito       from './pages/Carrito'
 import ConfirmacionPedido from './pages/ConfirmacionPedido'
+import AdminLogin     from './pages/admin/AdminLogin'
+import AdminProductos from './pages/admin/AdminProductos'
+import AdminOrdenes   from './pages/admin/AdminOrdenes'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -48,6 +51,10 @@ function App() {
           <Route path="/mi-cuenta"         element={<PageTransition><MiCuenta /></PageTransition>} />
           <Route path="/carrito"           element={<PageTransition><Carrito /></PageTransition>} />
           <Route path="/carrito/confirmacion" element={<PageTransition><ConfirmacionPedido /></PageTransition>} />
+          <Route path="/admin/login"       element={<AdminLogin />} />
+          <Route path="/admin"             element={<AdminProductos />} />
+          <Route path="/admin/productos"   element={<AdminProductos />} />
+          <Route path="/admin/ordenes"     element={<AdminOrdenes />} />
           <Route path="*"                  element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>

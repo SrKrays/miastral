@@ -1,0 +1,246 @@
+.admin-shell {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 28px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-dark);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.admin-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+.admin-nav a {
+  font-family: var(--font-label);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 4px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.admin-nav a:hover { color: var(--text-primary); }
+.admin-nav a.active { color: var(--text-primary); border-bottom-color: var(--accent-coral); }
+
+.admin-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-user-name {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.admin-logout-btn {
+  background: none;
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  padding: 6px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.admin-logout-btn:hover { color: var(--text-primary); border-color: var(--text-primary); }
+
+.admin-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 28px 80px;
+  /* Sin position, este bloque queda en la capa "de fondo" del apilamiento
+     CSS, detrás del ScrollColorLayer (fondo sólido, z-index:0) aunque esté
+     después en el HTML. position:relative lo saca de esa capa y lo pone
+     visible por encima. */
+  position: relative;
+  z-index: 1;
+}
+
+.admin-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.admin-table-wrap {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.admin-table th {
+  text-align: left;
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-dark);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-dark);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.admin-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.admin-badge.activo    { background: rgba(120,148,181,0.2); color: var(--c-300); }
+.admin-badge.inactivo  { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+.admin-badge.pendiente { background: rgba(180,164,132,0.18); color: var(--accent-coral-light); }
+.admin-badge.pagado    { background: rgba(120,148,181,0.2); color: var(--c-300); }
+.admin-badge.enviado   { background: rgba(166,136,62,0.2); color: var(--accent-gold-light); }
+.admin-badge.cancelado { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+.admin-btn-small {
+  background: none;
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.admin-btn-small:hover { color: var(--text-primary); border-color: var(--accent-coral); }
+
+.admin-btn-danger { border-color: rgba(220,80,70,0.4); color: #e08a80; }
+.admin-btn-danger:hover { color: #fff; background: #c0392b; border-color: #c0392b; }
+
+.admin-estado-select {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  padding: 5px 8px;
+  font-size: 12px;
+  font-family: var(--font-body);
+}
+
+.admin-empty {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ===== Form de producto ===== */
+.admin-form-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 28px;
+}
+
+.admin-form-section-title {
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 20px 0 10px;
+}
+.admin-form-section-title:first-child { margin-top: 0; }
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.admin-form-field { display: flex; flex-direction: column; gap: 6px; }
+.admin-form-field.full { grid-column: 1 / -1; }
+
+.admin-form-field label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-label);
+  letter-spacing: 0.03em;
+}
+
+.admin-form-field input,
+.admin-form-field select,
+.admin-form-field textarea {
+  background: var(--bg-card);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-body);
+}
+.admin-form-field textarea { resize: vertical; min-height: 60px; }
+
+.admin-form-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.admin-form-checkbox input { width: auto; }
+
+.admin-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+@media (max-width: 640px) {
+  .admin-topbar { flex-wrap: wrap; gap: 12px; }
+  .admin-content { padding: 20px 16px 60px; }
+  .admin-table-wrap { overflow-x: auto; }
+  .admin-table { min-width: 640px; }
+}

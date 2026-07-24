@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import { AuthContext } from '../context/AuthContext'
@@ -10,6 +10,8 @@ export default function Login() {
   const [error, setError] = useState('')
   const { login, isLoading } = useContext(AuthContext)
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const expirado = searchParams.get('expirado') === '1'
 
   const handle = e => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -31,6 +33,9 @@ export default function Login() {
           <h1 className="auth-title">Iniciá sesión</h1>
           <p className="auth-subtitle">Accedé a tu cuenta para continuar.</p>
 
+          {expirado && !error && (
+            <div className="auth-error">Tu sesión expiró por inactividad. Iniciá sesión de nuevo.</div>
+          )}
           {error && <div className="auth-error">{error}</div>}
 
           <form className="auth-form" onSubmit={submit}>

@@ -75,7 +75,8 @@ export default function Home() {
   const { addItem } = useContext(CartContext)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [toast, setToast] = useState(null)
-  const [bestSellers, setBestSellers] = useState(BEST_SELLERS_FALLBACK)
+  const [bestSellers, setBestSellers] = useState([])
+  const [bestSellersLoading, setBestSellersLoading] = useState(true)
 
   useEffect(() => {
     let cancelado = false
@@ -87,9 +88,10 @@ export default function Home() {
           .map(nombre => data.find(p => p.nombre.includes(nombre)))
           .filter(Boolean)
           .map(mapProducto)
-        if (curados.length) setBestSellers(curados)
+        setBestSellers(curados.length ? curados : BEST_SELLERS_FALLBACK)
       })
-      .catch(() => { /* nos quedamos con el fallback */ })
+      .catch(() => { if (!cancelado) setBestSellers(BEST_SELLERS_FALLBACK) })
+      .finally(() => { if (!cancelado) setBestSellersLoading(false) })
     return () => { cancelado = true }
   }, [])
 
@@ -156,13 +158,21 @@ export default function Home() {
               <Link to="/tienda" className="btn-outline-white">Ver productos</Link>
             </div>
           </ScrollReveal>
-          <StaggerGroup className="products-grid" staggerDelay={0.15}>
-            {bestSellers.map(item => (
-              <StaggerItem key={item.id} direction="up">
-                <ProductCard item={item} onView={setSelectedProduct} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          {bestSellersLoading ? (
+            <div className="products-grid">
+              {Array.from({ length: 3 }, (_, i) => (
+                <div key={i} className="product-card-img-placeholder skeleton-shimmer" style={{ aspectRatio: '4/3', borderRadius: 'var(--radius-md)' }} />
+              ))}
+            </div>
+          ) : (
+            <StaggerGroup key={`bestsellers-${bestSellers.map(p => p.id).join(',')}`} className="products-grid" staggerDelay={0.15}>
+              {bestSellers.map(item => (
+                <StaggerItem key={item.id} direction="up">
+                  <ProductCard item={item} onView={setSelectedProduct} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          )}
         </div>
       </section>
 

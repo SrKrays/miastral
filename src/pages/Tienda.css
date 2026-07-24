@@ -60,6 +60,18 @@
   gap: 24px;
 }
 
+/* Skeleton mientras carga el catálogo real de la BD (sin fallback visible) */
+.tienda-card-skeleton {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.tienda-card-skeleton .skeleton-img { aspect-ratio: 4/3; }
+.skeleton-line { height: 12px; border-radius: 4px; margin: 14px 20px; }
+.skeleton-line.title { width: 70%; }
+.skeleton-line.price { width: 35%; margin-top: 20px; }
+
 /* Product card */
 .tienda-card {
   background: var(--bg-card);

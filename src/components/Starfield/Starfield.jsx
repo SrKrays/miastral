@@ -7,6 +7,7 @@ export default function Starfield() {
   const rafRef    = useRef(null)
   const startRef  = useRef(null)   // timestamp del primer frame → animación de entrada
   const lastRef   = useRef(null)   // timestamp del frame anterior → delta time
+  const scrollTRef = useRef(0)     // 0 (arriba) → 1 (abajo), en espejo con ScrollColorLayer
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -79,6 +80,11 @@ export default function Starfield() {
       const breathe = (Math.sin(timestamp * BREATHE_SPEED) + 1) / 2
       const connectDist = CONNECT_MIN + breathe * (CONNECT_MAX - CONNECT_MIN)
 
+      // espejo del oscurecimiento por scroll: 0 arriba → 1 al fondo de la página
+      const scrollT       = scrollTRef.current
+      const scrollConnect = connectDist * (1 + scrollT * 0.35) // red más densa al bajar
+      const scrollGlow    = 1 + scrollT * 0.7                  // halos/brillo más intensos al bajar
+
       ctx.clearRect(0, 0, width, height)
       const nodes = nodesRef.current
 
@@ -122,12 +128,12 @@ export default function Starfield() {
           const dy   = ni.y - nj.y
           const dist = Math.sqrt(dx * dx + dy * dy)
 
-          if (dist < connectDist) {
+          if (dist < scrollConnect) {
             // progreso escalonado: cada línea "empieza" en un momento distinto
             const lineDelay    = (pairIdx / totalPairs) * 0.6   // 0..0.6
             const lineProgress = Math.max(0, Math.min((eased - lineDelay) / (1 - lineDelay), 1))
 
-            const baseAlpha      = (1 - dist / connectDist) * 0.5
+            const baseAlpha      = (1 - dist / scrollConnect) * 0.5 * scrollGlow
             const isActivePair   = ni.isActive || nj.isActive
             const fadeMul        = ni.fadeAlpha * nj.fadeAlpha
             const finalAlpha     = baseAlpha * lineProgress * fadeMul
@@ -160,31 +166,33 @@ export default function Starfield() {
         const lifeAlpha    = n.fadeAlpha
 
         if (n.isActive) {
-          const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius * 5.5)
-          halo.addColorStop(0, `rgba(232,115,90,${0.26 * nodeAlphaBase * lifeAlpha})`)
+          const haloR = radius * (5.5 + scrollT * 2.5)
+          const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, haloR)
+          halo.addColorStop(0, `rgba(232,115,90,${Math.min(0.26 * scrollGlow, 0.5) * nodeAlphaBase * lifeAlpha})`)
           halo.addColorStop(1, 'rgba(232,115,90,0)')
           ctx.beginPath()
           ctx.fillStyle = halo
-          ctx.arc(n.x, n.y, radius * 5.5, 0, Math.PI * 2)
+          ctx.arc(n.x, n.y, haloR, 0, Math.PI * 2)
           ctx.fill()
 
           ctx.beginPath()
           ctx.fillStyle  = PULSE_COLOR
-          ctx.globalAlpha = (0.85 + Math.sin(n.pulse) * 0.15) * nodeAlphaBase * lifeAlpha
+          ctx.globalAlpha = Math.min((0.85 + Math.sin(n.pulse) * 0.15) * nodeAlphaBase * lifeAlpha * scrollGlow, 1)
           ctx.arc(n.x, n.y, radius, 0, Math.PI * 2)
           ctx.fill()
         } else {
-          const haloSoft = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius * 3)
-          haloSoft.addColorStop(0, `rgba(143,169,201,${0.12 * nodeAlphaBase * lifeAlpha})`)
+          const haloSoftR = radius * (3 + scrollT * 1.5)
+          const haloSoft = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, haloSoftR)
+          haloSoft.addColorStop(0, `rgba(143,169,201,${Math.min(0.12 * scrollGlow, 0.28) * nodeAlphaBase * lifeAlpha})`)
           haloSoft.addColorStop(1, 'rgba(143,169,201,0)')
           ctx.beginPath()
           ctx.fillStyle = haloSoft
-          ctx.arc(n.x, n.y, radius * 3, 0, Math.PI * 2)
+          ctx.arc(n.x, n.y, haloSoftR, 0, Math.PI * 2)
           ctx.fill()
 
           ctx.beginPath()
           ctx.fillStyle   = NODE_COLOR
-          ctx.globalAlpha = (0.5 + Math.sin(n.pulse) * 0.2) * nodeAlphaBase * lifeAlpha
+          ctx.globalAlpha = Math.min((0.5 + Math.sin(n.pulse) * 0.2) * nodeAlphaBase * lifeAlpha * scrollGlow, 1)
           ctx.arc(n.x, n.y, radius, 0, Math.PI * 2)
           ctx.fill()
         }
@@ -194,12 +202,23 @@ export default function Starfield() {
       rafRef.current = requestAnimationFrame(draw)
     }
 
+    // A medida que ScrollColorLayer oscurece el fondo, acá "encendemos" la
+    // red en espejo: más brillo, halos más grandes y conexiones que llegan
+    // más lejos — como si la red se activara más cuanto más profundo bajás.
+    function onScroll() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      scrollTRef.current = maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0
+    }
+
     resize()
+    onScroll()
     window.addEventListener('resize', resize)
+    window.addEventListener('scroll', onScroll, { passive: true })
     requestAnimationFrame(draw)
 
     return () => {
       window.removeEventListener('resize', resize)
+      window.removeEventListener('scroll', onScroll)
       cancelAnimationFrame(rafRef.current)
     }
   }, [])
