@@ -1,73 +1,82 @@
 /* ===== CONOCE A VALEN ===== */
 
-/* Hero foto grande */
-.conoce-hero {
-  position: relative;
-  height: 70vh;
-  min-height: 440px;
-  overflow: hidden;
-  background: var(--bg-primary);
-}
-
-.conoce-hero-photo {
-  position: absolute;
-  inset: 0;
-}
-
-.conoce-photo-placeholder {
-  width: 100%; height: 100%;
-  background: linear-gradient(160deg, rgba(47,65,86,0.88) 0%, rgba(74,103,135,0.85) 40%, rgba(25,35,46,0.9) 100%);
+/* Banner — mismo criterio que Bienestar/Diseño Humano: fondo semi-transparente
+   sobre el Starfield animado (position:relative + z-index para quedar encima
+   de la capa de fondo, igual que resolvimos en el panel admin). */
+.conoce-banner {
+  background: rgba(9,13,16,0.7);
+  padding: 80px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 300px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
 }
 
-.conoce-photo-icon {
-  font-size: 8rem;
-  opacity: 0.12;
+.conoce-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.conoce-banner-subtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
   color: var(--c-200);
-}
-
-.conoce-hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-}
-
-/* Overlay degradado inferior */
-.conoce-hero-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 50%;
-  background: linear-gradient(to top, var(--c-50), transparent);
-}
-
-/* Decoración esquina derecha (como imagen 4) */
-.conoce-hero-decor {
-  position: absolute;
-  right: -60px;
-  top: 10%;
-  width: 260px;
-  height: 260px;
-  background: var(--c-700);
-  border-radius: 50%;
-  opacity: 0.25;
+  opacity: 0.8;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 /* Bio section */
 .conoce-bio {
   background: rgba(239,242,246,0.9);
   padding: 72px 0 80px;
+  position: relative;
+  z-index: 1;
 }
 
-.conoce-bio-inner {
-  max-width: 720px;
+.conoce-bio-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 56px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
-.conoce-bio-header {
+.conoce-bio-text-col { flex: 1 1 auto; min-width: 0; }
+
+.conoce-bio-photo-col { flex: 0 0 260px; position: sticky; top: 100px; }
+
+.conoce-mini-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+.conoce-mini-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.conoce-mini-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px;
+  border: 1.5px dashed var(--border-mid, rgba(0,0,0,0.15));
+  background: linear-gradient(160deg, rgba(47,65,86,0.10) 0%, rgba(74,103,135,0.08) 100%);
+  color: var(--c-500);
   text-align: center;
+}
+.conoce-mini-photo-icon { font-size: 2.4rem; opacity: 0.35; }
+.conoce-mini-photo-placeholder p { font-size: 11px; letter-spacing: 0.04em; opacity: 0.7; margin: 0; line-height: 1.5; }
+
+.conoce-bio-header {
+  text-align: left;
   margin-bottom: 40px;
 }
 
@@ -168,9 +177,11 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .conoce-hero { height: 50vh; }
+  .conoce-banner { padding: 60px 24px; min-height: 220px; }
+  .conoce-bio-columns { flex-direction: column-reverse; gap: 28px; }
+  .conoce-bio-photo-col { flex-basis: auto; width: 180px; position: static; margin: 0 auto; }
+  .conoce-bio-header, .conoce-bio-text { text-align: left; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-  .conoce-hero-decor { display: none; }
 }
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: 1fr 1fr; }

@@ -1,0 +1,30 @@
+# Equivalente al rewrite de vercel.json, pero para hosting tradicional
+# (Apache/cPanel, como DonWeb). Sin esto, entrar directo a una ruta como
+# /admin o /tienda (o recargar la página estando en una) tira 404, porque
+# el servidor busca un archivo real en esa ruta en vez de dejar que
+# React Router la maneje del lado del cliente.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Si el archivo o carpeta pedido existe de verdad (JS, CSS, imágenes, etc.), serví eso tal cual.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Para cualquier otra ruta, servir index.html y que la app tome el control.
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Evita que el navegador cachee index.html (así los usuarios siempre reciben
+# la versión más nueva del sitio al entrar), pero sí cachea los assets con
+# hash en el nombre (JS/CSS que genera el build) por mucho tiempo.
+<IfModule mod_headers.c>
+  <FilesMatch "index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(js|css|svg|png|jpg|jpeg|webp|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

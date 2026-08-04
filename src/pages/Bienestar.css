@@ -34,7 +34,40 @@
 }
 
 .wellness-banner-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
+  width: 100%;
+}
+
+.wellness-banner-content--split {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.wellness-banner-text { flex: 1 1 auto; }
+
+.wellness-banner-graph {
+  flex: 0 0 230px;
+  height: 320px;
+}
+
+@media (max-width: 768px) {
+  .wellness-banner-content--split {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .wellness-banner-graph {
+    flex-basis: auto;
+    width: 190px;
+    height: 260px;
+  }
 }
 
 .wellness-banner-title {
