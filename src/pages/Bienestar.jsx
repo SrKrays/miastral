@@ -1,6 +1,5 @@
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
-import BodyGraphIllustration from '../components/BodyGraph/BodyGraphIllustration'
 import './Bienestar.css'
 
 const CONTENT_BIENESTAR = [
@@ -43,15 +42,11 @@ export default function Bienestar() {
     <>
       <Navbar />
 
-      {/* BANNER — ilustración plana del BodyGraph (no 3D): se entiende de un
-          vistazo qué es, con un pulso suave en vez de rotación. */}
+      {/* BANNER */}
       <section className="wellness-banner">
-        <div className="wellness-banner-content wellness-banner-content--split">
-          <div className="wellness-banner-text">
-            <h1 className="wellness-banner-title">Bienestar</h1>
-            <p className="wellness-banner-subtitle">Conciencia corporal, magnetismo y frecuencia: cuidá tu energía desde adentro</p>
-          </div>
-          <BodyGraphIllustration className="wellness-banner-graph" />
+        <div className="wellness-banner-content">
+          <h1 className="wellness-banner-title">Bienestar</h1>
+          <p className="wellness-banner-subtitle">Conciencia corporal, magnetismo y frecuencia: cuidá tu energía desde adentro</p>
         </div>
       </section>
 

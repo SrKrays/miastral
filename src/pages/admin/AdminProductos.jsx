@@ -131,6 +131,8 @@ export default function AdminProductos() {
           saving={saving}
           error={error}
           esNuevo={!editando.id}
+          setForm={setForm}
+          authFetch={authFetch}
         />
       )}
 
@@ -176,7 +178,35 @@ export default function AdminProductos() {
   )
 }
 
-function ProductoForm({ form, onChange, onSubmit, onCancel, saving, error, esNuevo }) {
+function ProductoForm({ form, onChange, onSubmit, onCancel, saving, error, esNuevo, setForm, authFetch }) {
+  const [archivo, setArchivo] = useState(null)
+  const [subiendo, setSubiendo] = useState(false)
+  const [errorSubida, setErrorSubida] = useState('')
+
+  const elegirArchivo = (e) => {
+    const f = e.target.files?.[0]
+    if (f) { setArchivo(f); setErrorSubida('') }
+  }
+
+  const subirAFerozo = async () => {
+    if (!archivo) return
+    setSubiendo(true)
+    setErrorSubida('')
+    try {
+      const body = new FormData()
+      body.append('archivo', archivo)
+      const res = await authFetch(`${API_URL}/api/imagenes`, { method: 'POST', body })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.message || 'No pudimos subir la imagen.')
+      setForm(f => ({ ...f, imageUrl: data.url }))
+      setArchivo(null)
+    } catch (err) {
+      setErrorSubida(err.message)
+    } finally {
+      setSubiendo(false)
+    }
+  }
+
   return (
     <div className="admin-form-panel">
       <h2 style={{ marginTop:0, fontFamily:'var(--font-display)', fontWeight:400 }}>
@@ -219,8 +249,26 @@ function ProductoForm({ form, onChange, onSubmit, onCancel, saving, error, esNue
             <textarea name="descripcionCompleta" value={form.descripcionCompleta || ''} onChange={onChange} />
           </div>
           <div className="admin-form-field full">
-            <label>URL de la imagen</label>
-            <input name="imageUrl" value={form.imageUrl || ''} onChange={onChange} placeholder="/img/nombre-archivo.jpg" />
+            <label>Imagen del producto</label>
+            <div className="admin-img-preview">
+              {form.imageUrl ? <img src={form.imageUrl} alt="" /> : <span>Sin imagen</span>}
+            </div>
+            <div className="admin-img-upload-row">
+              <label className="admin-btn-small admin-file-btn">
+                📁 Elegir imagen
+                <input type="file" accept="image/*" onChange={elegirArchivo} hidden />
+              </label>
+              <button
+                type="button"
+                className="admin-btn-small admin-btn-upload"
+                onClick={subirAFerozo}
+                disabled={!archivo || subiendo}
+              >
+                {subiendo ? 'Subiendo...' : `☁️ Subir a Ferozo${archivo ? `: ${archivo.name}` : ''}`}
+              </button>
+            </div>
+            {errorSubida && <p className="auth-error" style={{ marginTop:8 }}>{errorSubida}</p>}
+            {form.imageUrl && <p className="admin-img-url-readonly">{form.imageUrl}</p>}
           </div>
         </div>
 

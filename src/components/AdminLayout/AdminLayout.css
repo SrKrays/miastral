@@ -236,6 +236,49 @@
 }
 .admin-form-checkbox input { width: auto; }
 
+.admin-img-preview {
+  width: 100%;
+  max-width: 220px;
+  height: 140px;
+  border: 1px dashed var(--border-mid);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.admin-img-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+.admin-img-upload-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-btn-upload {
+  border-color: rgba(90,168,120,0.4);
+  color: #7fc79a;
+}
+.admin-btn-upload:hover:not(:disabled) { color: #fff; background: #3f9463; border-color: #3f9463; }
+.admin-btn-upload:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.admin-img-url-readonly {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
 .admin-form-actions {
   display: flex;
   gap: 12px;

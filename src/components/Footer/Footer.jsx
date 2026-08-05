@@ -37,8 +37,8 @@ export default function Footer() {
             <div className="footer-col-title">Seguime</div>
             <ul className="footer-links">
               <li><a href="https://www.instagram.com/byvalentinam__/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="https://www.tiktok.com/@byvalentinam__" target="_blank" rel="noopener noreferrer">TikTok</a></li>
-              <li><a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify (podcast)</a></li>
+              <li><a href="https://www.youtube.com/@byvalentinam" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+              <li><a href="https://open.spotify.com/show/0pJ7gr5Rmw0iCiNuYrpiEJ?si=118af6f85aca4fbc" target="_blank" rel="noopener noreferrer">Spotify (podcast)</a></li>
               <li><a href="https://api.whatsapp.com/send?phone=5493512115420" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
             </ul>
           </div>

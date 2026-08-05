@@ -13,12 +13,11 @@ const NAV_LINKS = [
   { label: 'Material gratuito', path: '/material-gratuito' },
 ]
 
-// TODO: Kray pasa los links reales de Vale acá cuando los tenga.
 const SOCIAL_LINKS = [
-  { label: 'WhatsApp',  url: 'https://wa.me/', icon: 'whatsapp' },
-  { label: 'Instagram', url: 'https://instagram.com/', icon: 'instagram' },
-  { label: 'Spotify',   url: 'https://open.spotify.com/', icon: 'spotify' },
-  { label: 'YouTube',   url: 'https://youtube.com/', icon: 'youtube' },
+  { label: 'WhatsApp',  url: 'https://wa.me/5493512115420', icon: 'whatsapp' },
+  { label: 'Instagram', url: 'https://www.instagram.com/byvalentinam__/', icon: 'instagram' },
+  { label: 'Spotify',   url: 'https://open.spotify.com/show/0pJ7gr5Rmw0iCiNuYrpiEJ?si=118af6f85aca4fbc', icon: 'spotify' },
+  { label: 'YouTube',   url: 'https://www.youtube.com/@byvalentinam', icon: 'youtube' },
 ]
 
 function SocialIcon({ icon }) {

@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import { IMAGENES } from '../config/imagenes'
 import './DisenoHumano.css'
 
 const PILARES = [
@@ -113,6 +114,18 @@ export default function DisenoHumano() {
               <li key={b}><span className="benefit-star">✦</span><span>{b}</span></li>
             ))}
           </ul>
+
+          {/* Imagen de ejemplo — la URL se carga en src/config/imagenes.js (disenoHumano). */}
+          <div className="dh-image-wrap">
+            {IMAGENES.disenoHumano ? (
+              <img src={IMAGENES.disenoHumano} alt="Diseño Humano" />
+            ) : (
+              <div className="dh-image-placeholder">
+                <span className="dh-image-icon">✦</span>
+                <p>Imagen de Diseño Humano<br />(pendiente)</p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 

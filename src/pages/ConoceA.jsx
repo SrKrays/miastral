@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import { IMAGENES } from '../config/imagenes'
 import './ConoceA.css'
-
-// Vale va a pasar su foto más adelante — mientras tanto queda el placeholder
-// y esto se activa solo con poner la ruta acá (ej: '/img/valentina-mini.jpg').
-const FOTO_VALENTINA = null
 
 export default function ConoceA() {
   return (
@@ -69,8 +66,8 @@ export default function ConoceA() {
 
             <div className="conoce-bio-photo-col">
               <div className="conoce-mini-photo">
-                {FOTO_VALENTINA ? (
-                  <img src={FOTO_VALENTINA} alt="Valentina Melchior" />
+                {IMAGENES.fotoValentina ? (
+                  <img src={IMAGENES.fotoValentina} alt="Valentina Melchior" />
                 ) : (
                   <div className="conoce-mini-photo-placeholder">
                     <span className="conoce-mini-photo-icon">✦</span>
