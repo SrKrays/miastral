@@ -157,9 +157,6 @@ export default function DisenoHumano() {
           <div className="astro-cards-grid">
             {PILARES.map(item => <PilarCard key={item.id} item={item} />)}
           </div>
-          <div style={{ textAlign:'center', marginTop:48 }}>
-            <a href="#calculadora" className="btn-coral">Calculá tu carta gratuita</a>
-          </div>
         </div>
       </section>
 
