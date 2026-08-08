@@ -193,6 +193,7 @@
 .input-error { border-color: var(--accent-coral) !important; }
 .field-error { font-size: 11px; color: var(--accent-coral-light); margin-top: 2px; }
 .shipping-actions { display: flex; gap: 16px; margin-top: 8px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.pago-nota { font-size: 12px; color: var(--text-muted); text-align: right; margin-top: -8px; }
 
 /* Confirmation */
 .confirm-section {

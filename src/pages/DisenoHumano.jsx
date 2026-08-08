@@ -129,6 +129,24 @@ export default function DisenoHumano() {
         </div>
       </section>
 
+      {/* CALCULADORA — carta de Diseño Humano embebida (myhumanblueprint.app) */}
+      <section id="calculadora" className="astro-section astro-section-alt">
+        <div className="container-astral" style={{ textAlign:'center' }}>
+          <div className="astro-section-header">
+            <h2 className="astro-section-title">Calculá tu carta</h2>
+            <p className="astro-section-desc">Ingresá tu fecha, hora y lugar de nacimiento para generar tu BodyGraph al instante, gratis.</p>
+          </div>
+          <div className="dh-calc-wrap">
+            <iframe
+              src="https://myhumanblueprint.app/embed/chart"
+              title="Calculadora de carta de Diseño Humano"
+              className="dh-calc-iframe"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* 3 PILARES */}
       <section id="pilares" className="astro-section astro-section-alt">
         <div className="container-astral">
@@ -140,7 +158,7 @@ export default function DisenoHumano() {
             {PILARES.map(item => <PilarCard key={item.id} item={item} />)}
           </div>
           <div style={{ textAlign:'center', marginTop:48 }}>
-            <a href="https://www.geneticmatrix.com/" target="_blank" rel="noopener noreferrer" className="btn-coral">Calculá tu carta gratuita</a>
+            <a href="#calculadora" className="btn-coral">Calculá tu carta gratuita</a>
           </div>
         </div>
       </section>

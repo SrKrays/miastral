@@ -243,6 +243,7 @@ function ShippingForm({ total, onConfirm, onBack, submitting, submitError }) {
               {submitting ? 'Generando link de pago...' : `Pagar con Mercado Pago — ${formatARS(total)}`}
             </button>
           </div>
+          <p className="pago-nota">¿El pago no avanza? Probá desactivando el bloqueador de anuncios de tu navegador.</p>
         </form>
       </div>
     </div>
