@@ -1,4 +1,4 @@
-// URL base del backend. Cuando tengamos dominio propio para el back, solo
-// cambiamos esto (o lo pasamos a variable de entorno de Vite si hace falta
-// distinguir prod/local más adelante).
-export const API_URL = 'https://miastral-api.onrender.com'
+// URL base del backend. Dominio propio (api.byvalentinam.com) en vez del
+// onrender.com compartido — evita el bug de caché de Cloudflare que rompía
+// CORS entre orígenes distintos en el dominio genérico de Render.
+export const API_URL = 'https://api.byvalentinam.com'
