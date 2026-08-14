@@ -217,7 +217,6 @@ export default function Home() {
                     </ScrollReveal>
                   ))}
                 </ul>
-                <Link to="/membresia" className="btn-coral">Conocé más</Link>
               </div>
             </ScrollReveal>
             <ScrollReveal direction="right" delay={0.15}>

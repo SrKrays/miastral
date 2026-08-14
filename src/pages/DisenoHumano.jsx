@@ -138,9 +138,11 @@ export default function DisenoHumano() {
           </div>
           <div className="dh-calc-wrap">
             <iframe
-              src="https://myhumanblueprint.app/embed/chart"
-              title="Calculadora de carta de Diseño Humano"
-              className="dh-calc-iframe"
+              src="https://myhumanblueprint.app/embed/chart?partner=byvalentinam"
+              width="100%"
+              height="800"
+              style={{ border: 0, borderRadius: 0, display: 'block' }}
+              title="Calculadora de Diseño Humano"
               loading="lazy"
             />
           </div>

@@ -18,7 +18,7 @@ const ESTADO_LABEL = {
 export default function MiCuenta() {
   const { user, token, isAuthenticated, logout, authFetch } = useContext(AuthContext)
   const navigate = useNavigate()
-  const [tab, setTab] = useState('perfil') // perfil, ordenes, membresia, direcciones
+  const [tab, setTab] = useState('perfil') // perfil, ordenes, direcciones
   const [ordenes, setOrdenes] = useState([])
   const [loadingOrdenes, setLoadingOrdenes] = useState(true)
 
@@ -72,9 +72,6 @@ export default function MiCuenta() {
             <button className={`tab ${tab === 'ordenes' ? 'active' : ''}`} onClick={() => setTab('ordenes')}>
               Mis órdenes
             </button>
-            <button className={`tab ${tab === 'membresia' ? 'active' : ''}`} onClick={() => setTab('membresia')}>
-              Membresía
-            </button>
             <button className={`tab ${tab === 'direcciones' ? 'active' : ''}`} onClick={() => setTab('direcciones')}>
               Direcciones
             </button>
@@ -127,17 +124,6 @@ export default function MiCuenta() {
                   <Link to="/tienda" className="btn-coral">Ir a la tienda</Link>
                 </div>
               )}
-            </div>
-          )}
-
-          {/* MEMBRESÍA — todavía no implementada */}
-          {tab === 'membresia' && (
-            <div className="tab-content">
-              <h2>Tu membresía</h2>
-              <div className="empty-state">
-                <p>No tenés membresía activa</p>
-                <Link to="/membresia" className="btn-coral">Ver planes</Link>
-              </div>
             </div>
           )}
 

@@ -18,7 +18,6 @@ export default function Footer() {
               <li><Link to="/bienestar">Bienestar</Link></li>
               <li><Link to="/tienda">Tienda</Link></li>
               <li><Link to="/material-gratuito">Material gratuito</Link></li>
-              <li><Link to="/membresia">Membresía</Link></li>
               <li><Link to="/conoce">Sobre mí</Link></li>
               <li><Link to="/contacto">Contacto</Link></li>
             </ul>

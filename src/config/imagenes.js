@@ -13,5 +13,5 @@ export const IMAGENES = {
   fotoValentina: '/img/valentina-sobre-mi.png',
 
   // Imagen debajo de "¿Qué es Diseño Humano?"
-  disenoHumano: '/img/diseno-humano-bodygraph.png',
+  disenoHumano: '/img/diseno.png',
 }
