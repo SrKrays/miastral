@@ -1,10 +1,14 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import { IMAGENES } from '../config/imagenes'
+import { ContenidoContext } from '../context/ContenidoContext'
 import './ConoceA.css'
 
 export default function ConoceA() {
+  const { contenido } = useContext(ContenidoContext)
+  const fotoValentina = contenido.sobreMiFoto || IMAGENES.fotoValentina
   return (
     <>
       <Navbar />
@@ -66,8 +70,8 @@ export default function ConoceA() {
 
             <div className="conoce-bio-photo-col">
               <div className="conoce-mini-photo">
-                {IMAGENES.fotoValentina ? (
-                  <img src={IMAGENES.fotoValentina} alt="Valentina Melchior" />
+                {fotoValentina ? (
+                  <img src={fotoValentina} alt="Valentina Melchior" />
                 ) : (
                   <div className="conoce-mini-photo-placeholder">
                     <span className="conoce-mini-photo-icon">✦</span>

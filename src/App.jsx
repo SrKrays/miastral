@@ -21,6 +21,7 @@ import ConfirmacionPedido from './pages/ConfirmacionPedido'
 import AdminLogin     from './pages/admin/AdminLogin'
 import AdminProductos from './pages/admin/AdminProductos'
 import AdminOrdenes   from './pages/admin/AdminOrdenes'
+import AdminContenido from './pages/admin/AdminContenido'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -55,6 +56,7 @@ function App() {
           <Route path="/admin"             element={<AdminProductos />} />
           <Route path="/admin/productos"   element={<AdminProductos />} />
           <Route path="/admin/ordenes"     element={<AdminOrdenes />} />
+          <Route path="/admin/contenido"   element={<AdminContenido />} />
           <Route path="*"                  element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>

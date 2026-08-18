@@ -27,6 +27,7 @@ export default function AdminLayout({ children }) {
         <nav className="admin-nav">
           <Link to="/admin/productos" className={location.pathname === '/admin/productos' ? 'active' : ''}>Productos</Link>
           <Link to="/admin/ordenes" className={location.pathname === '/admin/ordenes' ? 'active' : ''}>Órdenes</Link>
+          <Link to="/admin/contenido" className={location.pathname === '/admin/contenido' ? 'active' : ''}>Contenido</Link>
         </nav>
         <div className="admin-topbar-right">
           <span className="admin-user-name">{user?.nombre}</span>

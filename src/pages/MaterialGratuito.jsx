@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import { ContenidoContext } from '../context/ContenidoContext'
 import './MaterialGratuito.css'
 
 const VIDEOS = [
@@ -7,21 +9,21 @@ const VIDEOS = [
     id:1, tipo:'Video', titulo:'El poder de la palabra',
     desc:'Las palabras no son inocentes. Cada una lleva en sí una carga energética, una intención y una frecuencia que impacta no solo en quienes las reciben, sino también en quien las emite.',
     emoji:'∿', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)',
-    foto:'/img/material-poder-palabra.jpg',
+    foto:'/img/material-poder-palabra.jpg', clave:'materialVideo1',
     link:'https://youtu.be/yjfWwwnglEA',
   },
   {
     id:2, tipo:'Video', titulo:'Diseño Humano y manifestación',
     desc:'Por qué cuando nos anclamos en nuestra frecuencia propia y verdadera, la manifestación y los procesos de cocreación son más alineados y suaves. Introducción a nuestra carta de Diseño Humano y al Programa de Transformación Cuántica.',
     emoji:'✺', bg:'linear-gradient(145deg,#2f4156,#19232e)',
-    foto:'/img/dh-manifestacion.jpg',
+    foto:'/img/dh-manifestacion.jpg', clave:'materialVideo2',
     link:'https://youtu.be/tGXzNPjVgtc',
   },
   {
     id:3, tipo:'Video', titulo:'Reconectá con tu verdad',
     desc:'Menos mente y más conciencia corporal. La espera como acto de alineación y cómo la mente interfiere en la toma de decisiones.',
     emoji:'◐', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)',
-    foto:'/img/material-reconecta.jpg',
+    foto:'/img/material-reconecta.jpg', clave:'materialVideo3',
     link:'https://youtu.be/wpdvSn7m3CY',
   },
 ]
@@ -53,13 +55,14 @@ const GUIAS = [
   },
 ]
 
-function FreebieCard({ item, delay = 0, ctaLabel }) {
+function FreebieCard({ item, delay = 0, ctaLabel, contenido }) {
+  const foto = (item.clave && contenido?.[item.clave]) || item.foto
   return (
     <a href={item.link} target="_blank" rel="noopener noreferrer"
        className="wellness-card anim-fadeInUp" style={{ animationDelay:`${delay}s`, textDecoration:'none' }}>
       <div className="wellness-card-img" style={{ background: item.bg }}>
-        {item.foto
-          ? <img src={item.foto} alt={item.titulo} className="wellness-card-photo" />
+        {foto
+          ? <img src={foto} alt={item.titulo} className="wellness-card-photo" />
           : <span className="wellness-card-emoji">{item.emoji}</span>
         }
       </div>
@@ -74,6 +77,7 @@ function FreebieCard({ item, delay = 0, ctaLabel }) {
 }
 
 export default function MaterialGratuito() {
+  const { contenido } = useContext(ContenidoContext)
   return (
     <>
       <Navbar />
@@ -94,7 +98,7 @@ export default function MaterialGratuito() {
             <p className="wellness-section-desc">Contenido en profundidad para empezar a integrar tu energía</p>
           </div>
           <div className="wellness-cards-grid">
-            {VIDEOS.map((item, i) => <FreebieCard key={item.id} item={item} delay={i * 0.1} ctaLabel="Ver video" />)}
+            {VIDEOS.map((item, i) => <FreebieCard key={item.id} item={item} delay={i * 0.1} ctaLabel="Ver video" contenido={contenido} />)}
           </div>
         </div>
       </section>

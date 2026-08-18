@@ -10,6 +10,7 @@ import TiltCard from '../components/TiltCard/TiltCard'
 import { API_URL } from '../config/api'
 import { mapProducto } from '../utils/productAdapter'
 import { CartContext } from '../context/CartContext'
+import { ContenidoContext } from '../context/ContenidoContext'
 import './Home.css'
 
 const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
@@ -73,6 +74,8 @@ function ProductCard({ item, onView }) {
 
 export default function Home() {
   const { addItem } = useContext(CartContext)
+  const { contenido } = useContext(ContenidoContext)
+  const videoBienvenida = contenido.homeVideoBienvenida
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [toast, setToast] = useState(null)
   const [bestSellers, setBestSellers] = useState([])
@@ -221,10 +224,14 @@ export default function Home() {
             </ScrollReveal>
             <ScrollReveal direction="right" delay={0.15}>
               <div className="membresia-video-wrap">
+                {videoBienvenida ? (
+                  <video src={videoBienvenida} controls autoPlay muted loop playsInline className="membresia-video-real" />
+                ) : (
                 <div className="membresia-video-placeholder">
                   <div className="play-icon">▶</div>
                   <p style={{ fontSize:12, fontFamily:'var(--font-label)', letterSpacing:'0.1em', textTransform:'uppercase' }}>¡Bienvenidx a esta tribu!</p>
                 </div>
+                )}
               </div>
             </ScrollReveal>
           </div>

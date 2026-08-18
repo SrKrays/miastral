@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import { IMAGENES } from '../config/imagenes'
+import { ContenidoContext } from '../context/ContenidoContext'
 import './DisenoHumano.css'
 
 const PILARES = [
@@ -72,6 +74,9 @@ function TipoCard({ item, delay = 0 }) {
 }
 
 export default function DisenoHumano() {
+  const { contenido } = useContext(ContenidoContext)
+  const imagenDisenoHumano = contenido.disenoHumanoImagen || IMAGENES.disenoHumano
+  const videoBodygraph = contenido.dhVideoBodygraph
   return (
     <>
       <Navbar />
@@ -115,10 +120,10 @@ export default function DisenoHumano() {
             ))}
           </ul>
 
-          {/* Imagen de ejemplo — la URL se carga en src/config/imagenes.js (disenoHumano). */}
+          {/* Imagen de ejemplo — editable desde el panel admin (Contenido). */}
           <div className="dh-image-wrap">
-            {IMAGENES.disenoHumano ? (
-              <img src={IMAGENES.disenoHumano} alt="Diseño Humano" />
+            {imagenDisenoHumano ? (
+              <img src={imagenDisenoHumano} alt="Diseño Humano" />
             ) : (
               <div className="dh-image-placeholder">
                 <span className="dh-image-icon">✦</span>
@@ -183,10 +188,14 @@ export default function DisenoHumano() {
             <p className="astro-section-desc">Una guía visual para empezar a leer tu carta desde cero</p>
           </div>
           <div className="dh-video-wrap">
+            {videoBodygraph ? (
+              <video src={videoBodygraph} controls className="dh-video-real" />
+            ) : (
             <div className="dh-video-placeholder">
               <div className="play-icon">▶</div>
               <p style={{ fontSize:12, fontFamily:'var(--font-label)', letterSpacing:'0.1em', textTransform:'uppercase', marginTop:16, color:'rgba(255,255,255,0.5)' }}>Video próximamente</p>
             </div>
+            )}
           </div>
         </div>
       </section>
