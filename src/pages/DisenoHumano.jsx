@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import { IMAGENES } from '../config/imagenes'
 import { ContenidoContext } from '../context/ContenidoContext'
+import { getYoutubeThumb } from '../utils/youtube'
 import './DisenoHumano.css'
 
 const PILARES = [
@@ -76,7 +77,8 @@ function TipoCard({ item, delay = 0 }) {
 export default function DisenoHumano() {
   const { contenido } = useContext(ContenidoContext)
   const imagenDisenoHumano = contenido.disenoHumanoImagen || IMAGENES.disenoHumano
-  const videoBodygraph = contenido.dhVideoBodygraph
+  const videoBodygraphLink = contenido.dhVideoBodygraph
+  const videoBodygraphThumb = getYoutubeThumb(videoBodygraphLink)
   return (
     <>
       <Navbar />
@@ -188,8 +190,11 @@ export default function DisenoHumano() {
             <p className="astro-section-desc">Una guía visual para empezar a leer tu carta desde cero</p>
           </div>
           <div className="dh-video-wrap">
-            {videoBodygraph ? (
-              <video src={videoBodygraph} controls className="dh-video-real" />
+            {videoBodygraphThumb ? (
+              <a href={videoBodygraphLink} target="_blank" rel="noopener noreferrer" className="dh-video-link">
+                <img src={videoBodygraphThumb} alt="Cómo interpretar tu BodyGraph" className="dh-video-thumb" />
+                <span className="play-icon play-icon--overlay">▶</span>
+              </a>
             ) : (
             <div className="dh-video-placeholder">
               <div className="play-icon">▶</div>

@@ -285,6 +285,33 @@
   margin-top: 22px;
 }
 
+/* ===== Contenido (secciones plegables) ===== */
+.admin-contenido-seccion {
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 8px;
+}
+.admin-contenido-seccion-titulo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px 0;
+  list-style: none;
+}
+.admin-contenido-seccion-titulo::-webkit-details-marker { display: none; }
+.admin-contenido-seccion-titulo::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--accent-coral);
+  transition: transform var(--transition);
+}
+.admin-contenido-seccion[open] > .admin-contenido-seccion-titulo::before {
+  transform: rotate(90deg);
+}
+
 /* Tablet: el layout de 1200px ya se achica solo, acá solo bajamos un poco
    el padding lateral para que no se vea con márgenes gigantes. */
 @media (max-width: 1024px) {
