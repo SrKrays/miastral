@@ -3,21 +3,21 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import { IMAGENES } from '../config/imagenes'
 import { ContenidoContext } from '../context/ContenidoContext'
-import { getYoutubeThumb } from '../utils/youtube'
+import { getYoutubeEmbedUrl } from '../utils/youtube'
 import './DisenoHumano.css'
 
 const PILARES = [
-  { id:1, tipo:'Pilar 1', titulo:'Tipo', desc:'Revela tu naturaleza energética. Existen 5 tipos áuricos y cada uno tiene características específicas que definen cómo te relacionás con el mundo y la vida.', emoji:'⚛', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
-  { id:2, tipo:'Pilar 2', titulo:'Estrategia', desc:'Es la manera más alineada de interactuar con la vida según tu tipo de energía. Te muestra cómo accionar desde un lugar correcto para fluir en armonía con la vida sin resistencias, moverte con mayor facilidad y conectar con tu autenticidad.', emoji:'∿', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
-  { id:3, tipo:'Pilar 3', titulo:'Autoridad', desc:'Tu propia brújula interna, la que te guía a tomar las decisiones más alineadas a tu energía y tu diseño. (Y no, tu brújula no es la mente).', emoji:'◈', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
+  { id:1, clave:'disenoHumanoPilar1', tipo:'Pilar 1', titulo:'Tipo', desc:'Revela tu naturaleza energética. Existen 5 tipos áuricos y cada uno tiene características específicas que definen cómo te relacionás con el mundo y la vida.', emoji:'⚛', bg:'linear-gradient(145deg,#2f4156,#19232e)' },
+  { id:2, clave:'disenoHumanoPilar2', tipo:'Pilar 2', titulo:'Estrategia', desc:'Es la manera más alineada de interactuar con la vida según tu tipo de energía. Te muestra cómo accionar desde un lugar correcto para fluir en armonía con la vida sin resistencias, moverte con mayor facilidad y conectar con tu autenticidad.', emoji:'∿', bg:'linear-gradient(145deg,#3a5069,#2f4156)' },
+  { id:3, clave:'disenoHumanoPilar3', tipo:'Pilar 3', titulo:'Autoridad', desc:'Tu propia brújula interna, la que te guía a tomar las decisiones más alineadas a tu energía y tu diseño. (Y no, tu brújula no es la mente).', emoji:'◈', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)' },
 ]
 
 const TIPOS = [
-  { id:1, tipo:'35% de la población', titulo:'Generador', desc:'Están aquí para experimentar satisfacción y construir una vida alineada con lo que verdaderamente los apasiona. Cuando siguen su respuesta interna, inspiran al mundo con su energía vital y creadora.', emoji:'⚡', bg:'linear-gradient(145deg,#2f4156,#19232e)', pdf:'https://drive.google.com/file/d/1oEED-TDQZlu51Njzd-VQLyrPKfFlyc19/view' },
-  { id:2, tipo:'35% de la población', titulo:'Generador Manifestante', desc:'Están aquí para experimentar, crear y abrirse a múltiples caminos. Su naturaleza multipotencial los impulsa a innovar, adaptarse y demostrar que no existe una única forma de vivir el propósito.', emoji:'✺', bg:'linear-gradient(145deg,#3a5069,#2f4156)', pdf:'https://drive.google.com/file/d/1Xm9Zs-p4vnr_p817CjKotkr67pmHkQ71/view' },
-  { id:3, tipo:'20% de la población', titulo:'Proyector', desc:'Están aquí para traer nuevos paradigmas y nuevas formas de comprender la vida. Su energía está diseñada para guiar, liderar y acompañar a otros hacia su máximo potencial.', emoji:'◎', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', pdf:'https://drive.google.com/file/d/1VjDnuXU7o7_geX57ehvBmqbFdP2vkpQ9/view' },
-  { id:4, tipo:'8% de la población', titulo:'Manifestador', desc:'Están aquí para ser pioneros y traer lo nuevo. Son el único tipo diseñado para iniciar desde sus propios impulsos internos, convirtiéndose en catalizadores del cambio.', emoji:'✦', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', pdf:'https://drive.google.com/file/d/1s4ZyTqY5rL7RXE6Bxl5zkfZaZqkd3AlT/view' },
-  { id:5, tipo:'2% de la población', titulo:'Reflector', desc:'Son el único tipo lunar. Están aquí para reflejar la salud de la comunidad y mostrarnos, a través de su sensibilidad, el potencial y la dirección de nuestro entorno.', emoji:'◐', bg:'linear-gradient(145deg,#0d1520,#19232e)', pdf:'https://drive.google.com/file/d/1X4MmvFhcjCvkgyGEn6mY2DFGLZ0o55uF/view' },
+  { id:1, clave:'disenoHumanoTipo1', tipo:'35% de la población', titulo:'Generador', desc:'Están aquí para experimentar satisfacción y construir una vida alineada con lo que verdaderamente los apasiona. Cuando siguen su respuesta interna, inspiran al mundo con su energía vital y creadora.', emoji:'⚡', bg:'linear-gradient(145deg,#2f4156,#19232e)', pdf:'https://drive.google.com/file/d/1oEED-TDQZlu51Njzd-VQLyrPKfFlyc19/view' },
+  { id:2, clave:'disenoHumanoTipo2', tipo:'35% de la población', titulo:'Generador Manifestante', desc:'Están aquí para experimentar, crear y abrirse a múltiples caminos. Su naturaleza multipotencial los impulsa a innovar, adaptarse y demostrar que no existe una única forma de vivir el propósito.', emoji:'✺', bg:'linear-gradient(145deg,#3a5069,#2f4156)', pdf:'https://drive.google.com/file/d/1Xm9Zs-p4vnr_p817CjKotkr67pmHkQ71/view' },
+  { id:3, clave:'disenoHumanoTipo3', tipo:'20% de la población', titulo:'Proyector', desc:'Están aquí para traer nuevos paradigmas y nuevas formas de comprender la vida. Su energía está diseñada para guiar, liderar y acompañar a otros hacia su máximo potencial.', emoji:'◎', bg:'linear-gradient(145deg,#1a3040,#0d1f2d)', pdf:'https://drive.google.com/file/d/1VjDnuXU7o7_geX57ehvBmqbFdP2vkpQ9/view' },
+  { id:4, clave:'disenoHumanoTipo4', tipo:'8% de la población', titulo:'Manifestador', desc:'Están aquí para ser pioneros y traer lo nuevo. Son el único tipo diseñado para iniciar desde sus propios impulsos internos, convirtiéndose en catalizadores del cambio.', emoji:'✦', bg:'linear-gradient(145deg,#2d2d4a,#1a1a2e)', pdf:'https://drive.google.com/file/d/1s4ZyTqY5rL7RXE6Bxl5zkfZaZqkd3AlT/view' },
+  { id:5, clave:'disenoHumanoTipo5', tipo:'2% de la población', titulo:'Reflector', desc:'Son el único tipo lunar. Están aquí para reflejar la salud de la comunidad y mostrarnos, a través de su sensibilidad, el potencial y la dirección de nuestro entorno.', emoji:'◐', bg:'linear-gradient(145deg,#0d1520,#19232e)', pdf:'https://drive.google.com/file/d/1X4MmvFhcjCvkgyGEn6mY2DFGLZ0o55uF/view' },
 ]
 
 const BENEFICIOS = [
@@ -39,11 +39,12 @@ const FAQS = [
   { q:'¿Qué pasa si no aparece mi lugar de nacimiento al calcular la carta?', a:'Podés colocar una localidad cercana que sí figure en el sistema. A veces las localidades pequeñas no están registradas, pero eso no es un problema.' },
 ]
 
-function PilarCard({ item }) {
+function PilarCard({ item, contenido }) {
+  const foto = contenido?.[item.clave]
   return (
     <div className="astro-card anim-fadeInUp">
       <div className="astro-card-img" style={{ background: item.bg }}>
-        <span className="astro-card-emoji">{item.emoji}</span>
+        {foto ? <img src={foto} alt={item.titulo} className="astro-card-photo" /> : <span className="astro-card-emoji">{item.emoji}</span>}
       </div>
       <div className="astro-card-body">
         <span className="astro-card-tipo">{item.tipo}</span>
@@ -54,11 +55,12 @@ function PilarCard({ item }) {
   )
 }
 
-function TipoCard({ item, delay = 0 }) {
+function TipoCard({ item, delay = 0, contenido }) {
+  const foto = contenido?.[item.clave]
   return (
     <div className="astro-card anim-fadeInUp" style={{ animationDelay: `${delay}s` }}>
       <div className="astro-card-img" style={{ background: item.bg }}>
-        <span className="astro-card-emoji">{item.emoji}</span>
+        {foto ? <img src={foto} alt={item.titulo} className="astro-card-photo" /> : <span className="astro-card-emoji">{item.emoji}</span>}
       </div>
       <div className="astro-card-body">
         <span className="astro-card-tipo">{item.tipo}</span>
@@ -78,7 +80,7 @@ export default function DisenoHumano() {
   const { contenido } = useContext(ContenidoContext)
   const imagenDisenoHumano = contenido.disenoHumanoImagen || IMAGENES.disenoHumano
   const videoBodygraphLink = contenido.dhVideoBodygraph
-  const videoBodygraphThumb = getYoutubeThumb(videoBodygraphLink)
+  const videoBodygraphEmbed = getYoutubeEmbedUrl(videoBodygraphLink)
   return (
     <>
       <Navbar />
@@ -164,7 +166,7 @@ export default function DisenoHumano() {
             <p className="astro-section-desc">Tipo · Estrategia · Autoridad — el punto de partida para integrar tu energía</p>
           </div>
           <div className="astro-cards-grid">
-            {PILARES.map(item => <PilarCard key={item.id} item={item} />)}
+            {PILARES.map(item => <PilarCard key={item.id} item={item} contenido={contenido} />)}
           </div>
         </div>
       </section>
@@ -177,7 +179,7 @@ export default function DisenoHumano() {
             <p className="astro-section-desc">Una vez que tengas tu carta, descubrí cuál es tu naturaleza energética</p>
           </div>
           <div className="astro-cards-grid">
-            {TIPOS.map((item, i) => <TipoCard key={item.id} item={item} delay={i * 0.08} />)}
+            {TIPOS.map((item, i) => <TipoCard key={item.id} item={item} delay={i * 0.08} contenido={contenido} />)}
           </div>
         </div>
       </section>
@@ -190,11 +192,14 @@ export default function DisenoHumano() {
             <p className="astro-section-desc">Una guía visual para empezar a leer tu carta desde cero</p>
           </div>
           <div className="dh-video-wrap">
-            {videoBodygraphThumb ? (
-              <a href={videoBodygraphLink} target="_blank" rel="noopener noreferrer" className="dh-video-link">
-                <img src={videoBodygraphThumb} alt="Cómo interpretar tu BodyGraph" className="dh-video-thumb" />
-                <span className="play-icon play-icon--overlay">▶</span>
-              </a>
+            {videoBodygraphEmbed ? (
+              <iframe
+                src={videoBodygraphEmbed}
+                title="Cómo interpretar tu BodyGraph"
+                className="dh-video-embed"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             ) : (
             <div className="dh-video-placeholder">
               <div className="play-icon">▶</div>

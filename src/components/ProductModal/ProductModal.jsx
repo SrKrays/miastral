@@ -24,6 +24,8 @@ export default function ProductModal({ product, onClose, onAddCart }) {
   const [quantity, setQuantity] = useState(1)
   const contacto = product.contacto || 'cart'
   const maxQty = product.stock || 99
+  const galeria = [product.foto, ...(product.fotosExtra || [])].filter(Boolean)
+  const [fotoActiva, setFotoActiva] = useState(product.foto)
 
   const handleAddCart = () => {
     onAddCart({ ...product, qty: quantity })
@@ -47,18 +49,35 @@ export default function ProductModal({ product, onClose, onAddCart }) {
 
         <div className="product-modal-content">
           {/* Imagen */}
-          <div className="product-modal-image" style={{ background: product.bg }}>
-            {product.foto
-              ? <img src={product.foto} alt={product.titulo} className="product-modal-photo" />
-              : <span className="product-modal-emoji">{product.emoji}</span>
-            }
-            {product.tag && <span className="product-modal-tag">{product.tag}</span>}
+          <div className="product-modal-image-col">
+            <div className="product-modal-image" style={{ background: product.bg }}>
+              {fotoActiva
+                ? <img src={fotoActiva} alt={product.titulo} className="product-modal-photo" />
+                : <span className="product-modal-emoji">{product.emoji}</span>
+              }
+              {product.tag && <span className="product-modal-tag">{product.tag}</span>}
+            </div>
+            {galeria.length > 1 && (
+              <div className="product-modal-gallery">
+                {galeria.map((url, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`product-modal-gallery-thumb${url === fotoActiva ? ' activa' : ''}`}
+                    onClick={() => setFotoActiva(url)}
+                  >
+                    <img src={url} alt={`${product.titulo} ${i + 1}`} />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Info */}
           <div className="product-modal-info">
             <span className="product-modal-tipo">{product.tipo}</span>
             <h2 className="product-modal-title">{product.titulo}</h2>
+            {product.fecha && <p className="product-modal-fecha">📅 {product.fecha}</p>}
 
             <div className="product-modal-description">
               <p>{product.desc || 'Accedé a contenido exclusivo y transformador que te va a llevar a un nuevo nivel de comprensión de tu energía.'}</p>

@@ -5,11 +5,12 @@ import { CartContext } from '../../context/CartContext'
 import './Navbar.css'
 
 const NAV_LINKS = [
-  { label: 'Diseño Humano',   path: '/diseno-humano' },
-  { label: 'Bienestar', path: '/bienestar' },
-  { label: 'Tienda',          path: '/tienda' },
-  { label: 'Sobre mí',        path: '/conoce' },
-  { label: 'Contacto',        path: '/contacto' },
+  { label: 'Home',             path: '/' },
+  { label: 'Diseño Humano',    path: '/diseno-humano' },
+  { label: 'Cuántica',         path: '/bienestar' },
+  { label: 'Tienda',           path: '/tienda' },
+  { label: 'Sobre mí',         path: '/conoce' },
+  { label: 'Contacto',         path: '/contacto' },
   { label: 'Material gratuito', path: '/material-gratuito' },
 ]
 

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import AdminLayout from '../../components/AdminLayout/AdminLayout'
 import { AuthContext } from '../../context/AuthContext'
+import { ContenidoContext } from '../../context/ContenidoContext'
 import { API_URL } from '../../config/api'
 import '../../components/AdminLayout/AdminLayout.css'
 
@@ -131,6 +132,7 @@ export default function AdminProductos() {
           saving={saving}
           error={error}
           esNuevo={!editando.id}
+          productoId={editando.id}
           setForm={setForm}
           authFetch={authFetch}
         />
@@ -178,7 +180,7 @@ export default function AdminProductos() {
   )
 }
 
-function ProductoForm({ form, onChange, onSubmit, onCancel, saving, error, esNuevo, setForm, authFetch }) {
+function ProductoForm({ form, onChange, onSubmit, onCancel, saving, error, esNuevo, productoId, setForm, authFetch }) {
   const [archivo, setArchivo] = useState(null)
   const [subiendo, setSubiendo] = useState(false)
   const [errorSubida, setErrorSubida] = useState('')
@@ -337,6 +339,121 @@ function ProductoForm({ form, onChange, onSubmit, onCancel, saving, error, esNue
           <button type="submit" className="btn-coral" disabled={saving}>{saving ? 'Guardando...' : 'Guardar'}</button>
         </div>
       </form>
+
+      {esNuevo ? (
+        <p style={{ marginTop:20, fontSize:12, color:'var(--text-muted)' }}>
+          Guardá el producto primero para poder agregarle más fotos, un link externo o una fecha de evento.
+        </p>
+      ) : (
+        <ProductoExtras productoId={productoId} authFetch={authFetch} />
+      )}
+    </div>
+  )
+}
+
+// ── Extras por producto: más fotos, link externo y fecha de evento ──
+// No usan la base de datos, viven en el mismo sistema de Contenido (Ferozo),
+// bajo las claves producto{id}Imagen2/3/4, producto{id}Link, producto{id}LinkLabel
+// y producto{id}Fecha.
+function ProductoExtras({ productoId, authFetch }) {
+  const { contenido, recargar } = useContext(ContenidoContext)
+  const prefijo = `producto${productoId}`
+
+  return (
+    <div style={{ marginTop:28, paddingTop:20, borderTop:'1px solid var(--border-dark)' }}>
+      <p className="admin-form-section-title" style={{ marginTop:0 }}>Extras (fotos, link y fecha)</p>
+      <div className="admin-form-grid">
+        {[2, 3, 4].map(n => (
+          <ExtraImagen key={n} clave={`${prefijo}Imagen${n}`} label={`Foto extra ${n - 1}`} urlActual={contenido[`${prefijo}Imagen${n}`]} authFetch={authFetch} onSaved={recargar} />
+        ))}
+        <ExtraTexto clave={`${prefijo}Link`} label="Link externo (ej: Tiendup, formulario de inscripción)" placeholder="https://..." valorActual={contenido[`${prefijo}Link`]} authFetch={authFetch} onSaved={recargar} />
+        <ExtraTexto clave={`${prefijo}LinkLabel`} label="Texto del botón" placeholder="Ver programa completo" valorActual={contenido[`${prefijo}LinkLabel`]} authFetch={authFetch} onSaved={recargar} />
+        <ExtraTexto clave={`${prefijo}Fecha`} label="Fecha del evento/taller (texto libre)" placeholder="Sábado 10 de octubre" valorActual={contenido[`${prefijo}Fecha`]} authFetch={authFetch} onSaved={recargar} />
+      </div>
+    </div>
+  )
+}
+
+function ExtraTexto({ clave, label, placeholder, valorActual, authFetch, onSaved }) {
+  const [valor, setValor] = useState(valorActual || '')
+  const [guardando, setGuardando] = useState(false)
+  const [error, setError] = useState('')
+
+  const guardar = async () => {
+    setGuardando(true); setError('')
+    try {
+      const res = await authFetch(`${API_URL}/api/contenido/${clave}/texto`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ valor }),
+      })
+      if (!res.ok) throw new Error('No pudimos guardar.')
+      onSaved()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setGuardando(false)
+    }
+  }
+
+  return (
+    <div className="admin-form-field full">
+      <label>{label}</label>
+      <div style={{ display:'flex', gap:8 }}>
+        <input value={valor} onChange={e => setValor(e.target.value)} placeholder={placeholder} style={{ flex:1 }} />
+        <button type="button" className="admin-btn-small admin-btn-upload" onClick={guardar} disabled={guardando}>
+          {guardando ? '...' : 'Guardar'}
+        </button>
+      </div>
+      {error && <p className="auth-error" style={{ marginTop:6 }}>{error}</p>}
+    </div>
+  )
+}
+
+function ExtraImagen({ clave, label, urlActual, authFetch, onSaved }) {
+  const [archivo, setArchivo] = useState(null)
+  const [subiendo, setSubiendo] = useState(false)
+  const [error, setError] = useState('')
+
+  const elegirArchivo = (e) => {
+    const f = e.target.files?.[0]
+    if (f) { setArchivo(f); setError('') }
+  }
+
+  const subir = async () => {
+    if (!archivo) return
+    setSubiendo(true); setError('')
+    try {
+      const body = new FormData()
+      body.append('archivo', archivo)
+      const res = await authFetch(`${API_URL}/api/contenido/${clave}`, { method: 'PUT', body })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.message || 'No pudimos subir la imagen.')
+      onSaved()
+      setArchivo(null)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setSubiendo(false)
+    }
+  }
+
+  return (
+    <div className="admin-form-field">
+      <label>{label}</label>
+      <div className="admin-img-preview" style={{ height:100 }}>
+        {urlActual ? <img src={urlActual} alt="" /> : <span>Sin foto</span>}
+      </div>
+      <div className="admin-img-upload-row">
+        <label className="admin-btn-small admin-file-btn">
+          📁 Elegir
+          <input type="file" accept="image/*" onChange={elegirArchivo} hidden />
+        </label>
+        <button type="button" className="admin-btn-small admin-btn-upload" onClick={subir} disabled={!archivo || subiendo}>
+          {subiendo ? '...' : '☁️ Subir'}
+        </button>
+      </div>
+      {error && <p className="auth-error" style={{ marginTop:6 }}>{error}</p>}
     </div>
   )
 }

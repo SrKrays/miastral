@@ -11,7 +11,7 @@ import { API_URL } from '../config/api'
 import { mapProducto } from '../utils/productAdapter'
 import { CartContext } from '../context/CartContext'
 import { ContenidoContext } from '../context/ContenidoContext'
-import { getYoutubeThumb } from '../utils/youtube'
+import { getYoutubeEmbedUrl } from '../utils/youtube'
 import './Home.css'
 
 const TorusFieldScene = lazy(() => import('../components/TorusField/TorusFieldScene'))
@@ -77,7 +77,7 @@ export default function Home() {
   const { addItem } = useContext(CartContext)
   const { contenido } = useContext(ContenidoContext)
   const videoBienvenidaLink = contenido.homeVideoBienvenida
-  const videoBienvenidaThumb = getYoutubeThumb(videoBienvenidaLink)
+  const videoBienvenidaEmbed = getYoutubeEmbedUrl(videoBienvenidaLink)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [toast, setToast] = useState(null)
   const [bestSellers, setBestSellers] = useState([])
@@ -92,13 +92,13 @@ export default function Home() {
         const curados = BESTSELLER_NOMBRES
           .map(nombre => data.find(p => p.nombre.includes(nombre)))
           .filter(Boolean)
-          .map(mapProducto)
+          .map(p => mapProducto(p, contenido))
         setBestSellers(curados.length ? curados : BEST_SELLERS_FALLBACK)
       })
       .catch(() => { if (!cancelado) setBestSellers(BEST_SELLERS_FALLBACK) })
       .finally(() => { if (!cancelado) setBestSellersLoading(false) })
     return () => { cancelado = true }
-  }, [])
+  }, [contenido])
 
   const addToCart = (item) => {
     addItem(item)
@@ -226,11 +226,14 @@ export default function Home() {
             </ScrollReveal>
             <ScrollReveal direction="right" delay={0.15}>
               <div className="membresia-video-wrap">
-                {videoBienvenidaThumb ? (
-                  <a href={videoBienvenidaLink} target="_blank" rel="noopener noreferrer" className="membresia-video-link">
-                    <img src={videoBienvenidaThumb} alt="Video de bienvenida" className="membresia-video-thumb" />
-                    <span className="play-icon play-icon--overlay">▶</span>
-                  </a>
+                {videoBienvenidaEmbed ? (
+                  <iframe
+                    src={videoBienvenidaEmbed}
+                    title="Video de bienvenida"
+                    className="membresia-video-embed"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 ) : (
                 <div className="membresia-video-placeholder">
                   <div className="play-icon">▶</div>

@@ -47,9 +47,19 @@ function formatPrecio(p) {
   return p.precioUSD ? `${base} (USD ${p.precioUSD})` : base
 }
 
-export function mapProducto(p) {
+// contenido = mapa de ContenidoContext. Permite, sin tocar la base de datos,
+// sumarle a un producto puntual (por id): más fotos (producto{id}Imagen2/3/4),
+// un link externo propio (producto{id}Link/LinkLabel) y una fecha para mostrar
+// como dato del evento/taller (producto{id}Fecha).
+export function mapProducto(p, contenido = {}) {
   const visual = VISUAL_MAP[p.nombre] || VISUAL_DEFAULT
   const externo = LINKS_EXTERNOS[p.nombre]
+  const prefijo = `producto${p.id}`
+
+  const linkPropio = contenido[`${prefijo}Link`]
+  const fotosExtra = [2, 3, 4]
+    .map(n => contenido[`${prefijo}Imagen${n}`])
+    .filter(Boolean)
 
   const detalles = [
     p.duracion ? { label: 'Duración', value: p.duracion } : null,
@@ -74,14 +84,16 @@ export function mapProducto(p) {
     emoji: visual.emoji,
     tag: p.tag || null,
     foto: p.imageUrl || undefined,
+    fotosExtra: fotosExtra.length ? fotosExtra : undefined,
     stock: p.stock,
-    contacto: inferContacto(p),
+    contacto: linkPropio ? 'link' : inferContacto(p),
     desc: p.descripcion,
     descCompleta: p.descripcionCompleta || undefined,
     detalles: detalles.length ? detalles : undefined,
     features: p.incluye ? p.incluye.split('|').map(s => `✓ ${s.trim()}`) : undefined,
     nota: nota || undefined,
-    link: externo?.link,
-    linkLabel: externo?.linkLabel,
+    link: linkPropio || externo?.link,
+    linkLabel: contenido[`${prefijo}LinkLabel`] || externo?.linkLabel,
+    fecha: contenido[`${prefijo}Fecha`] || undefined,
   }
 }

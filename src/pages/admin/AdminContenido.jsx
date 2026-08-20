@@ -26,6 +26,14 @@ const SECCIONES = [
     cards: [
       { clave: 'disenoHumanoImagen', label: 'Imagen de ejemplo (debajo de "¿Qué es Diseño Humano?")', tipo: 'imagen', campos: ['imagen'] },
       { clave: 'dhVideoBodygraph', label: 'Video "Cómo interpretar tu BodyGraph"', tipo: 'video', campos: ['video'] },
+      { clave: 'disenoHumanoPilar1', label: 'Pilar 1: Tipo', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoPilar2', label: 'Pilar 2: Estrategia', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoPilar3', label: 'Pilar 3: Autoridad', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoTipo1', label: 'Tipo energético: Generador', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoTipo2', label: 'Tipo energético: Generador Manifestante', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoTipo3', label: 'Tipo energético: Proyector', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoTipo4', label: 'Tipo energético: Manifestador', tipo: 'imagen', campos: ['imagen'] },
+      { clave: 'disenoHumanoTipo5', label: 'Tipo energético: Reflector', tipo: 'imagen', campos: ['imagen'] },
     ],
   },
   {

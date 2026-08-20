@@ -11,3 +11,9 @@ export function getYoutubeThumb(url) {
   const id = getYoutubeId(url)
   return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null
 }
+
+// URL lista para usar en un <iframe> embebido, o null si no es un link válido.
+export function getYoutubeEmbedUrl(url) {
+  const id = getYoutubeId(url)
+  return id ? `https://www.youtube.com/embed/${id}` : null
+}

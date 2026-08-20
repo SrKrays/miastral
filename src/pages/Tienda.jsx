@@ -6,6 +6,7 @@ import ScrollReveal, { StaggerGroup, StaggerItem } from '../components/ScrollRev
 import { API_URL } from '../config/api'
 import { mapProducto } from '../utils/productAdapter'
 import { CartContext } from '../context/CartContext'
+import { ContenidoContext } from '../context/ContenidoContext'
 import './Tienda.css'
 
 /* Fallback si la API no responde (Render dormido, sin conexión, etc.) —
@@ -152,6 +153,7 @@ function TiendaCard({ item, onView, delay = 0 }) {
       <div className="tienda-card-body">
         <span className="tienda-card-tipo">{item.tipo}</span>
         <h3 className="tienda-card-title">{item.titulo}</h3>
+        {item.fecha && <p style={{ fontSize:12, color:'var(--c-500)', margin:'-4px 0 4px' }}>📅 {item.fecha}</p>}
         <div className="tienda-card-footer">
           <span className="tienda-card-precio">{item.precio}</span>
           <button className="btn-coral tienda-add-btn" onClick={e => { e.stopPropagation(); onView(item) }}>
@@ -165,6 +167,7 @@ function TiendaCard({ item, onView, delay = 0 }) {
 
 export default function Tienda() {
   const { addItem } = useContext(CartContext)
+  const { contenido } = useContext(ContenidoContext)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [productos, setProductos] = useState([])
   const [sesiones, setSesiones] = useState([])
@@ -185,9 +188,9 @@ export default function Tienda() {
       .then(res => { if (!res.ok) throw new Error('bad response'); return res.json() })
       .then(data => {
         if (cancelado || !Array.isArray(data)) return
-        setProductos(data.filter(p => p.tipo === 'producto').map(mapProducto))
-        setSesiones(data.filter(p => p.tipo === 'servicio').map(mapProducto))
-        setProgramas(data.filter(p => p.tipo === 'programa').map(mapProducto))
+        setProductos(data.filter(p => p.tipo === 'producto').map(p => mapProducto(p, contenido)))
+        setSesiones(data.filter(p => p.tipo === 'servicio').map(p => mapProducto(p, contenido)))
+        setProgramas(data.filter(p => p.tipo === 'programa').map(p => mapProducto(p, contenido)))
       })
       .catch(() => {
         if (cancelado) return
@@ -199,7 +202,7 @@ export default function Tienda() {
       })
       .finally(() => { if (!cancelado) setLoading(false) })
     return () => { cancelado = true }
-  }, [])
+  }, [contenido])
 
   return (
     <>
