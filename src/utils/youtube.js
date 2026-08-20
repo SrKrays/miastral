@@ -13,7 +13,9 @@ export function getYoutubeThumb(url) {
 }
 
 // URL lista para usar en un <iframe> embebido, o null si no es un link válido.
+// youtube-nocookie.com pesa menos que youtube.com para el embed (no carga
+// las cookies/tracking de YouTube hasta que se interactúa con el video).
 export function getYoutubeEmbedUrl(url) {
   const id = getYoutubeId(url)
-  return id ? `https://www.youtube.com/embed/${id}` : null
+  return id ? `https://www.youtube-nocookie.com/embed/${id}?rel=0` : null
 }

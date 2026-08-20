@@ -199,6 +199,7 @@ export default function DisenoHumano() {
                 className="dh-video-embed"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
               />
             ) : (
             <div className="dh-video-placeholder">

@@ -233,6 +233,7 @@ export default function Home() {
                     className="membresia-video-embed"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
+                    loading="lazy"
                   />
                 ) : (
                 <div className="membresia-video-placeholder">
